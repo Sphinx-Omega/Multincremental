@@ -17,7 +17,7 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.1</h3><br>
+	<br><h3>v0.1</h3><br>
 		- Added Particles.<br>
 		- Added Quarks.`
 
@@ -51,6 +51,7 @@ function addedPlayerData() { return {
 
 // Display extra things at the top of the page
 var displayThings = [
+	"Current endgame: "+(new Decimal("eeee1978"))
 ]
 
 // Determines when the game "ends"
