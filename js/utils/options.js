@@ -18,6 +18,12 @@ function getStartOptions() {
 	}
 }
 
+let notations = ['Scientific','Engineering','Hyper-E','Standard','Letters','Cancer','Mixed Scientific','Mixed Engineering']
+
+function changeNotation() {
+	player.notation = notations[(notations.indexOf(player.notation) + 1) % notations.length]
+}
+
 function toggleOpt(name) {
 	if (name == "oldStyle" && styleCooldown > 0)
 		return;
@@ -27,6 +33,7 @@ function toggleOpt(name) {
 		changeTreeQuality();
 	if (name == "oldStyle")
 		updateStyle();
+	if (name == "autosave") player.autosave = options.autosave
 }
 var styleCooldown = 0;
 function updateStyle() {
@@ -78,4 +85,3 @@ function milestoneShown(layer, id) {
 	return false;
 }
 
-let formatOption = (opt) => opt ? 'ON' : 'OFF'
