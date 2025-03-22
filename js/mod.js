@@ -12,8 +12,8 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
-	name: "Atomic Fusion",
+	num: "0.1",
+	name: "Beginning",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
@@ -48,8 +48,11 @@ function getPointGen() {
 	let gainExp = new Decimal(1)
 
 	gain = gain.mul(tmp.a.effect)
-	if(hasUpgrade("p",12)) gain = gain.mul(2)
-	if(hasUpgrade("p",13)) gain = gain.mul((player.p.points).max(1).root(2))
+	if(hasUpgrade("p",12)) gain = gain.times(2)
+	if(hasUpgrade("p",13)) gain = gain.times(upgradeEffect("p",13))
+	if(hasUpgrade("p",21)) gain = gain.times(upgradeEffect("p",21))
+	if(player.e.total.gte(1)) gain = gain.times(tmp.e.effect2)
+	if(hasUpgrade("e",21)) gain = gain.times(upgradeEffect("e",21))
 	return gain.pow(gainExp)
 
 }
