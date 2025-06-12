@@ -310,6 +310,14 @@ function colorText(elem, color, text) {
 	return "<" + elem + " style='color:" + color + ";text-shadow:0px 0px 10px;'>" + text + "</" + elem + ">"
 }
 
+function ascendText(elem, text) {
+	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; background-image: url(images/bgs/Rainbow.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
+}
+
+function transcendText(elem, text) {
+	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; background-image: url(images/bgs/Transcension.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
+}
+
 function versionCheck() {
 	let setVersion = true
 	

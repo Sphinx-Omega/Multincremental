@@ -34,7 +34,7 @@ var systemComponents = {
 				treeButton: !tmp[layer].isLayer,
 				smallNode: size == 'small',
 				[layer]: true,
-				tooltipBox: true,
+				tooltipBox: false,
 				forceTooltip: player[layer].forceTooltip,
 				ghost: tmp[layer].layerShown == 'ghost',
 				hidden: !tmp[layer].layerShown,
@@ -67,7 +67,7 @@ var systemComponents = {
 	'layer-tab': {
 		props: ['layer', 'back', 'spacing', 'embedded'],
 		template: `<div v-bind:style="[tmp[layer].style ? tmp[layer].style : {}, (tmp[layer].tabFormat && !Array.isArray(tmp[layer].tabFormat)) ? tmp[layer].tabFormat[player.subtabs[layer].mainTabs].style : {}]" class="noBackground">
-		<div v-if="back"><button v-bind:class="back == 'big' ? 'other-back' : 'back'" v-on:click="goBack(layer)">←</button></div>
+		<br><br><br><br><br><br><br>
 		<div v-if="!tmp[layer].tabFormat">
 			<div v-if="spacing" v-bind:style="{'height': spacing}" :key="this.$vnode.key + '-spacing'"></div>
 			<infobox v-if="tmp[layer].infoboxes" :layer="layer" :data="Object.keys(tmp[layer].infoboxes)[0]":key="this.$vnode.key + '-info'"></infobox>
@@ -104,19 +104,28 @@ var systemComponents = {
 
 	'overlay-head': {
 		template: `			
-		<div class="overlayThing" style="padding-bottom:7px; width: 90%; z-index: 1000; position: relative">
+		<div class="overlayThing" style="width: 100%; height: 12%; background-color: black; z-index: 1000; position: absolute; border-top: 2px solid; border-bottom: 2px solid; padding-bottom: 20px">
 		<span v-if="player.devSpeed && player.devSpeed != 1" class="overlayThing">
 			<br>Dev Speed: {{format(player.devSpeed)}}x<br>
 		</span>
+		<span v-if="player.points.lt('1e1e15')"  class="overlayThing"><br>You have </span>
+		<h2 v-if="(player.points <= 1.797e308)"  class="overlayThing" id="points">{{format(player.points, 3)}}</h2>
+		<h2 v-if="(player.points > 1.797e308) && (!hasUpgrade('asc',34))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity</h2>
+		<h2 v-if="(player.points > 1.797e308) && (hasUpgrade('asc',34)) && (player.points.lt('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text" id="points">{{format(player.points, 3)}}</h2>
+		<h1 v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text">ℵ<sub>0</sub></h1>
+		<span v-if="player.points.lt('1e1e15')"  class="overlayThing"> {{pluralize(player.points,modInfo.pointsNameSingular,modInfo.pointsName,true)}}</span>
+		<br>
 		<span v-if="player.offTime !== undefined"  class="overlayThing">
-			<br>Offline Time: {{formatTime(player.offTime.remain)}}<br>
+			Offline Time: {{formatTime(player.offTime.remain)}}
 		</span>
 		<br>
-		<span v-if="player.points.lt('1e1000')"  class="overlayThing">You have </span>
-		<h2  class="overlayThing" id="points">{{formatWhole(player.points)}}</h2>
-		<span v-if="player.points.lt('1e1e6')"  class="overlayThing"> {{pluralize(player.points,modInfo.pointsNameSingular,modInfo.pointsName,true)}}</span>
-		<br>
-		<span v-if="canGenPoints()"  class="overlayThing">({{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}/sec)</span>
+		<span  class="overlayThing">(</span>
+		<span v-if="(canGenPoints()) && (player.points <= 1.797e308)"  class="overlayThing">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
+		<span v-if="(player.points > 1.797e308) && (!hasUpgrade('asc',34))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity</span>
+		<span v-if="(player.points > 1.797e308) && (hasUpgrade('asc',34)) && (player.points.lt('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
+		<span v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text"><h3>ℵ<sub>0</sub></h3></span>
+		<span v-if="!canGenPoints() && player.points == 10"  class="overlayThing">0</span>
+		<span  class="overlayThing">/ sec )</span>
 		<div v-for="thing in tmp.displayThings" class="overlayThing"><span v-if="thing" v-html="thing"></span></div>
 	</div>
 	`
@@ -145,9 +154,10 @@ var systemComponents = {
 		<button class="opt" onclick="toggleShift()">Toggle Shift</button><br><br>
 		<br><br>
         Time Played: {{ formatTime(player.timePlayed) }}<br><br>
-        <h3>Hotkeys</h3><br>
+        
         <span v-for="key in hotkeys" v-if="player[key.layer].unlocked && tmp[key.layer].hotkeys[key.id].unlocked"><br>{{tmp[key.layer].hotkeys[key.id].description}}</span></div>
     `
+		//<h3>Hotkeys</h3><br>
     },
 
     'options-tab': {
@@ -166,16 +176,8 @@ var systemComponents = {
             <tr>
                 <td><button class="opt" onclick="switchTheme()">Theme: {{ getThemeName() }}</button></td>
                 <td><button class="opt" onclick="adjustMSDisp()">Show Milestones: {{ MS_DISPLAYS[MS_SETTINGS.indexOf(options.msDisplay)]}}</button></td>
-                <td><button class="opt" onclick="toggleOpt('hqTree')">High-Quality Tree: {{ options.hqTree?"ON":"OFF" }}</button></td>
+				<td><button class="opt" onclick="toggleOpt('hideChallenges')">Completed Challenges: {{ options.hideChallenges?"HIDDEN":"SHOWN" }}</button></td>
             </tr>
-            <tr>
-                <td><button class="opt" onclick="toggleOpt('hideChallenges')">Completed Challenges: {{ options.hideChallenges?"HIDDEN":"SHOWN" }}</button></td>
-                <td><button class="opt" onclick="toggleOpt('forceOneTab'); needsCanvasUpdate = true">Single-Tab Mode: {{ options.forceOneTab?"ALWAYS":"AUTO" }}</button></td>
-				<td><button class="opt" onclick="toggleOpt('forceTooltips'); needsCanvasUpdate = true">CTRL-Click to Toggle Tooltips: {{ options.forceTooltips?"ON":"OFF" }}</button></td>
-			</tr> 
-			<tr>
-                <td><button class="opt" onclick="changeNotation()">Notation: {{ player.notation }}</button></td>
-			</tr> 
         </table>`
     },
     'back-button': {

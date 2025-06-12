@@ -4,7 +4,7 @@ const decimalZero = new Decimal(0)
 const decimalOne = new Decimal(1)
 const decimalNaN = new Decimal(NaN)
 
-const defaultGlow = "#ff0000"
+const defaultGlow = "rgba(0, 0, 0, 0)"
 
 
 function layerShown(layer){

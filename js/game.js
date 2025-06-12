@@ -457,4 +457,4 @@ function startInterval() {
 }
 
 
-setInterval(function() {needCanvasUpdate = true}, 500)
+setInterval(function() {needCanvasUpdate = true}, 50)

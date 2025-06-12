@@ -19,7 +19,7 @@ function constructNodeStyle(layer){
 	if (tmp[layer].image !== undefined)
 		style.push({'background-image': 'url("' + tmp[layer].image + '")'})
 	if(tmp[layer].notify && player[layer].unlocked)
-		style.push({'box-shadow': 'var(--hqProperty2a), 0 0 20px ' + tmp[layer].trueGlowColor})
+		style.push({'box-shadow': 'var(--hqProperty2a), 0 0 0px ' + tmp[layer].trueGlowColor})
 	style.push(tmp[layer].nodeStyle)
     return style
 }
@@ -32,7 +32,7 @@ function challengeStyle(layer, id) {
 }
 
 function challengeButtonText(layer, id) {
-    return (player[layer].activeChallenge==(id)?(canCompleteChallenge(layer, id)?"Finish":"Exit Early"):(maxedChallenge(layer, id)?"Completed":"Start"))
+    return (player[layer].activeChallenge==(id)?(canCompleteChallenge(layer, id)?"Overcome this Trial":"Exit"):(maxedChallenge(layer, id)?"Ascended":"Begin"))
 
 }
 

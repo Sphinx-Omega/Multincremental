@@ -57,11 +57,12 @@ function drawComponentBranches(layer, data, prefix) {
 function drawTreeBranch(num1, data, prefix) { // taken from Antimatter Dimensions & adjusted slightly
 	let num2 = data
 	let color_id = 1
-	let width = 15
+	let width = 10
 	if (Array.isArray(data)){
 		num2 = data[0]
 		color_id = data[1]
 		width = data[2] || width
+		color = data[3]
 	}
 
 	if(typeof(color_id) == "number")
@@ -81,7 +82,7 @@ function drawTreeBranch(num1, data, prefix) { // taken from Antimatter Dimension
     let y2 = end.top + (end.height / 2) + document.body.scrollTop;
     ctx.lineWidth = width;
     ctx.beginPath();
-    ctx.strokeStyle = color_id
+    ctx.strokeStyle = color
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.stroke();

@@ -40,20 +40,123 @@
 }
 
 .resetNotify {
-	box-shadow: var(--hqProperty2a), 0 0 8px #ffffff;
+	box-shadow: var(--hqProperty2a), 0 0 0px #ffffff;
 }
 
 .treeNode.can:hover {
-	transform: scale(1.15, 1.15);
-	box-shadow: var(--hqProperty2a), 0 0 20px var(--points);
+	transform: scale(1, 1);
+	box-shadow: var(--hqProperty2a), 0 0 0px var(--points);
 }
 
 .notify {
-	transform: scale(1.05, 1.05);
-	border-color: rgba(0, 0, 0, 0.125);
-	box-shadow: var(--hqProperty2a), 0 0 20px #ff0000;
+	transform: scale(1, 1);
+	border-color: rgba(0, 0, 0, 0);
+	box-shadow: var(--hqProperty2a), 0 0 0px #ff0000;
 }
 
+
+.p.treeNode {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 200px;
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0.125);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 40px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(100, 49, 49, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 10px 0 10px;
+	position: absolute;
+	left: -10px;
+	top: 192px;
+}
+
+.p.treeNode:hover {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 300px;
+	text-shadow: 0 0 0px var(--color);
+}
+
+.asc.treeNode {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 200px;
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0.125);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 40px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(100, 76, 49, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 10px 0 10px;
+	position: absolute;
+	left: -10px;
+	top: 252px;
+}
+
+.asc.treeNode:hover {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 300px;
+	text-shadow: 0 0 0px var(--color);
+}
+
+.transc.treeNode {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 200px;
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0.125);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 40px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(100, 97, 49, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 10px 0 10px;
+	position: absolute;
+	left: -10px;
+	top: 312px;
+}
+
+.transc.treeNode:hover {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 300px;
+	text-shadow: 0 0 0px var(--color);
+}
+
+.a.treeNode {
+	transform: scale(1, 1);
+	height: 60px;
+	width: 200px;
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0.125);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 40px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(255, 255, 255, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 10px 0 10px;
+	position: absolute;
+	left: -10px;
+	top: 132px;
+}
+
+.a.treeNode:hover {
+	transform: scale(1, 1);
+	width: 300px;
+	text-shadow: 0 0 0px var(--color);
+}
 
 
 .mark {
