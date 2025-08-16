@@ -32,7 +32,7 @@
 }
 
 .fade-transition {
-	transition: opacity .3s
+	transition: opacity .8s
 }
 
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {

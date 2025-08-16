@@ -314,8 +314,16 @@ function ascendText(elem, text) {
 	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; background-image: url(images/bgs/Rainbow.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
 }
 
+function ascendTextFront(elem, text) {
+	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px white; background-image: url(images/bgs/Rainbow.gif); background-size: 60px; background-position: center; z-index: 9000'>" + text + "</" + elem + ">"
+}
+
 function transcendText(elem, text) {
-	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; background-image: url(images/bgs/Transcension.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
+	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; -webkit-text-stroke-width: 0.1px; -webkit-text-stroke-color: white; background-image: url(images/bgs/Transcension.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
+}
+
+function etherealText(elem, text) {
+	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 0px; -webkit-text-stroke-width: 0.1px; -webkit-text-stroke-color: white; background-image: url(images/bgs/Ethereal.gif); background-size: 120px; background-position: center'>" + text + "</" + elem + ">"
 }
 
 function versionCheck() {

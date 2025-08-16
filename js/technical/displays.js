@@ -121,7 +121,7 @@ function constructBarStyle(layer, id) {
 	}
 
 	if (bar.instant) {
-		style.fillDims['transition-duration'] = '0s'
+		style.fillDims['transition-duration'] = '0.05s'
 	}
 	return style
 }

@@ -1,6 +1,6 @@
 addLayer("a", {
     name: "Achievements", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "Achievements", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "Achievements ★", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -18,7 +18,7 @@ addLayer("a", {
         "border-size":"10px",
         "border-color":"rgb(255, 255, 255)",
         "color":"white",
-        "font-size":"20px",
+        "font-size":"20px"
         }
     },
     requires: decimalZero, // Can be a function that takes requirement increases into account
@@ -27,235 +27,259 @@ addLayer("a", {
     exponent: 0.5, // Prestige currency exponent
     row: 9, // Row the layer is in on the tree (0 is the first row)
     layerShown() { return true },
-    achievementPopups: true,
+    achievementPopups: false,
     tabFormat: {
         "Achievements" :{
             content: [
                 ["raw-html",
                     function(){
-                    return "<b>Each achievement gives a <sup>^</sup>1.05 boost to particle generator power<br><br>Currently: "+layerText("h3","a",("<sup>^</sup>"+format(tmp.a.effect, 2)))
+                    return "<b>You have "+ ((getThemeName() == "grayscale")?("<h2>"+formatWhole(player.a.points)):(layerText("h2","a",formatWhole(player.a.points)))) + ((getThemeName() == "grayscale")?"<h2>/60":layerText("h2","a","/60")) + "</h2><b> Achievements, giving an additional " + ((getThemeName() == "grayscale")?("<h2>x"+format(tmp.a.effect, 2)):(layerText("h2","a",("x"+format(tmp.a.effect, 2))))) + "</h2><b> multiplier"
                     }
                 ],
                 "blank",
                 "blank",
             "achievements"
-            ]
+            ],
+            buttonStyle: {
+                "border-radius":"0%",
+                "visibility":"hidden"
+            },
         },
     },
     achievements: {
         rows: 4,
         cols: 8,
         11: {
-            name: "<h3>The First",
-            tooltip: "<h3>Get 5 Particle Generators",
+            name: "<h3>Millionaire!<br><br></h3>Reach 1Mil Energy",
+            tooltip: " ",
             done() {
-                return player.p.buyables[11] >= 5
+                return player.points.gte(1e6)
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",11)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",11)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",11)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
         12: {
-            name: "<h3>POWER!",
-            tooltip: "<h3>Power up!",
+            name: "<h3>Prestigious!<br><br></h3>Prestige for the first time",
+            tooltip: " ",
             done() {
-                return (player.p.buyables[31]).gte(1)
+                return player.p.presamt.gte(1)
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",12)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",12)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",12)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
         13: {
-            name: "<h3>1-UP",
-            tooltip: "<h3>Level up!",
+            name() {
+                return "<h3>Getting an upgrade<br><br></h3>Boost for the first time<br><br><br><br>"+((hasAchievement("a",13))?(colorText("h3","lime","x1.1 to prestige mult")):(colorText("h3","red","x1.1 to prestige mult")))
+            }, 
+            tooltip: " ",
             done() {
-                return (player.p.buyables[32]).gte(1)
+                return ((player.p.rAsc.gte(1)) || (player.p.oAsc.gte(1)) || (player.p.yAsc.gte(1)) || (player.p.lAsc.gte(1)) || (player.p.gAsc.gte(1)) || (player.p.cAsc.gte(1)) || (player.p.bAsc.gte(1)) || (player.p.vAsc.gte(1)) || (player.p.pAsc.gte(1)) || (player.p.wAsc.gte(1)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",13)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",13)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
                     return color
-                }
-            },
-        },
-
-        14: {
-            name: "<h3>Comin' through, now!",
-            tooltip: "<h3>Overdrive!",
-            done() {
-                return (player.p.buyables[33]).gte(1)
-            },
-            onComplete() {
-                addPoints("a",1)
-            },
-            style: {"width":"110px","height":"110px",
-                "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",14)) color = "#77BF5F"
-                    return color
-                }
-            },
-        },
-
-        15: {
-            name: "<h3>The hardest mode",
-            tooltip: "<h3>Hypermode!",
-            done() {
-                return (player.p.buyables[34]).gte(1)
-            },
-            onComplete() {
-                addPoints("a",1)
-            },
-            style: {"width":"110px","height":"110px",
-                "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",15)) color = "#77BF5F"
-                    return color
-                }
-            },
-        },
-
-        16: {
-            name: "<h3>Revengeance",
-            tooltip: "<h3>Ascend!",
-            done() {
-                return (player.p.buyables[35]).gte(1)
-            },
-            onComplete() {
-                addPoints("a",1)
-            },
-            style: {"width":"110px","height":"110px",
-                "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",16)) color = "#77BF5F"
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",13)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
         21: {
-            name: "<h3>The rain, transformed",
-            tooltip: "<h3>Ascend 100 times",
+            name: "<h3>Enlightenment<br><br></h3>Ascend for the first time",
+            tooltip: " ",
             done() {
-                return (player.p.buyables[35]).gte(100)
+                return player.p.ascendAmt.gte(1)
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",21)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",21)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",21)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
         22: {
-            name: "<h3>You gathered all your courage...",
-            tooltip: "<h3>Overcome a trial",
+            name: "<h3>Too fast!<br><br></h3>Have a solid bar",
+            tooltip: " ",
             done() {
-                return (hasChallenge("asc",11))
+                return ((player.p.redSpd.gte(30)) || (player.p.orangeSpd.gte(30)) || (player.p.yellowSpd.gte(30)) || (player.p.limeSpd.gte(30)) || (player.p.greenSpd.gte(30)) || (player.p.cyanSpd.gte(30)) || (player.p.blueSpd.gte(30)) || (player.p.violetSpd.gte(30)) || (player.p.pinkSpd.gte(30)) || (player.p.whiteSpd.gte(30)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",22)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",22)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",22)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
         23: {
-            name: "<h3>...And learned to 'OVERCOME'",
-            tooltip: "<h3>Overcome Ascension",
+            name: "<h3>Multiplier Millenium<br><br></h3>Have a multiplier reach x1,000",
+            tooltip: " ",
             done() {
-                return hasUpgrade("asc",34)
+                return ((player.p.rMult.gte(1e3)) || (player.p.oMult.gte(1e3)) || (player.p.yMult.gte(1e3)) || (player.p.lMult.gte(1e3)) || (player.p.gMult.gte(1e3)) || (player.p.cMult.gte(1e3)) || (player.p.bMult.gte(1e3)) || (player.p.vMult.gte(1e3)) || (player.p.pMult.gte(1e3)) || (player.p.wMult.gte(1e3)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",23)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",23)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",23)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
-        24: {
-            name: "<h3>Weakened-er Girl",
-            tooltip: "<h3>Overcome a Hard Trial",
+        31: {
+            name: "<h3>RGB!<br><br></h3>Have Red, Green and Blue bars",
+            tooltip: " ",
             done() {
-                return hasChallenge("asc",21)
+                return ((player.p.redBuyAmt.gte(1)) && (player.p.greenBuyAmt.gte(1)) && (player.p.blueBuyAmt.gte(1)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",24)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",31)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",31)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
-        25: {
-            name: "<h3>Undefeatable",
-            tooltip: "<h3>Overcome all Hard Trials",
+        32: {
+            name() {
+                return "<h3>Spectrum<br><br></h3>Have all bars<br><br><br><br>"+((hasAchievement("a",32))?(colorText("h3","lime","x1.1 to all bars' speed")):(colorText("h3","red","x1.1 to all bars' speed")))
+            } ,
+            tooltip: " ",
             done() {
-                return (hasChallenge("asc",21) && hasChallenge("asc",22) && hasChallenge("asc",23))
+                return ((player.p.redBuyAmt.gte(1)) && (player.p.orangeBuyAmt.gte(1)) && (player.p.yellowBuyAmt.gte(1)) && (player.p.limeBuyAmt.gte(1)) && (player.p.greenBuyAmt.gte(1)) && (player.p.cyanBuyAmt.gte(1)) && (player.p.blueBuyAmt.gte(1)) && (player.p.violetBuyAmt.gte(1)) && (player.p.pinkBuyAmt.gte(1)) && (player.p.whiteBuyAmt.gte(1)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",25)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",32)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",32)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
         },
 
-        26: {
-            name: "<h3>Can we get much higher?",
-            tooltip: "<h3>Transcend!",
+        33: {
+            name: "<h3>Gotta Boost 'em all!<br><br></h3>Reach Boost #1 on every bar",
+            tooltip: " ",
             done() {
-                return (player.asc.transc >= 1)
+                return ((player.p.rAsc.gte(1)) && (player.p.oAsc.gte(1)) && (player.p.yAsc.gte(1)) && (player.p.lAsc.gte(1)) && (player.p.gAsc.gte(1)) && (player.p.cAsc.gte(1)) && (player.p.bAsc.gte(1)) && (player.p.vAsc.gte(1)) && (player.p.pAsc.gte(1)) && (player.p.wAsc.gte(1)))
             },
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"110px","height":"110px",
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
                 "background"() {
-                    let color = "#BF8F8F"
-                    if (hasAchievement("a",26)) color = "#77BF5F"
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",33)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",33)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        41: {
+            name() {
+                return "<h3>I think I skipped a step...<br><br></h3>Boost without prestiging<br><br><br><br>"+((hasAchievement("a",41))?(colorText("h3","lime","x1.02 to Ascension Power")):(colorText("h3","red","x1.02 to Ascension Power")))
+            },
+            tooltip: " ",
+            done() {
+                return ((player.p.ascendAmt.gte(1)) && (player.p.presamt.eq(0)))
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",41)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",41)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
@@ -264,7 +288,8 @@ addLayer("a", {
 
     effect() {
         let eff = player.a.points
-        eff = Decimal.pow(1.05, eff)
+        eff = (eff.times(2)).div(100).add(1)
+        if(player.a.points == 0) eff = decimalOne
         return eff
     },
 })

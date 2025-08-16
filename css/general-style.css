@@ -2,7 +2,7 @@
 body {
 	color: var(--color);
 	overflow: hidden;
-	--background: #0f0f0f;
+	--background: #363636;
 	--color: #dfdfdf;
 	--points: #ffffff;
 	background: var(--background);

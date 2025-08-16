@@ -14,64 +14,160 @@ function playTransc() {
   document.body.style.animationPlayState = "paused, paused, running";
 }
 
-function getTrialComps() {
-  let tr1 = challengeCompletions("asc",11)
-  let tr2 = challengeCompletions("asc",12)
-  let tr3 = challengeCompletions("asc",13)
-  let tr4 = challengeCompletions("asc",21)
-  let tr5 = challengeCompletions("asc",22)
-  let tr6 = challengeCompletions("asc",23)
-  let trcomps = tr1 + tr2 + tr3 + tr4 + tr5 + tr6
-  return trcomps
-}
+// function getIChalComps() {
+//   let tr1 = challengeCompletions("asc",11)
+//   let tr2 = challengeCompletions("asc",12)
+//   let tr3 = challengeCompletions("asc",13)
+//   let tr4 = challengeCompletions("asc",21)
+//   let tr5 = challengeCompletions("asc",22)
+//   let tr6 = challengeCompletions("asc",23)
+//   let trcomps = tr1 + tr2 + tr3 + tr4 + tr5 + tr6
+//   return trcomps
+// }
 
-function getAscUpg53Effect() {
-  return (player.timePlayed)**(1/3)
-}
+// function enterTrial() {
+//   if(canExitChallenge("asc",(player.asc.activeChallenge))) {
+//     player.p.buyables[11] = decimalZero
+//     player.p.gen = decimalZero
+//     player.p.buyables[12] = decimalZero
+//     player.p.boost = decimalZero
+//     player.p.buyables[13] = decimalZero
+//     player.p.charger = decimalZero
+//     player.p.buyables[31] = decimalZero
+//     player.p.power = decimalZero
+//     player.p.buyables[32] = decimalZero
+//     player.p.level = decimalZero
+//     player.p.buyables[33] = decimalZero
+//     player.p.od = decimalZero
+//     player.p.buyables[34] = decimalZero
+//     player.p.hm = decimalZero
+//     player.points = new Decimal(10)
+//     player.p.upgrades = []
+//   }
+// }
 
-function firstAscReward() {
-  let num = Decimal.pow(2, ((player.asc.ap).times(10/3))).log(2).pow(0.775).max(1)
-  return num
-}
-
-function secondAscReward() {
-  let num = Decimal.pow(2, ((player.asc.ap).times(3/5))).log(2).pow(2/7).max(1)
-  if(hasUpgrade("asc",44)) num = num.times(10)
-  return num
-}
-
-function thirdAscReward() {
-  let num = Decimal.pow(2, ((player.asc.ap).pow(2/5))).log(2).pow(4/9).max(1)
-  if(hasUpgrade("asc",55)) num = num.times(20)
-  return num
-}
-
-function fourthAscReward() {
-  let num = Decimal.pow(2, ((player.asc.ap).pow(1/11))).log(2).pow(1/11).max(1)
-  return num
-}
-
-function enterTrial() {
-  if(canExitChallenge("asc",(player.asc.activeChallenge))) {
-    player.p.buyables[11] = decimalZero
-    player.p.gen = decimalZero
-    player.p.buyables[12] = decimalZero
-    player.p.boost = decimalZero
-    player.p.buyables[13] = decimalZero
-    player.p.charger = decimalZero
-    player.p.buyables[31] = decimalZero
-    player.p.power = decimalZero
-    player.p.buyables[32] = decimalZero
-    player.p.level = decimalZero
-    player.p.buyables[33] = decimalZero
-    player.p.od = decimalZero
-    player.p.buyables[34] = decimalZero
-    player.p.hm = decimalZero
-    player.points = new Decimal(10)
-    player.p.upgrades = []
-  }
-}
-
-function exitTrial() {
+// function exitTrial() {
   
+// }
+
+function getRedTimes() {
+  let times = decimalZero
+
+  return times
+}
+
+function getEnergyLimit() {
+  let lim = new Decimal(100)
+  if(getEnergyBarFilledTimes() >= 1) lim = new Decimal(1e4)
+  if(getEnergyBarFilledTimes() >= 2) lim = new Decimal(1e6)
+  if(getEnergyBarFilledTimes() >= 3) lim = new Decimal(1e9)
+  if(getEnergyBarFilledTimes() >= 4) lim = new Decimal(1e13)
+  if(getEnergyBarFilledTimes() >= 5) lim = new Decimal(1e18)
+  if(getEnergyBarFilledTimes() >= 6) lim = new Decimal(1e24)
+  if(getEnergyBarFilledTimes() >= 7) lim = new Decimal(1e33)
+  return lim
+}
+
+function getEnergyProgress() {
+  return (((player.points).add(50).div(getEnergyLimit())).min(1))
+}
+
+function redMult() {
+  return ""
+}
+
+function prestigeReset() {
+  player.p.multExp = player.p.presexp
+  player.p.extraMult = player.p.presmult
+  player.p.prestotal = player.p.points
+  player.p.points = decimalZero
+  player.points = decimalZero
+  player.p.rMax = new Decimal(100)
+  player.p.oMax = new Decimal(100)
+  player.p.yMax = new Decimal(100)
+  player.p.lMax = new Decimal(100)
+  player.p.gMax = new Decimal(100)
+  player.p.cMax = new Decimal(100)
+  player.p.bMax = new Decimal(100)
+  player.p.vMax = new Decimal(100)
+  player.p.pMax = new Decimal(100)
+  player.p.wMax = new Decimal(100)
+  player.p.redBuyAmt = decimalOne
+  player.p.orangeBuyAmt = decimalZero
+  player.p.yellowBuyAmt = decimalZero
+  player.p.limeBuyAmt = decimalZero
+  player.p.greenBuyAmt = decimalZero
+  player.p.cyanBuyAmt = decimalZero
+  player.p.blueBuyAmt = decimalZero
+  player.p.violetBuyAmt = decimalZero
+  player.p.pinkBuyAmt = decimalZero
+  player.p.whiteBuyAmt = decimalZero
+  player.p.rProg = decimalZero
+  player.p.oProg = decimalZero
+  player.p.yProg = decimalZero
+  player.p.lProg = decimalZero
+  player.p.gProg = decimalZero
+  player.p.cProg = decimalZero
+  player.p.bProg = decimalZero
+  player.p.vProg = decimalZero
+  player.p.pProg = decimalZero
+  player.p.wProg = decimalZero
+  player.p.rMult = decimalOne
+  player.p.oMult = decimalOne
+  player.p.yMult = decimalOne
+  player.p.lMult = decimalOne
+  player.p.gMult = decimalOne
+  player.p.cMult = decimalOne
+  player.p.bMult = decimalOne
+  player.p.vMult = decimalOne
+  player.p.pMult = decimalOne
+  player.p.wMult = decimalOne
+  player.p.rAsc = decimalZero
+  player.p.oAsc = decimalZero
+  player.p.yAsc = decimalZero
+  player.p.lAsc = decimalZero
+  player.p.gAsc = decimalZero
+  player.p.cAsc = decimalZero
+  player.p.bAsc = decimalZero
+  player.p.vAsc = decimalZero
+  player.p.pAsc = decimalZero
+  player.p.wAsc = decimalZero
+  player.p.redAscCost = decimalZero
+  player.p.orangeAscCost = decimalZero
+  player.p.yellowAscCost = decimalZero
+  player.p.limeAscCost = decimalZero
+  player.p.greenAscCost = decimalZero
+  player.p.cyanAscCost = decimalZero
+  player.p.blueAscCost = decimalZero
+  player.p.violetAscCost = decimalZero
+  player.p.pinkAscCost = decimalZero
+  player.p.whiteAscCost = decimalZero
+  player.p.addEnergy = decimalOne
+}
+
+function ascend() {
+  prestigeReset()
+  player.p.multExp = decimalOne
+  player.p.extraMult = decimalOne
+  player.p.prestotal = decimalZero
+}
+
+function ascend1() {
+  player.p.baseMult = ((player.p.ascendMult).max(player.p.baseMult))
+  ascend()
+}
+
+function ascend2() {
+  player.p.baseSpeed = ((player.p.ascendSpeed).max(player.p.baseSpeed))
+  ascend()
+}
+
+function ascend3() {
+  player.p.baseBoost = ((player.p.ascendBoost).max(player.p.baseBoost))
+  ascend()
+}
+
+function ascend4() {
+  player.p.baseAscend = ((player.p.ascendPower).max(player.p.baseAscend))
+  ascend()
 }

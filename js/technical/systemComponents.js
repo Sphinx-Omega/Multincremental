@@ -104,31 +104,31 @@ var systemComponents = {
 
 	'overlay-head': {
 		template: `			
-		<div class="overlayThing" style="width: 100%; height: 12%; background-color: black; z-index: 1000; position: absolute; border-top: 2px solid; border-bottom: 2px solid; padding-bottom: 20px">
+		<div class="overlayThing" style="width: 100%; height: 12%; background-color: black; z-index: -1; position: absolute; border-top: 2px solid; border-bottom: 2px solid; padding-bottom: 20px">
 		<span v-if="player.devSpeed && player.devSpeed != 1" class="overlayThing">
 			<br>Dev Speed: {{format(player.devSpeed)}}x<br>
 		</span>
-		<span v-if="player.points.lt('1e1e15')"  class="overlayThing"><br>You have </span>
-		<h2 v-if="(player.points <= 1.797e308)"  class="overlayThing" id="points">{{format(player.points, 3)}}</h2>
-		<h2 v-if="(player.points > 1.797e308) && (!hasUpgrade('asc',34))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity</h2>
-		<h2 v-if="(player.points > 1.797e308) && (hasUpgrade('asc',34)) && (player.points.lt('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text" id="points">{{format(player.points, 3)}}</h2>
-		<h1 v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text">ℵ<sub>0</sub></h1>
-		<span v-if="player.points.lt('1e1e15')"  class="overlayThing"> {{pluralize(player.points,modInfo.pointsNameSingular,modInfo.pointsName,true)}}</span>
-		<br>
-		<span v-if="player.offTime !== undefined"  class="overlayThing">
-			Offline Time: {{formatTime(player.offTime.remain)}}
-		</span>
-		<br>
-		<span  class="overlayThing">(</span>
-		<span v-if="(canGenPoints()) && (player.points <= 1.797e308)"  class="overlayThing">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
-		<span v-if="(player.points > 1.797e308) && (!hasUpgrade('asc',34))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity</span>
-		<span v-if="(player.points > 1.797e308) && (hasUpgrade('asc',34)) && (player.points.lt('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
-		<span v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text"><h3>ℵ<sub>0</sub></h3></span>
-		<span v-if="!canGenPoints() && player.points == 10"  class="overlayThing">0</span>
-		<span  class="overlayThing">/ sec )</span>
-		<div v-for="thing in tmp.displayThings" class="overlayThing"><span v-if="thing" v-html="thing"></span></div>
+		<span v-if="player.points.lt('1e1e15')"  class="overlayThing"><br></span>
+		<h1 v-if="(player.points <= 1.797e308)"  class="overlayThing" id="points">{{format(player.points, 3)}} <b>🗲</b></h1>
+		<h1 v-if="(player.points > 1.797e308) && (player.p.infinities < 1e3)"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity <b>🗲</b></h1>
+		<h1 v-if="(player.points > 1.797e308) && (player.points.lt('1e1e12') && !(player.p.infinities < 1e3))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text" id="points">{{format(player.points, 3)}} <b>🗲</b></h1>
+		<h1 v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text">ℵ<sub>0</sub> <b>🗲</b></h1>
+		<h2 v-if="player.points.lt('1e1e15')"  class="overlayThing"> </h2>
 	</div>
 	`
+	// <div v-for="thing in tmp.displayThings" class="overlayThing"><span v-if="thing" v-html="thing"></span></div>
+
+	// <span v-if="player.offTime !== undefined"  class="overlayThing">
+	// 		Offline Time: {{formatTime(player.offTime.remain)}}
+	// </span>
+
+	// <span  class="overlayThing">(</span>
+	// 	<span v-if="(canGenPoints()) && (player.points <= 1.797e308)"  class="overlayThing">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
+	// 	<span v-if="(player.points > 1.797e308) && (!hasUpgrade('asc',34))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">Infinity</span>
+	// 	<span v-if="(player.points > 1.797e308) && (hasUpgrade('asc',34)) && (player.points.lt('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text">{{tmp.other.oompsMag != 0 ? format(tmp.other.oomps) + " OOM" + (tmp.other.oompsMag < 0 ? "^OOM" : tmp.other.oompsMag > 1 ? "^" + tmp.other.oompsMag : "") + "s" : format(getPointGen())}}</span>
+	// 	<span v-if="(player.points.gte('1e1e12'))"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text"><h3>ℵ<sub>0</sub></h3></span>
+	// 	<span v-if="!canGenPoints() && player.points == 10"  class="overlayThing">0</span>
+	// 	<span  class="overlayThing">/ sec )</span>
     },
 
     'info-tab': {
