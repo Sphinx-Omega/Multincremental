@@ -12,6 +12,7 @@ addLayer("p", {
         presexp: decimalOne,
         presamt: decimalZero,
         ascendAmt: decimalZero,
+        ascendcheck: false,
         addEnergy: decimalOne,
         baseMult: decimalOne,
         baseSpeed: decimalOne,

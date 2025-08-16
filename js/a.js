@@ -262,11 +262,11 @@ addLayer("a", {
 
         41: {
             name() {
-                return "<h3>I think I skipped a step...<br><br></h3>Boost without prestiging<br><br><br><br>"+((hasAchievement("a",41))?(colorText("h3","lime","x1.02 to Ascension Power")):(colorText("h3","red","x1.02 to Ascension Power")))
+                return "<h3>I think I skipped a step...<br><br></h3>Ascend without prestiging<br><br><br><br>"+((hasAchievement("a",41))?(colorText("h3","lime","x1.02 to Ascension Power")):(colorText("h3","red","x1.02 to Ascension Power")))
             },
             tooltip: " ",
             done() {
-                return ((player.p.ascendAmt.gte(1)) && (player.p.presamt.eq(0)))
+                return ((player.p.ascendcheck == true) && (player.p.presamt.lt(1)))
             },
             onComplete() {
                 addPoints("a",1)

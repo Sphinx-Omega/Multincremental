@@ -147,9 +147,12 @@ function prestigeReset() {
 
 function ascend() {
   prestigeReset()
+  player.p.ascendcheck = true
   player.p.multExp = decimalOne
   player.p.extraMult = decimalOne
   player.p.prestotal = decimalZero
+  if(player.p.presamt.gt(0)) player.p.ascendcheck = false
+  player.p.presamt = decimalZero
 }
 
 function ascend1() {
