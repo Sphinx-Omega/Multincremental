@@ -19,7 +19,13 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 	<br><h3>v0.1</h3><br>
-		- Added particles.<br>
+		- Added energy.<br>
+        - Added bars.<br>
+        - Added prestige.<br>
+        - Added boosts.<br>
+        - Added ascension.<br>
+
+        <h3>Infinity is currently the end</h3>.
 		`
 
 let winText = `You've reached the end! (For now...)`
@@ -174,7 +180,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("eeeee1"))
+	return player.points.gte(new Decimal(1.797e308))
 }
 
 
