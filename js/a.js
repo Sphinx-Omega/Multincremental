@@ -144,7 +144,9 @@ addLayer("a", {
         },
 
         22: {
-            name: "<h3>Too fast!<br><br></h3>Have a solid bar",
+            name() {
+                return "<h3>Too fast!<br><br></h3>Have a solid bar<br><br><br><br>"+((hasAchievement("a",22))?(colorText("h3","lime","+0.01 to Base Exponent")):(colorText("h3","red","+0.01 to Base Exponent")))
+            },
             tooltip: " ",
             done() {
                 return ((player.p.redSpd.gte(30)) || (player.p.orangeSpd.gte(30)) || (player.p.yellowSpd.gte(30)) || (player.p.limeSpd.gte(30)) || (player.p.greenSpd.gte(30)) || (player.p.cyanSpd.gte(30)) || (player.p.blueSpd.gte(30)) || (player.p.violetSpd.gte(30)) || (player.p.pinkSpd.gte(30)) || (player.p.whiteSpd.gte(30)))
