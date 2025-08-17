@@ -2419,9 +2419,9 @@ addLayer("p", {
                 "position":"fixed",
                 "background-image":"url(images/bgs/Rainbow.gif)",
                 "background-position":"center",
-                "background-size":"contain",
+                "background-size":"cover",
                 "opacity":"100%",
-                "left":"25%",
+                "left":"25.1%",
                 "bottom":"5.2%"
             },
             borderStyle: {
@@ -2458,18 +2458,18 @@ addLayer("p", {
         let a41 = decimalOne
         if(hasAchievement("a",41)) a41 = new Decimal(1.05)
 
-        player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.015).add(a22).add(a33)
-        player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.75).times(1.2).times(a13)
+        player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.01725).add(a22).add(a33)
+        player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.8).times(1.2).times(a13)
 
         player.p.multdisplay = (player.p.addEnergy).add(0.01)
         player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22).add(a33))
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(10/3).floor().times(2).add(2).pow(player.p.baseAscend)
+        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(11/3).floor().times(2).add(2).pow(player.p.baseAscend)
         player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(0.95).max(1).add(1).pow(player.p.baseAscend)
-        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.225).max(1).log10().pow(2.75).times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.0625).max(1).times(a41)
+        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.225).max(1).log10().pow(2.875).times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.065).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)

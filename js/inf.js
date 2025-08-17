@@ -20,7 +20,7 @@ addLayer("inf", {
         "font-size":"22px",
         }
     },
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    requires: new Decimal(1), // Can be a function that takes requirement increases into account
     resource: "infps", // Name of prestige currency
     baseResource: "energy", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
@@ -34,10 +34,9 @@ addLayer("inf", {
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
-    row: 0, // Row the layer is in on the tree (0 is the first row)
+    row: 1, // Row the layer is in on the tree (0 is the first row)
     unlocked() {
-        if(player.points.gte(1.797e308)) return true
-        return false
+        if(hasAchievement("a",43)) return true
     },
     hotkeys: [
         // {
@@ -60,7 +59,7 @@ addLayer("inf", {
     ],
     shouldNotify: false,
     layerShown() {
-        return (player.inf.unlocked)
+        return player.inf.unlocked
     },
     tabFormat: {
         "Main" :{
