@@ -358,7 +358,7 @@ addLayer("p", {
             // },
 
             unlocked() { return true }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -370,8 +370,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"160px",
-                "left":"20px"
+                "top":"17.5%",
+                "left":"2%"
             },
         },
 
@@ -426,7 +426,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.redBuyAmt).gte(5)) || ((player.p.rAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -438,8 +438,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"230px",
-                "left":"20px"
+                "top":"25%",
+                "left":"2%"
             },
         },
 
@@ -494,7 +494,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.orangeBuyAmt).gte(5)) || ((player.p.oAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -506,8 +506,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"300px",
-                "left":"20px"
+                "top":"32.5%",
+                "left":"2%"
             },
         },
 
@@ -562,7 +562,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.yellowBuyAmt).gte(5)) || ((player.p.yAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -574,8 +574,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"370px",
-                "left":"20px"
+                "top":"40%",
+                "left":"2%"
             },
         },
 
@@ -630,7 +630,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.limeBuyAmt).gte(5)) || ((player.p.lAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -642,8 +642,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"440px",
-                "left":"20px"
+                "top":"47.5%",
+                "left":"2%"
             },
         },
 
@@ -698,7 +698,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.greenBuyAmt).gte(5)) || ((player.p.gAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -710,8 +710,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"510px",
-                "left":"20px"
+                "top":"55%",
+                "left":"2%"
             },
         },
 
@@ -766,7 +766,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.cyanBuyAmt).gte(5)) || ((player.p.cAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -778,8 +778,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"580px",
-                "left":"20px"
+                "top":"62.5%",
+                "left":"2%"
             },
         },
 
@@ -834,7 +834,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.blueBuyAmt).gte(5)) || ((player.p.bAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -846,8 +846,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"650px",
-                "left":"20px"
+                "top":"70%",
+                "left":"2%"
             },
         },
 
@@ -902,7 +902,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.violetBuyAmt).gte(5)) || ((player.p.vAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -914,8 +914,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"720px",
-                "left":"20px"
+                "top":"77.5%",
+                "left":"2%"
             },
         },
 
@@ -970,7 +970,7 @@ addLayer("p", {
             // },
 
             unlocked() { return (((player.p.pinkBuyAmt).gte(5)) || ((player.p.pAsc).gte(1))) }, 
-            style: {'height':'60px', 'width':'200px',
+            style: {'height':'6.5%', 'width':'10.5%',
                 "border-radius"(){
                     return "5%"
                 },
@@ -982,8 +982,8 @@ addLayer("p", {
                 "color":"black",
                 "text-shadow":"0 0 1px white",
                 "position":"fixed",
-                "top":"790px",
-                "left":"20px"
+                "top":"85%",
+                "left":"2%"
             },
         },
     },
@@ -1061,7 +1061,7 @@ addLayer("p", {
             unlocked(){
                 return true
             },
-            style: {'height':'440px', 'width':'500px',
+            style: {'height':'47.9%', 'width':'26%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(255, 255, 255, 1)"
@@ -1070,9 +1070,9 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"230px",
-                "left":"0px",
-                "right":"0px"
+                "top":"25%",
+                "left":"0%",
+                "right":"0%"
             },
         },
 
@@ -1084,7 +1084,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.rMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1093,12 +1093,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"0px",
-                "right":"1710px",
+                "top":"7.5%",
+                "left":"0%",
+                "right":"90%",
                 "z-index":"10",
                 "color":"#ff3f3fff",
-                "font-size":"32px",
+                "font-size"() {
+                    if(player.p.rMult.gt(1e3)) return "30px"
+                    if(player.p.rMult.gt(1e4)) return "28px"
+                    if(player.p.rMult.gt(1e5)) return "26px"
+                    if(player.p.rMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1110,7 +1116,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.oMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1119,12 +1125,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"0px",
-                "right":"1330px",
+                "top":"7.5%",
+                "left":"0%",
+                "right":"70%",
                 "z-index":"10",
                 "color":"#ff853fff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.oMult.gt(1e3)) return "30px"
+                    if(player.p.oMult.gt(1e4)) return "28px"
+                    if(player.p.oMult.gt(1e5)) return "26px"
+                    if(player.p.oMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1136,7 +1148,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.yMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1145,12 +1157,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"0px",
-                "right":"950px",
+                "top":"7.5%",
+                "left":"0%",
+                "right":"50%",
                 "z-index":"10",
                 "color":"#ffec3fff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.yMult.gt(1e3)) return "30px"
+                    if(player.p.yMult.gt(1e4)) return "28px"
+                    if(player.p.yMult.gt(1e5)) return "26px"
+                    if(player.p.yMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1162,7 +1180,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.lMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1171,12 +1189,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"0px",
-                "right":"570px",
+                "top":"7.5%",
+                "left":"0%",
+                "right":"30%",
                 "z-index":"10",
                 "color":"#b1ee6cff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.lMult.gt(1e3)) return "30px"
+                    if(player.p.lMult.gt(1e4)) return "28px"
+                    if(player.p.lMult.gt(1e5)) return "26px"
+                    if(player.p.lMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1188,7 +1212,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.gMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1197,12 +1221,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"0px",
-                "right":"190px",
+                "top":"7.5%",
+                "left":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#16f834ff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.gMult.gt(1e3)) return "30px"
+                    if(player.p.gMult.gt(1e4)) return "28px"
+                    if(player.p.gMult.gt(1e5)) return "26px"
+                    if(player.p.gMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1214,7 +1244,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.cMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1223,12 +1253,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"190px",
-                "right":"0px",
+                "top":"7.5%",
+                "left":"10%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#16f8daff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.cMult.gt(1e3)) return "30px"
+                    if(player.p.cMult.gt(1e4)) return "28px"
+                    if(player.p.cMult.gt(1e5)) return "26px"
+                    if(player.p.cMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1240,7 +1276,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.bMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1249,12 +1285,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"570px",
-                "right":"0px",
+                "top":"7.5%",
+                "left":"30%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#164bf8ff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.bMult.gt(1e3)) return "30px"
+                    if(player.p.bMult.gt(1e4)) return "28px"
+                    if(player.p.bMult.gt(1e5)) return "26px"
+                    if(player.p.bMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1266,7 +1308,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.vMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1275,12 +1317,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"950px",
-                "right":"0px",
+                "top":"7.5%",
+                "left":"50%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#9216f8ff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.vMult.gt(1e3)) return "30px"
+                    if(player.p.vMult.gt(1e4)) return "28px"
+                    if(player.p.vMult.gt(1e5)) return "26px"
+                    if(player.p.vMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1292,7 +1340,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.pMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1301,12 +1349,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"1330px",
-                "right":"0px",
+                "top":"7.5%",
+                "left":"70%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#f148d5ff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.pMult.gt(1e3)) return "30px"
+                    if(player.p.pMult.gt(1e4)) return "28px"
+                    if(player.p.pMult.gt(1e5)) return "26px"
+                    if(player.p.pMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1318,7 +1372,7 @@ addLayer("p", {
             display(){
                 return "x"+format(player.p.wMult, 2)
             },
-            style: {'height':'60px', 'width':'180px',
+            style: {'height':'5%', 'width':'8%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1327,12 +1381,18 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"60px",
-                "left":"1710px",
-                "right":"0px",
+                "top":"7.5%",
+                "left":"90%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
-                "font-size":"32px"
+                "font-size"() {
+                    if(player.p.wMult.gt(1e3)) return "30px"
+                    if(player.p.wMult.gt(1e4)) return "28px"
+                    if(player.p.wMult.gt(1e5)) return "26px"
+                    if(player.p.wMult.gt(1e6)) return "30px"
+                    return "32px"
+                }
             },
         },
 
@@ -1354,9 +1414,9 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "top":"160px",
-                "left":"0px",
-                "right":"0px",
+                "top":"17.5%",
+                "left":"0%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"20px"
@@ -1369,9 +1429,9 @@ addLayer("p", {
                 return true
             },
             display(){
-                return "Progress to Infinity: "+format(((player.points).div(1.79769).max(1).log10().div(3.08).min(100)), 2)+"%"
+                return "<b>Progress to Infinity: "+format(((player.points).div(1.79769).max(1).log10().div(3.08).min(100)), 2)+"%"
             },
-            style: {'height':'60px', 'width':'600px',
+            style: {'height':'8%', 'width':'50%',
                 "border-radius":"0%",
                 "border-color"(){
                      return "rgba(0, 0, 0, 0)"
@@ -1380,13 +1440,13 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "bottom":"32px",
-                "right":"0px",
-                "left":"0px",
-                "right":"0px",
+                "bottom":"10%",
+                "top":"90%",
+                "left":"0%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
-                "font-size":"12px"
+                "font-size":"16px"
             },
         },
 
@@ -1402,7 +1462,7 @@ addLayer("p", {
             display(){
                 return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format((player.p.multExp), 3) + " → <sup>^</sup>" + format((player.p.presexp), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
             },
-            style: {'height':'120px', 'width':'300px',
+            style: {'height':'13%', 'width':'16%',
                 "border":"3px solid",
                 "border-radius":"5%",
                 "border-color"(){
@@ -1416,10 +1476,10 @@ addLayer("p", {
                 "border-bottom-color":"black",
                 "border-right-color":"black",
                 "position":"fixed",
-                "bottom":"568px",
-                "right":"0px",
-                "left":"1040px",
-                "right":"0px",
+                "bottom":"50%",
+                "top":"11.5%",
+                "left":"55%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"12px"
@@ -1443,10 +1503,10 @@ addLayer("p", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "bottom":"700px",
-                "right":"0px",
-                "left":"1040px",
-                "right":"0px",
+                "bottom":"60%",
+                "top":"0%",
+                "left":"55%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#585858ff",
                 "font-size":"32px"
@@ -1465,7 +1525,7 @@ addLayer("p", {
             display(){
                 return "<h2>Mult Ascension</h2><br><br><b>x" + formatWhole(player.p.baseMult) + " → x" + formatWhole((player.p.ascendMult).max(player.p.baseMult))
             },
-            style: {'height':'140px', 'width':'240px',
+            style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
                 "border-radius":"5%",
                 "border-color"(){
@@ -1479,10 +1539,10 @@ addLayer("p", {
                 "border-bottom-color":"black",
                 "border-right-color":"black",
                 "position":"fixed",
-                "bottom":"420px",
-                "right":"0px",
-                "left":"792px",
-                "right":"0px",
+                "bottom":"50%",
+                "top":"45%",
+                "left":"43%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1501,7 +1561,7 @@ addLayer("p", {
             display(){
                 return "<h2>Speed Ascension</h2><br><br><b>x" + format((player.p.baseSpeed), 3) + " → x" + format(((player.p.ascendSpeed).max(player.p.baseSpeed)), 3)
             },
-            style: {'height':'140px', 'width':'240px',
+            style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
                 "border-radius":"5%",
                 "border-color"(){
@@ -1515,10 +1575,10 @@ addLayer("p", {
                 "border-bottom-color":"black",
                 "border-right-color":"black",
                 "position":"fixed",
-                "bottom":"420px",
-                "right":"0px",
-                "left":"1288px",
-                "right":"0px",
+                "bottom":"50%",
+                "top":"45%",
+                "left":"67%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1537,7 +1597,7 @@ addLayer("p", {
             display(){
                 return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole((player.p.baseBoost).times(10)) + " → x" + formatWhole(((player.p.ascendBoost).max(player.p.baseBoost)).times(10))
             },
-            style: {'height':'140px', 'width':'240px',
+            style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
                 "border-radius":"5%",
                 "border-color"(){
@@ -1551,10 +1611,10 @@ addLayer("p", {
                 "border-bottom-color":"black",
                 "border-right-color":"black",
                 "position":"fixed",
-                "bottom":"272px",
-                "right":"0px",
-                "left":"792px",
-                "right":"0px",
+                "bottom":"30%",
+                "top":"55%",
+                "left":"43%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1573,7 +1633,7 @@ addLayer("p", {
             display(){
                 return "<h2>Ascension Power</h2><br><br><b><sup>^</sup>" + format((player.p.baseAscend), 3) + " → <sup>^</sup>" + format(((player.p.ascendPower).max(player.p.baseAscend)), 3)
             },
-            style: {'height':'140px', 'width':'240px',
+            style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
                 "border-radius":"5%",
                 "border-color"(){
@@ -1587,10 +1647,10 @@ addLayer("p", {
                 "border-bottom-color":"black",
                 "border-right-color":"black",
                 "position":"fixed",
-                "bottom":"272px",
-                "right":"0px",
-                "left":"1288px",
-                "right":"0px",
+                "bottom":"30%",
+                "top":"55%",
+                "left":"67%",
+                "right":"0%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1614,8 +1674,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2><br><h3>but reset its level</h3>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1623,9 +1683,8 @@ addLayer("p", {
                     return "#e94141ff"
                 },
                 "position":"fixed",
-                "top":"160px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"17.5%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1649,8 +1708,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1658,9 +1717,8 @@ addLayer("p", {
                     return "#e99241ff"
                 },
                 "position":"fixed",
-                "top":"230px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"25%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1684,8 +1742,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1693,9 +1751,8 @@ addLayer("p", {
                     return "#e9de41ff"
                 },
                 "position":"fixed",
-                "top":"300px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"32.5%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1719,8 +1776,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1728,9 +1785,8 @@ addLayer("p", {
                     return "#aee941ff"
                 },
                 "position":"fixed",
-                "top":"370px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"40%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1754,8 +1810,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1763,9 +1819,8 @@ addLayer("p", {
                     return "#31f31fff"
                 },
                 "position":"fixed",
-                "top":"440px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"47.5%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1789,8 +1844,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1798,9 +1853,8 @@ addLayer("p", {
                     return "#1ff3e1ff"
                 },
                 "position":"fixed",
-                "top":"510px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"55%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1824,8 +1878,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1833,9 +1887,8 @@ addLayer("p", {
                     return "#3c56ecff"
                 },
                 "position":"fixed",
-                "top":"580px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"62.5%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1859,8 +1912,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1868,9 +1921,8 @@ addLayer("p", {
                     return "#a629eeff"
                 },
                 "position":"fixed",
-                "top":"650px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"70%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1894,8 +1946,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1903,9 +1955,8 @@ addLayer("p", {
                     return "#f065cdff"
                 },
                 "position":"fixed",
-                "top":"720px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"77.5%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1929,8 +1980,8 @@ addLayer("p", {
             tooltip(){
                 return "<h2><br>Boost this bar's multiplier</h2>"
             },
-            style: {'height':'60px', 'width':'60px',
-                "border-radius":"5%",
+            style: {'height':'6.5%', 'width':'3.25%',
+                "border-radius":"15%",
                 "border-color"(){
                      return "#0000005d"
                 }, 
@@ -1938,9 +1989,8 @@ addLayer("p", {
                     return "#ffffffff"
                 },
                 "position":"fixed",
-                "top":"790px",
-                "left":"0px",
-                "right":"1400px",
+                "top":"85%",
+                "left":"13%",
                 "z-index":"10",
                 "color":"#000000ff",
                 "font-size":"32px",
@@ -1951,8 +2001,8 @@ addLayer("p", {
     bars: {
         redBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.redSpd).gte(30)) return decimalOne
                 return (player.p.rProg).min(1)
@@ -1965,7 +2015,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"25%"
             },
             fillStyle: {
                 "background-color"() {
@@ -1979,12 +2031,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         orangeBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.orangeSpd).gte(30)) return decimalOne
                 return (player.p.oProg).min(1)
@@ -1997,7 +2052,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"29.8%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2011,12 +2068,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         yellowBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.yellowSpd).gte(30)) return decimalOne
                 return (player.p.yProg).min(1)
@@ -2029,7 +2089,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"34.6%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2043,12 +2105,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         limeBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.limeSpd).gte(30)) return decimalOne
                 return (player.p.lProg).min(1)
@@ -2061,7 +2126,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"39.4%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2075,12 +2142,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         greenBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.greenSpd).gte(30)) return decimalOne
                 return (player.p.gProg).min(1)
@@ -2093,7 +2163,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"44.2%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2107,12 +2179,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         cyanBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.cyanSpd).gte(30)) return decimalOne
                 return (player.p.cProg).min(1)
@@ -2125,7 +2200,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"49%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2139,12 +2216,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         blueBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.blueSpd).gte(30)) return decimalOne
                 return (player.p.bProg).min(1)
@@ -2157,7 +2237,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"53.8%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2171,12 +2253,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         violetBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.violetSpd).gte(30)) return decimalOne
                 return (player.p.vProg).min(1)
@@ -2189,7 +2274,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"58.6%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2203,12 +2290,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         pinkBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.pinkSpd).gte(30)) return decimalOne
                 return (player.p.pProg).min(1)
@@ -2221,7 +2311,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"63.4%"
             },
             fillStyle: {
                 "background-color"() {
@@ -2235,12 +2327,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         whiteBar: {
             direction: RIGHT,
-            width: 500,
-            height: 40,
+            width: 25.7,
+            height: 4.25,
             progress() {
                 if ((player.p.whiteSpd).gte(30)) return decimalOne
                 return (player.p.wProg).min(1)
@@ -2253,7 +2348,9 @@ addLayer("p", {
                 "background-color":"transparent",
                 "background-position":"center",
                 "background-size":"180px",
-                "opacity":"100%"
+                "opacity":"100%",
+                "left":"37%",
+                "top":"68.2%"
             },
             fillStyle: {
                 "background-color":"white",
@@ -2265,12 +2362,15 @@ addLayer("p", {
                 "border-color":"transparent",
                 "border":"0%",
             },
+            style: {
+                "position":"fixed"
+            }
         },
 
         infBar: {
             direction: RIGHT,
-            width: 880,
-            height: 16,
+            width: 50,
+            height: 2,
             progress() {
                 return (player.points).div(1.79769).max(1).log10().div(308).min(1)
             },
@@ -2279,24 +2379,36 @@ addLayer("p", {
             },
             instant() {return true},
             baseStyle: {
+                "position":"fixed",
                 "background-color":"transparent",
                 "background-position":"center",
-                "background-size":"180px",
-                "opacity":"100%"
+                "background-size":"cover",
+                "opacity":"100%",
+                "left":"25%",
+                "bottom":"5%"
             },
             fillStyle: {
+                "position":"fixed",
                 "background-image":"url(images/bgs/Rainbow.gif)",
                 "background-position":"center",
-                "background-size":"cover",
-                "opacity":"100%"
+                "background-size":"contain",
+                "opacity":"100%",
+                "left":"25%",
+                "bottom":"5.2%"
             },
             borderStyle: {
+                "position":"fixed",
                 "border-size":"2px",
                 "border-color":"white",
                 "border-radius":"10px/50%",
+                "left":"25%",
+                "bottom":"5%"
             },
             textStyle: {
                 "font-size":"12px"
+            },
+            style: {
+                "position":"fixed"
             }
         },
     },
@@ -2306,6 +2418,12 @@ addLayer("p", {
         let a13 = decimalOne
         if(hasAchievement("a",13)) a13 = new Decimal(1.1)
 
+        let a32 = decimalOne
+        if(hasAchievement("a",32)) a32 = new Decimal(1.1)
+
+        let a41 = decimalOne
+        if(hasAchievement("a",41)) a41 = new Decimal(1.02)
+
         player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.015)
         player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.75).times(1.2).times(a13)
 
@@ -2314,10 +2432,10 @@ addLayer("p", {
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.25).floor().max(1).log2().pow(2.5).pow(player.p.baseAscend).floor().times(2).add(2)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.2).floor().div(2).max(1).log2().pow(1.5).pow(player.p.baseAscend).max(1).add(1)
+        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(2.5).pow(player.p.baseAscend).floor().times(2).add(2)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(2).pow(player.p.baseAscend).max(1).add(1).times(a32)
         player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.0625).max(1).log10().pow(2).pow(player.p.baseAscend).times(10).round().div(10).add(1.5)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.02).max(1)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.02).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)
@@ -2341,7 +2459,7 @@ addLayer("p", {
         player.p.pinkSpd = new Decimal(1/18).add((player.p.pinkBuyAmt).div(90)).times(player.p.baseSpeed)
         player.p.whiteSpd = new Decimal(1/20).add((player.p.whiteBuyAmt).div(100)).times(player.p.baseSpeed)
 
-        player.p.rProg = player.p.rProg.add((player.p.redSpd).div(30)).min(1.05)
+        player.p.rProg = player.p.rProg.add((player.p.redSpd).div(30)).min(1.01)
         if(player.p.rProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2351,7 +2469,7 @@ addLayer("p", {
             player.p.rProg = decimalZero
         }
 
-        if((player.p.orangeBuyAmt).gte(1)) player.p.oProg = player.p.oProg.add((player.p.orangeSpd).div(30)).min(1.05)
+        if((player.p.orangeBuyAmt).gte(1)) player.p.oProg = player.p.oProg.add((player.p.orangeSpd).div(30)).min(1.01)
         if(player.p.oProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2361,7 +2479,7 @@ addLayer("p", {
             player.p.oProg = decimalZero
         }
 
-        if((player.p.yellowBuyAmt).gte(1)) player.p.yProg = player.p.yProg.add((player.p.yellowSpd).div(30)).min(1.05)
+        if((player.p.yellowBuyAmt).gte(1)) player.p.yProg = player.p.yProg.add((player.p.yellowSpd).div(30)).min(1.01)
         if(player.p.yProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2371,7 +2489,7 @@ addLayer("p", {
             player.p.yProg = decimalZero
         }
 
-        if((player.p.limeBuyAmt).gte(1)) player.p.lProg = player.p.lProg.add((player.p.limeSpd).div(30)).min(1.05)
+        if((player.p.limeBuyAmt).gte(1)) player.p.lProg = player.p.lProg.add((player.p.limeSpd).div(30)).min(1.01)
         if(player.p.lProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2381,7 +2499,7 @@ addLayer("p", {
             player.p.lProg = decimalZero
         }
 
-        if((player.p.greenBuyAmt).gte(1)) player.p.gProg = player.p.gProg.add((player.p.greenSpd).div(30)).min(1.05)
+        if((player.p.greenBuyAmt).gte(1)) player.p.gProg = player.p.gProg.add((player.p.greenSpd).div(30)).min(1.01)
         if(player.p.gProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2391,7 +2509,7 @@ addLayer("p", {
             player.p.gProg = decimalZero
         }
 
-        if((player.p.cyanBuyAmt).gte(1)) player.p.cProg = player.p.cProg.add((player.p.cyanSpd).div(30)).min(1.05)
+        if((player.p.cyanBuyAmt).gte(1)) player.p.cProg = player.p.cProg.add((player.p.cyanSpd).div(30)).min(1.01)
         if(player.p.cProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2401,7 +2519,7 @@ addLayer("p", {
             player.p.cProg = decimalZero
         }
 
-        if((player.p.blueBuyAmt).gte(1)) player.p.bProg = player.p.bProg.add((player.p.blueSpd).div(30)).min(1.05)
+        if((player.p.blueBuyAmt).gte(1)) player.p.bProg = player.p.bProg.add((player.p.blueSpd).div(30)).min(1.01)
         if(player.p.bProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2411,7 +2529,7 @@ addLayer("p", {
             player.p.bProg = decimalZero
         }
 
-        if((player.p.violetBuyAmt).gte(1)) player.p.vProg = player.p.vProg.add((player.p.violetSpd).div(30)).min(1.05)
+        if((player.p.violetBuyAmt).gte(1)) player.p.vProg = player.p.vProg.add((player.p.violetSpd).div(30)).min(1.01)
         if(player.p.vProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2421,7 +2539,7 @@ addLayer("p", {
             player.p.vProg = decimalZero
         }
 
-        if((player.p.pinkBuyAmt).gte(1)) player.p.pProg = player.p.pProg.add((player.p.pinkSpd).div(30)).min(1.05)
+        if((player.p.pinkBuyAmt).gte(1)) player.p.pProg = player.p.pProg.add((player.p.pinkSpd).div(30)).min(1.01)
         if(player.p.pProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))
@@ -2431,7 +2549,7 @@ addLayer("p", {
             player.p.pProg = decimalZero
         }
 
-        if((player.p.whiteBuyAmt).gte(1)) player.p.wProg = player.p.wProg.add((player.p.whiteSpd).div(30)).min(1.05)
+        if((player.p.whiteBuyAmt).gte(1)) player.p.wProg = player.p.wProg.add((player.p.whiteSpd).div(30)).min(1.01)
         if(player.p.wProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
             player.points = player.points.add((player.p.addEnergy).pow(player.p.multExp))

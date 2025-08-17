@@ -57,8 +57,8 @@
 
 .p.treeNode {
 	transform: scale(1, 1);
-	height: 60px;
-	width: 200px;
+	height: 6.5%;
+	width: 10.4%;
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
 	border-radius: 0%;
@@ -70,21 +70,21 @@
 	padding: 0;
 	margin: 0 10px 0 10px;
 	position: absolute;
-	right: -10px;
-	top: 192px;
+	right: -0.5%;
+	top: 20.85%;
 }
 
 .p.treeNode:hover {
 	transform: scale(1, 1);
-	height: 60px;
-	width: 240px;
+	height: 6.5%;
+	width: 11%;
 	text-shadow: 0 0 0px var(--color);
 }
 
 .a.treeNode {
 	transform: scale(1, 1);
-	height: 60px;
-	width: 200px;
+	height: 6.5%;
+	width: 10.4%;
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
 	border-radius: 0%;
@@ -96,13 +96,14 @@
 	padding: 0;
 	margin: 0 10px 0 10px;
 	position: absolute;
-	right: -10px;
-	top: 132px;
+	right: -0.5%;
+	top: 14.35%;
 }
 
 .a.treeNode:hover {
 	transform: scale(1, 1);
-	width: 240px;
+	height: 6.5%;
+	width: 11%;
 	text-shadow: 0 0 0px var(--color);
 }
 

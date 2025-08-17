@@ -96,18 +96,18 @@ function constructBarStyle(layer, id) {
 	else
 		tempProgress = (1 -Math.min(Math.max(bar.progress, 0), 1)) * 100
 
-	style.dims = {'width': bar.width + "px", 'height': bar.height + "px"}
+	style.dims = {'width': bar.width + "%", 'height': bar.height + "%"}
 	let dir = bar.direction
-	style.fillDims = {'width': (bar.width + 0.5) + "px", 'height': (bar.height + 0.5)  + "px"}
+	style.fillDims = {'width': (bar.width + 0.05) + "%", 'height': (bar.height + 0.05)  + "%"}
 
 	switch(bar.direction) {
 		case UP:
 			style.fillDims['clip-path'] = 'inset(' + tempProgress + '% 0% 0% 0%)'
-			style.fillDims.width = bar.width + 1 + 'px'
+			style.fillDims.width = bar.width + 0.1 + '%'
 			break;
 		case DOWN:
 			style.fillDims['clip-path'] = 'inset(0% 0% ' + tempProgress + '% 0%)'
-			style.fillDims.width = bar.width + 1 + 'px'
+			style.fillDims.width = bar.width + 0.1 + '%'
 
 			break;
 		case RIGHT:

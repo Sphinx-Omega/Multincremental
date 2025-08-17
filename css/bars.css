@@ -20,13 +20,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: left;
-	position: absolute;
+	position: fixed;
 }
 
 .fill {
 	background-color: var(--color);
 	z-index:2;
-    position: absolute;
+    position: fixed;
 	overflow: hidden;
 	margin-left: -0.5px;
 	transition-duration: 0.2s;

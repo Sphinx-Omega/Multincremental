@@ -104,7 +104,7 @@ var systemComponents = {
 
 	'overlay-head': {
 		template: `			
-		<div class="overlayThing" style="width: 100%; height: 12%; background-color: black; z-index: -1; position: absolute; border-top: 2px solid; border-bottom: 2px solid; padding-bottom: 20px">
+		<div class="overlayThing" style="width: 100%; height: 12%; background-color: black; z-index: -1; position: absolute; border-top: 2px solid; border-bottom: 3px solid; padding-bottom: 20px">
 		<span v-if="player.devSpeed && player.devSpeed != 1" class="overlayThing">
 			<br>Dev Speed: {{format(player.devSpeed)}}x<br>
 		</span>
