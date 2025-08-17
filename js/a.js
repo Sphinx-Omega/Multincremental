@@ -214,7 +214,7 @@ addLayer("a", {
 
         32: {
             name() {
-                return "<h3>Spectrum<br><br></h3>Have all bars<br><br><br><br>"+((hasAchievement("a",32))?(colorText("h3","lime","x1.1 to all bars' speed")):(colorText("h3","red","x1.1 to all bars' speed")))
+                return "<h3>Spectrum<br><br></h3>Have all bars<br><br><br><br>"+((hasAchievement("a",32))?(colorText("h3","lime","x1.2 to all bars' speed")):(colorText("h3","red","x1.2 to all bars' speed")))
             } ,
             tooltip: " ",
             done() {
@@ -262,7 +262,7 @@ addLayer("a", {
 
         41: {
             name() {
-                return "<h3>I think I skipped a step...<br><br></h3>Ascend without prestiging<br><br><br><br>"+((hasAchievement("a",41))?(colorText("h3","lime","x1.02 to Ascension Power")):(colorText("h3","red","x1.02 to Ascension Power")))
+                return "<h3>I think I skipped a step...<br><br></h3>Ascend without prestiging<br><br><br><br>"+((hasAchievement("a",41))?(colorText("h3","lime","x1.05 to Ascension Power")):(colorText("h3","red","x1.05 to Ascension Power")))
             },
             tooltip: " ",
             done() {

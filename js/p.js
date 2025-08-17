@@ -2419,10 +2419,10 @@ addLayer("p", {
         if(hasAchievement("a",13)) a13 = new Decimal(1.1)
 
         let a32 = decimalOne
-        if(hasAchievement("a",32)) a32 = new Decimal(1.1)
+        if(hasAchievement("a",32)) a32 = new Decimal(1.2)
 
         let a41 = decimalOne
-        if(hasAchievement("a",41)) a41 = new Decimal(1.02)
+        if(hasAchievement("a",41)) a41 = new Decimal(1.05)
 
         player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.015)
         player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.75).times(1.2).times(a13)
@@ -2432,9 +2432,9 @@ addLayer("p", {
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(2.5).pow(player.p.baseAscend).floor().times(2).add(2)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(2).pow(player.p.baseAscend).max(1).add(1).times(a32)
-        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.0625).max(1).log10().pow(2).pow(player.p.baseAscend).times(10).round().div(10).add(1.5)
+        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(2.5).floor().times(2).add(2).pow(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(0.9).max(1).add(1).pow(player.p.baseAscend)
+        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.0625).max(1).log10().pow(2.5).times(10).round().div(10).add(1.5).pow(player.p.baseAscend)
         player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.02).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
@@ -2448,16 +2448,16 @@ addLayer("p", {
         // player.p.pinkSpd = new Decimal(1/18).times((Decimal.pow(1.67, ((player.p.pinkBuyAmt).div(0.0625)))).div(10)).add(0.00078125)
         // player.p.whiteSpd = new Decimal(1/20).times((Decimal.pow(1.67, ((player.p.whiteBuyAmt).div(0.03125)))).div(10)).add(0.000390625)
 
-        player.p.redSpd = new Decimal(1/2).add((player.p.redBuyAmt).div(10)).times(player.p.baseSpeed)
-        player.p.orangeSpd = new Decimal(1/4).add((player.p.orangeBuyAmt).div(20)).times(player.p.baseSpeed)
-        player.p.yellowSpd = new Decimal(1/6).add((player.p.yellowBuyAmt).div(30)).times(player.p.baseSpeed)
-        player.p.limeSpd = new Decimal(1/8).add((player.p.limeBuyAmt).div(40)).times(player.p.baseSpeed)
-        player.p.greenSpd = new Decimal(1/10).add((player.p.greenBuyAmt).div(50)).times(player.p.baseSpeed)
-        player.p.cyanSpd = new Decimal(1/12).add((player.p.cyanBuyAmt).div(60)).times(player.p.baseSpeed)
-        player.p.blueSpd = new Decimal(1/14).add((player.p.blueBuyAmt).div(70)).times(player.p.baseSpeed)
-        player.p.violetSpd = new Decimal(1/16).add((player.p.violetBuyAmt).div(80)).times(player.p.baseSpeed)
-        player.p.pinkSpd = new Decimal(1/18).add((player.p.pinkBuyAmt).div(90)).times(player.p.baseSpeed)
-        player.p.whiteSpd = new Decimal(1/20).add((player.p.whiteBuyAmt).div(100)).times(player.p.baseSpeed)
+        player.p.redSpd = new Decimal(1/2).add((player.p.redBuyAmt).div(10)).times(player.p.baseSpeed).times(a32)
+        player.p.orangeSpd = new Decimal(1/4).add((player.p.orangeBuyAmt).div(20)).times(player.p.baseSpeed).times(a32)
+        player.p.yellowSpd = new Decimal(1/6).add((player.p.yellowBuyAmt).div(30)).times(player.p.baseSpeed).times(a32)
+        player.p.limeSpd = new Decimal(1/8).add((player.p.limeBuyAmt).div(40)).times(player.p.baseSpeed).times(a32)
+        player.p.greenSpd = new Decimal(1/10).add((player.p.greenBuyAmt).div(50)).times(player.p.baseSpeed).times(a32)
+        player.p.cyanSpd = new Decimal(1/12).add((player.p.cyanBuyAmt).div(60)).times(player.p.baseSpeed).times(a32)
+        player.p.blueSpd = new Decimal(1/14).add((player.p.blueBuyAmt).div(70)).times(player.p.baseSpeed).times(a32)
+        player.p.violetSpd = new Decimal(1/16).add((player.p.violetBuyAmt).div(80)).times(player.p.baseSpeed).times(a32)
+        player.p.pinkSpd = new Decimal(1/18).add((player.p.pinkBuyAmt).div(90)).times(player.p.baseSpeed).times(a32)
+        player.p.whiteSpd = new Decimal(1/20).add((player.p.whiteBuyAmt).div(100)).times(player.p.baseSpeed).times(a32)
 
         player.p.rProg = player.p.rProg.add((player.p.redSpd).div(30)).min(1.01)
         if(player.p.rProg >= 1) {
