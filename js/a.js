@@ -33,7 +33,7 @@ addLayer("a", {
             content: [
                 ["raw-html",
                     function(){
-                    return "<b>You have "+ ((getThemeName() == "grayscale")?("<h2>"+formatWhole(player.a.points)):(layerText("h2","a",formatWhole(player.a.points)))) + ((getThemeName() == "grayscale")?"<h2>/60":layerText("h2","a","/60")) + "</h2><b> Achievements, giving an additional " + ((getThemeName() == "grayscale")?("<h2>x"+format(tmp.a.effect, 2)):(layerText("h2","a",("x"+format(tmp.a.effect, 2))))) + "</h2><b> multiplier"
+                    return "<b>You have "+ ((getThemeName() == "grayscale")?("<h2>"+formatWhole(player.a.points)):(layerText("h2","a",formatWhole(player.a.points)))) + ((getThemeName() == "grayscale")?"<h2>/12":layerText("h2","a","/12")) + "</h2><b> Achievements, giving an additional " + ((getThemeName() == "grayscale")?("<h2>x"+format(tmp.a.effect, 2)):(layerText("h2","a",("x"+format(tmp.a.effect, 2))))) + "</h2><b> multiplier"
                     }
                 ],
                 "blank",
@@ -280,6 +280,56 @@ addLayer("a", {
                 "border-color"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
                     if (hasAchievement("a",41)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        42: {
+            name() {
+                return "<h3>Addicted yet?<br><br></h3>Play for 12 hours"
+            },
+            tooltip: " ",
+            done() {
+                return (player.timePlayed >= 43200)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",42)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",42)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        43: {
+            name() {
+                return "<h3>You're gonna need a bigger bar...<br><br></h3>Reach Infinity!<br><br><br><br>"+((hasAchievement("a",43))?(colorText("h3","lime","A new layer! (Soon™)")):(colorText("h3","red","A new layer! (Soon™)")))
+            },
+            tooltip: " ",
+            done() {
+                return (player.points.gte(1.797e308))
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",43)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",43)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },
