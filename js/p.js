@@ -1424,8 +1424,10 @@ addLayer("p", {
             display(){
                 if(player.p.rTimes.lt(decimalOne)) dismult = decimalOne
                 let a22 = decimalZero
+                let a33 = decimalZero
                 if(hasAchievement("a",22)) a22 = new Decimal(0.02)
-                return "<h2>(</h2>x<h3>"+format((player.p.multdisplay), 3)+"</h3><b><sup>"+format(((player.p.multExp).add(a22)), 3)+"</sup></b><h2>)</h2><h3>   →   </h3><h2>(</h2>+ <h3>"+format(player.p.truedisplay, 3)+"</h3><h2>)</h2>"
+                if(hasAchievement("a",33)) a33 = new Decimal(0.03)
+                return "<h2>(</h2>x<h3>"+format((player.p.multdisplay), 3)+"</h3><b><sup>"+format(((player.p.multExp).add(a22).add(a33)), 3)+"</sup></b><h2>)</h2><h3>   →   </h3><h2>(</h2>+ <h3>"+format(player.p.truedisplay, 3)+"</h3><h2>)</h2>"
             },
             style: {'height':'60px', 'width':'600px',
                 "border-radius":"0%",
@@ -1483,8 +1485,10 @@ addLayer("p", {
             },
             display(){
                 let a22 = decimalZero
+                let a33 = decimalZero
                 if(hasAchievement("a",22)) a22 = new Decimal(0.02)
-                return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format(((player.p.multExp).add(a22)), 3) + " → <sup>^</sup>" + format(((player.p.presexp).add(a22)), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
+                if(hasAchievement("a",33)) a33 = new Decimal(0.03)
+                return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format(((player.p.multExp).add(a22).add(a33)), 3) + " → <sup>^</sup>" + format(((player.p.presexp).add(a22).add(a33)), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
             },
             style: {'height':'13%', 'width':'16%',
                 "border":"3px solid",
@@ -2448,21 +2452,24 @@ addLayer("p", {
         let a32 = decimalOne
         if(hasAchievement("a",32)) a32 = new Decimal(1.2)
 
+        let a33 = decimalZero
+        if(hasAchievement("a","33")) a33 = new Decimal(0.03)
+
         let a41 = decimalOne
         if(hasAchievement("a",41)) a41 = new Decimal(1.05)
 
-        player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.015).add(a22)
+        player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.015).add(a22).add(a33)
         player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.75).times(1.2).times(a13)
 
         player.p.multdisplay = (player.p.addEnergy).add(0.01)
-        player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22))
+        player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22).add(a33))
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(2.5).floor().times(2).add(2).pow(player.p.baseAscend)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(0.9).max(1).add(1).pow(player.p.baseAscend)
+        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.375).floor().max(1).log2().pow(3).floor().times(2).add(2).pow(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.375).floor().div(2).max(1).log2().pow(0.95).max(1).add(1).pow(player.p.baseAscend)
         player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.225).max(1).log10().pow(2.5).times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.02).max(1).times(a41)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.05).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)
@@ -2489,8 +2496,8 @@ addLayer("p", {
         player.p.rProg = player.p.rProg.add((player.p.redSpd).div(30)).min(1.01)
         if(player.p.rProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow(player.p.multExp))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.rTimes = player.p.rTimes.add(1)
             player.p.rMult = player.p.rMult.add(((player.p.rBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.rAsc)))).times(tmp.a.effect).times((player.p.redSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.rProg = decimalZero
@@ -2499,8 +2506,8 @@ addLayer("p", {
         if((player.p.orangeBuyAmt).gte(1)) player.p.oProg = player.p.oProg.add((player.p.orangeSpd).div(30)).min(1.01)
         if(player.p.oProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.oTimes = player.p.oTimes.add(1)
             player.p.oMult = player.p.oMult.add(((player.p.oBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.oAsc)))).times(tmp.a.effect).times((player.p.orangeSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.oProg = decimalZero
@@ -2509,8 +2516,8 @@ addLayer("p", {
         if((player.p.yellowBuyAmt).gte(1)) player.p.yProg = player.p.yProg.add((player.p.yellowSpd).div(30)).min(1.01)
         if(player.p.yProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.yTimes = player.p.yTimes.add(1)
             player.p.yMult = player.p.yMult.add(((player.p.yBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.yAsc)))).times(tmp.a.effect).times((player.p.yellowSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.yProg = decimalZero
@@ -2519,8 +2526,8 @@ addLayer("p", {
         if((player.p.limeBuyAmt).gte(1)) player.p.lProg = player.p.lProg.add((player.p.limeSpd).div(30)).min(1.01)
         if(player.p.lProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.lTimes = player.p.lTimes.add(1)
             player.p.lMult = player.p.lMult.add(((player.p.lBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.lAsc)))).times(tmp.a.effect).times((player.p.limeSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.lProg = decimalZero
@@ -2529,8 +2536,8 @@ addLayer("p", {
         if((player.p.greenBuyAmt).gte(1)) player.p.gProg = player.p.gProg.add((player.p.greenSpd).div(30)).min(1.01)
         if(player.p.gProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.gTimes = player.p.gTimes.add(1)
             player.p.gMult = player.p.gMult.add(((player.p.gBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.gAsc)))).times(tmp.a.effect).times((player.p.greenSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.gProg = decimalZero
@@ -2539,8 +2546,8 @@ addLayer("p", {
         if((player.p.cyanBuyAmt).gte(1)) player.p.cProg = player.p.cProg.add((player.p.cyanSpd).div(30)).min(1.01)
         if(player.p.cProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.cTimes = player.p.cTimes.add(1)
             player.p.cMult = player.p.cMult.add(((player.p.cBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.cAsc)))).times(tmp.a.effect).times((player.p.cyanSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.cProg = decimalZero
@@ -2549,8 +2556,8 @@ addLayer("p", {
         if((player.p.blueBuyAmt).gte(1)) player.p.bProg = player.p.bProg.add((player.p.blueSpd).div(30)).min(1.01)
         if(player.p.bProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.bTimes = player.p.bTimes.add(1)
             player.p.bMult = player.p.bMult.add(((player.p.bBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.bAsc)))).times(tmp.a.effect).times((player.p.blueSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.bProg = decimalZero
@@ -2559,8 +2566,8 @@ addLayer("p", {
         if((player.p.violetBuyAmt).gte(1)) player.p.vProg = player.p.vProg.add((player.p.violetSpd).div(30)).min(1.01)
         if(player.p.vProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.vTimes = player.p.vTimes.add(1)
             player.p.vMult = player.p.vMult.add(((player.p.vBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.vAsc)))).times(tmp.a.effect).times((player.p.violetSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.vProg = decimalZero
@@ -2569,8 +2576,8 @@ addLayer("p", {
         if((player.p.pinkBuyAmt).gte(1)) player.p.pProg = player.p.pProg.add((player.p.pinkSpd).div(30)).min(1.01)
         if(player.p.pProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.pTimes = player.p.pTimes.add(1)
             player.p.pMult = player.p.pMult.add(((player.p.pBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.pAsc)))).times(tmp.a.effect).times((player.p.pinkSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.pProg = decimalZero
@@ -2579,8 +2586,8 @@ addLayer("p", {
         if((player.p.whiteBuyAmt).gte(1)) player.p.wProg = player.p.wProg.add((player.p.whiteSpd).div(30)).min(1.01)
         if(player.p.wProg >= 1) {
             player.p.addEnergy = decimalOne.times(player.p.rMult).times(player.p.oMult).times(player.p.yMult).times(player.p.lMult).times(player.p.gMult).times(player.p.cMult).times(player.p.bMult).times(player.p.vMult).times(player.p.pMult).times(player.p.wMult).times(player.p.extraMult)
-            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
-            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22)))
+            player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
+            player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.wTimes = player.p.wTimes.add(1)
             player.p.wMult = player.p.wMult.add(((player.p.wBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.wAsc)))).times(tmp.a.effect).times((player.p.whiteSpd).div(100/3).max(1)).times(player.p.baseMult))
             player.p.wProg = decimalZero

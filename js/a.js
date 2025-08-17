@@ -240,10 +240,12 @@ addLayer("a", {
         },
 
         33: {
-            name: "<h3>Gotta Boost 'em all!<br><br></h3>Reach Boost #1 on every bar",
+            name() {
+                return "<h3>MAXIMUM OVERDRIVE!!<br><br></h3>Make every bar solid<br><br><br><br>"+((hasAchievement("a",33))?(colorText("h3","lime","+0.03 to Base Exponent")):(colorText("h3","red","+0.03 to Base Exponent")))
+            },
             tooltip: " ",
             done() {
-                return ((player.p.rAsc.gte(1)) && (player.p.oAsc.gte(1)) && (player.p.yAsc.gte(1)) && (player.p.lAsc.gte(1)) && (player.p.gAsc.gte(1)) && (player.p.cAsc.gte(1)) && (player.p.bAsc.gte(1)) && (player.p.vAsc.gte(1)) && (player.p.pAsc.gte(1)) && (player.p.wAsc.gte(1)))
+                return ((player.p.redSpd.gte(30)) && (player.p.orangeSpd.gte(30)) && (player.p.yellowSpd.gte(30)) && (player.p.limeSpd.gte(30)) && (player.p.greenSpd.gte(30)) && (player.p.cyanSpd.gte(30)) && (player.p.blueSpd.gte(30)) && (player.p.violetSpd.gte(30)) && (player.p.pinkSpd.gte(30)) && (player.p.whiteSpd.gte(30)))
             },
             onComplete() {
                 addPoints("a",1)
