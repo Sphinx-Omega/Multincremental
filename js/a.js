@@ -18,7 +18,7 @@ addLayer("a", {
         "border-size":"10px",
         "border-color":"rgb(255, 255, 255)",
         "color":"white",
-        "font-size":"20px"
+        "font-size":"18px"
         }
     },
     requires: decimalZero, // Can be a function that takes requirement increases into account
@@ -145,7 +145,7 @@ addLayer("a", {
 
         22: {
             name() {
-                return "<h3>Too fast!<br><br></h3>Have a solid bar<br><br><br><br>"+((hasAchievement("a",22))?(colorText("h3","lime","+0.01 to Base Exponent")):(colorText("h3","red","+0.01 to Base Exponent")))
+                return "<h3>Too fast!<br><br></h3>Have a solid bar<br><br><br><br>"+((hasAchievement("a",22))?(colorText("h3","lime","+0.02 to Base Exponent")):(colorText("h3","red","+0.02 to Base Exponent")))
             },
             tooltip: " ",
             done() {

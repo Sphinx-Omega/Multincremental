@@ -3,7 +3,7 @@ let modInfo = {
 	author: "Sphinx-Omega",
 	pointsName: "energy",
 	pointsNameSingular: "energy",
-	modFiles: ["layers.js", "tree.js","a.js","p.js"],
+	modFiles: ["layers.js", "tree.js","a.js","p.js","inf.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -180,7 +180,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal(1.797e308))
+	return player.points.gte(new Decimal("eeee5"))
 }
 
 

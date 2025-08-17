@@ -128,7 +128,7 @@ addLayer("p", {
         "border-size":"10px",
         "border-color":(getThemeName() == "grayscale")?"#acacacff":"rgb(250, 34, 34)",
         "color":"white",
-        "font-size":"20px",
+        "font-size":"22px",
         }
     },
     requires: new Decimal(10), // Can be a function that takes requirement increases into account
@@ -1104,10 +1104,8 @@ addLayer("p", {
                     if(player.p.rMult.lt(1e5)) return "28px"
                     if(player.p.rMult.lt(1e6)) return "26px"
                     if(player.p.rMult.lt(1e7)) return "24px"
-                    if(player.p.rMult.lt(1e7)) return "22px"
-                    if(player.p.rMult.lt(1e8)) return "20px"
-                    if(player.p.rMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.rMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1140,10 +1138,8 @@ addLayer("p", {
                     if(player.p.oMult.lt(1e5)) return "28px"
                     if(player.p.oMult.lt(1e6)) return "26px"
                     if(player.p.oMult.lt(1e7)) return "24px"
-                    if(player.p.oMult.lt(1e7)) return "22px"
-                    if(player.p.oMult.lt(1e8)) return "20px"
-                    if(player.p.oMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.oMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1176,10 +1172,8 @@ addLayer("p", {
                     if(player.p.yMult.lt(1e5)) return "28px"
                     if(player.p.yMult.lt(1e6)) return "26px"
                     if(player.p.yMult.lt(1e7)) return "24px"
-                    if(player.p.yMult.lt(1e7)) return "22px"
-                    if(player.p.yMult.lt(1e8)) return "20px"
-                    if(player.p.yMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.yMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1212,10 +1206,8 @@ addLayer("p", {
                     if(player.p.lMult.lt(1e5)) return "28px"
                     if(player.p.lMult.lt(1e6)) return "26px"
                     if(player.p.lMult.lt(1e7)) return "24px"
-                    if(player.p.lMult.lt(1e7)) return "22px"
-                    if(player.p.lMult.lt(1e8)) return "20px"
-                    if(player.p.lMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.lMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1248,10 +1240,8 @@ addLayer("p", {
                     if(player.p.gMult.lt(1e5)) return "28px"
                     if(player.p.gMult.lt(1e6)) return "26px"
                     if(player.p.gMult.lt(1e7)) return "24px"
-                    if(player.p.gMult.lt(1e7)) return "22px"
-                    if(player.p.gMult.lt(1e8)) return "20px"
-                    if(player.p.gMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.gMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1284,10 +1274,8 @@ addLayer("p", {
                     if(player.p.cMult.lt(1e5)) return "28px"
                     if(player.p.cMult.lt(1e6)) return "26px"
                     if(player.p.cMult.lt(1e7)) return "24px"
-                    if(player.p.cMult.lt(1e7)) return "22px"
-                    if(player.p.cMult.lt(1e8)) return "20px"
-                    if(player.p.cMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.cMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1320,10 +1308,8 @@ addLayer("p", {
                     if(player.p.bMult.lt(1e5)) return "28px"
                     if(player.p.bMult.lt(1e6)) return "26px"
                     if(player.p.bMult.lt(1e7)) return "24px"
-                    if(player.p.bMult.lt(1e7)) return "22px"
-                    if(player.p.bMult.lt(1e8)) return "20px"
-                    if(player.p.bMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.bMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1356,10 +1342,8 @@ addLayer("p", {
                     if(player.p.vMult.lt(1e5)) return "28px"
                     if(player.p.vMult.lt(1e6)) return "26px"
                     if(player.p.vMult.lt(1e7)) return "24px"
-                    if(player.p.vMult.lt(1e7)) return "22px"
-                    if(player.p.vMult.lt(1e8)) return "20px"
-                    if(player.p.vMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.vMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1392,10 +1376,8 @@ addLayer("p", {
                     if(player.p.pMult.lt(1e5)) return "28px"
                     if(player.p.pMult.lt(1e6)) return "26px"
                     if(player.p.pMult.lt(1e7)) return "24px"
-                    if(player.p.pMult.lt(1e7)) return "22px"
-                    if(player.p.pMult.lt(1e8)) return "20px"
-                    if(player.p.pMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.pMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1428,10 +1410,8 @@ addLayer("p", {
                     if(player.p.wMult.lt(1e5)) return "28px"
                     if(player.p.wMult.lt(1e6)) return "26px"
                     if(player.p.wMult.lt(1e7)) return "24px"
-                    if(player.p.wMult.lt(1e7)) return "22px"
-                    if(player.p.wMult.lt(1e8)) return "20px"
-                    if(player.p.wMult.lt(1e9)) return "18px"
-                    return "28px"
+                    if(player.p.wMult.lt(1e9)) return "22px"
+                    return "32px"
                 }
             },
         },
@@ -1444,7 +1424,7 @@ addLayer("p", {
             display(){
                 if(player.p.rTimes.lt(decimalOne)) dismult = decimalOne
                 let a22 = decimalZero
-                if(hasAchievement("a",22)) a22 = new Decimal(0.01)
+                if(hasAchievement("a",22)) a22 = new Decimal(0.02)
                 return "<h2>(</h2>x<h3>"+format((player.p.multdisplay), 3)+"</h3><b><sup>"+format(((player.p.multExp).add(a22)), 3)+"</sup></b><h2>)</h2><h3>   →   </h3><h2>(</h2>+ <h3>"+format(player.p.truedisplay, 3)+"</h3><h2>)</h2>"
             },
             style: {'height':'60px', 'width':'600px',
@@ -1503,7 +1483,7 @@ addLayer("p", {
             },
             display(){
                 let a22 = decimalZero
-                if(hasAchievement("a",22)) a22 = new Decimal(0.01)
+                if(hasAchievement("a",22)) a22 = new Decimal(0.02)
                 return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format(((player.p.multExp).add(a22)), 3) + " → <sup>^</sup>" + format(((player.p.presexp).add(a22)), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
             },
             style: {'height':'13%', 'width':'16%',
@@ -2045,7 +2025,7 @@ addLayer("p", {
     bars: {
         redBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.redSpd).gte(30)) return decimalOne
@@ -2082,7 +2062,7 @@ addLayer("p", {
 
         orangeBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.orangeSpd).gte(30)) return decimalOne
@@ -2119,7 +2099,7 @@ addLayer("p", {
 
         yellowBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.yellowSpd).gte(30)) return decimalOne
@@ -2156,7 +2136,7 @@ addLayer("p", {
 
         limeBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.limeSpd).gte(30)) return decimalOne
@@ -2193,7 +2173,7 @@ addLayer("p", {
 
         greenBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.greenSpd).gte(30)) return decimalOne
@@ -2230,7 +2210,7 @@ addLayer("p", {
 
         cyanBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.cyanSpd).gte(30)) return decimalOne
@@ -2267,7 +2247,7 @@ addLayer("p", {
 
         blueBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.blueSpd).gte(30)) return decimalOne
@@ -2304,7 +2284,7 @@ addLayer("p", {
 
         violetBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.violetSpd).gte(30)) return decimalOne
@@ -2341,7 +2321,7 @@ addLayer("p", {
 
         pinkBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.pinkSpd).gte(30)) return decimalOne
@@ -2378,7 +2358,7 @@ addLayer("p", {
 
         whiteBar: {
             direction: RIGHT,
-            width: 25.7,
+            width: 25.78,
             height: 4.25,
             progress() {
                 if ((player.p.whiteSpd).gte(30)) return decimalOne
@@ -2463,7 +2443,7 @@ addLayer("p", {
         if(hasAchievement("a",13)) a13 = new Decimal(1.1)
 
         let a22 = decimalZero
-        if(hasAchievement("a","22")) a22 = new Decimal(0.01)
+        if(hasAchievement("a","22")) a22 = new Decimal(0.02)
 
         let a32 = decimalOne
         if(hasAchievement("a",32)) a32 = new Decimal(1.2)

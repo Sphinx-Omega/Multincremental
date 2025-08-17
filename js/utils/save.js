@@ -310,11 +310,11 @@ function colorText(elem, color, text) {
 	return "<" + elem + " style='color:" + color + ";text-shadow:0px 0px 10px;'>" + text + "</" + elem + ">"
 }
 
-function ascendText(elem, text) {
+function rainbowText(elem, text) {
 	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px; background-image: url(images/bgs/Rainbow.gif); background-size: 60px; background-position: center'>" + text + "</" + elem + ">"
 }
 
-function ascendTextFront(elem, text) {
+function rainbowTextFront(elem, text) {
 	return "<" + elem + " style='color: transparent; -webkit-background-clip: text; text-shadow:0px 0px 10px white; background-image: url(images/bgs/Rainbow.gif); background-size: 60px; background-position: center; z-index: 9000'>" + text + "</" + elem + ">"
 }
 
