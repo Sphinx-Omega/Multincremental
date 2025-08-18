@@ -1,6 +1,6 @@
 addLayer("inf", {
     name: "nfnt", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "Infinity ∞", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "∞ Infinity", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: false,
@@ -12,12 +12,15 @@ addLayer("inf", {
     color: "#ffffff",
     nodeStyle(){ return {
         //"background-image": "url(images/nodes/Inf.gif)",
-        "background-color":"black",
+        "background-color"() {
+            return ((this.onHover)?("transparent"):(rgba(141, 141, 141, 1)))
+        },
         "background-position":"center",
-        "border-size":"10px",
-        "border-color":(getThemeName() == "grayscale")?"#acacacff":"rgba(250, 138, 34, 1)",
+        "background-size":"180px",
+        "border-size":"2px",
+        "border-color":"transparent",
         "color":"white",
-        "font-size":"22px",
+        "font-size":"22px"
         }
     },
     requires: new Decimal(1), // Can be a function that takes requirement increases into account
@@ -70,6 +73,8 @@ addLayer("inf", {
                     }
                 ],
                 "blank",
+                ["clickables",1],
+                ["clickable",999]
             ],
             style: {
                 "padding-bottom":"-400px",
@@ -221,6 +226,205 @@ addLayer("inf", {
         //         }
         //     },
         // },
+
+        11: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                //return rainbowText("b",formatWhole(player.inf.infinities)) + rainbowText("h3"," ∞")
+                return "<b>"+((formatWhole(player.inf.infinities))+"<h3> ∞")
+            },
+            style: {'height':'5%', 'width':'14%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"5%",
+                "right":"38%",
+                "z-index":"10",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "18px"
+                },
+                "text-align":"center",
+                "text-shadow":"2px 2px 3px #000000c7"
+            },
+        },
+
+        12: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                //return rainbowText("b",(formatWhole(player.inf.points) + " IE"))
+                return "<b>"+(format(player.inf.points, 2) + " IE")
+            },
+            style: {'height':'5%', 'width':'14%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"5%",
+                "right":"23%",
+                "z-index":"10",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "18px"
+                },
+                "text-align":"center",
+                "text-shadow":"2px 2px 3px #000000c7"
+            },
+        },
+
+        13: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return "<b>"+(format(player.points, 3))+" 🗲"
+            },
+            style: {'height':'5%', 'width':'14%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"5%",
+                "right":"8%",
+                "z-index":"10",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-align":"center",
+                "text-shadow":"2px 2px 2px #000000c7"
+            },
+        },
+
+        14: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return "<h1>Infinity"
+            },
+            style: {'height':'5%', 'width':'8%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"5%",
+                "left":"0%",
+                "right":"50%",
+                "z-index":"10",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        15: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'7%', 'width':'45%',
+                "border-radius":"16px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return "rgba(112, 112, 112, 1)"
+                },
+                "position":"fixed",
+                "top":"4%",
+                "right":"7.5%",
+                "z-index":"8",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                },
+                "box-shadow":"2px 2px 5px #00000098"
+            },
+        },
+
+        16: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'7%', 'width':'15%',
+                "border":"2px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"4%",
+                "right":"22.5%",
+                "z-index":"8",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
+
+
+        999: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            style: {'height':'90%', 'width':'10.5%',
+                "border-radius":"0%",
+                "border-top"(){
+                     return "8px solid #3f3f3fff"
+                },
+                "border-left"(){
+                    return "2px solid black"
+                },
+                "background-color"(){
+                    return "rgba(94, 94, 94, 1)"
+                },
+                "position":"fixed",
+                "top":"14.45%",
+                "right":"0%",
+                "z-index":"-5",
+            },
+        },
     },
 
     bars: {

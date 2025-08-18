@@ -1,6 +1,6 @@
 addLayer("p", {
     name: "enrg", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "Energy 🗲", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "🗲 Energy", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -118,15 +118,16 @@ addLayer("p", {
         violetSpd: new Decimal(1/12),
         pinkSpd: new Decimal(1/13.5),
         whiteSpd: new Decimal(1/15),
-        infinities: decimalZero,
     }},
     color: "#ffffff",
     nodeStyle(){ return {
         //"background-image": "url(images/nodes/Inf.gif)",
-        "background-color":"black",
+        "background-color"() {
+            return ((player.tab == "p")?(rgba(141, 141, 141, 1)):((this.onHover)?("transparent"):(rgba(141, 141, 141, 1))))
+        },
         "background-position":"center",
-        "border-size":"10px",
-        "border-color":(getThemeName() == "grayscale")?"#acacacff":"rgb(250, 34, 34)",
+        "border-size":"2px",
+        "border-color":"transparent",
         "color":"white",
         "font-size":"22px",
         }
@@ -224,6 +225,7 @@ addLayer("p", {
                 ["clickables",5],
                 ["buyables",1],
                 ["buyable",21],
+                ["clickable",999],
             ],
             style: {
                 "padding-bottom":"-400px",
@@ -2024,6 +2026,29 @@ addLayer("p", {
                 "font-size":"32px",
             },
         },
+
+        999: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            style: {'height':'90%', 'width':'10.5%',
+                "border-radius":"0%",
+                "border-top"(){
+                     return "8px solid #3f3f3fff"
+                },
+                "border-left"(){
+                    return "2px solid black"
+                },
+                "background-color"(){
+                    return "rgba(94, 94, 94, 1)"
+                },
+                "position":"fixed",
+                "top":"14.45%",
+                "right":"0%",
+                "z-index":"-5",
+            },
+        },
     },
 
     bars: {
@@ -2069,7 +2094,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.orangeSpd).gte(30)) return decimalOne
+                if (((player.p.orangeSpd).gte(30)) && (player.p.orangeBuyAmt.gte(1))) return decimalOne
                 return (player.p.oProg).min(1)
             },
             display() {
@@ -2106,7 +2131,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.yellowSpd).gte(30)) return decimalOne
+                if (((player.p.yellowSpd).gte(30)) && (player.p.yellowBuyAmt.gte(1))) return decimalOne
                 return (player.p.yProg).min(1)
             },
             display() {
@@ -2143,7 +2168,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.limeSpd).gte(30)) return decimalOne
+                if (((player.p.limeSpd).gte(30)) && (player.p.limeBuyAmt.gte(1))) return decimalOne
                 return (player.p.lProg).min(1)
             },
             display() {
@@ -2180,7 +2205,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.greenSpd).gte(30)) return decimalOne
+                if (((player.p.greenSpd).gte(30)) && (player.p.greenBuyAmt.gte(1))) return decimalOne
                 return (player.p.gProg).min(1)
             },
             display() {
@@ -2217,7 +2242,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.cyanSpd).gte(30)) return decimalOne
+                if (((player.p.cyanSpd).gte(30)) && (player.p.cyanBuyAmt.gte(1))) return decimalOne
                 return (player.p.cProg).min(1)
             },
             display() {
@@ -2254,7 +2279,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.blueSpd).gte(30)) return decimalOne
+                if (((player.p.blueSpd).gte(30)) && (player.p.blueBuyAmt.gte(1))) return decimalOne
                 return (player.p.bProg).min(1)
             },
             display() {
@@ -2291,7 +2316,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.violetSpd).gte(30)) return decimalOne
+                if (((player.p.violetSpd).gte(30)) && (player.p.violetBuyAmt.gte(1))) return decimalOne
                 return (player.p.vProg).min(1)
             },
             display() {
@@ -2328,7 +2353,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.pinkSpd).gte(30)) return decimalOne
+                if (((player.p.pinkSpd).gte(30)) && (player.p.pinkBuyAmt.gte(1))) return decimalOne
                 return (player.p.pProg).min(1)
             },
             display() {
@@ -2365,7 +2390,7 @@ addLayer("p", {
             width: 25.78,
             height: 4.25,
             progress() {
-                if ((player.p.whiteSpd).gte(30)) return decimalOne
+                if (((player.p.whiteSpd).gte(30)) && (player.p.whiteBuyAmt.gte(1))) return decimalOne
                 return (player.p.wProg).min(1)
             },
             display() {
@@ -2599,6 +2624,7 @@ addLayer("p", {
             player.points = player.points.min("1.798e308")
             player.p.addEnergy = player.p.addEnergy.min("1.798e308")
             player.p.truedisplay = player.p.truedisplay.min("1.798e308")
+            //infinity()
         }
         if(player.p.points.gte("1.798e308")) player.p.points = player.p.points.min("1.798e308")
     },

@@ -1,6 +1,6 @@
 addLayer("a", {
     name: "Achievements", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "Achievements ★", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "★ Achievements", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 2, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -12,11 +12,14 @@ addLayer("a", {
     color: "#FFFF00",
     nodeStyle(){ return {
         //"background-image": "url(images/nodes/Inf.gif)",
-        "background-color":"black",
+        "background-color"() {
+            if(player.tab == "a") return (rgba(141, 141, 141, 1))
+            return ((this.onHover)?("transparent"):(rgba(141, 141, 141, 1)))
+        },
         "background-position":"center",
         "background-size":"180px",
-        "border-size":"10px",
-        "border-color":"rgb(255, 255, 255)",
+        "border-size":"2px",
+        "border-color":"transparent",
         "color":"white",
         "font-size":"18px"
         }
@@ -38,7 +41,8 @@ addLayer("a", {
                 ],
                 "blank",
                 "blank",
-            "achievements"
+            "achievements",
+            ["clickable",999]
             ],
             buttonStyle: {
                 "border-radius":"0%",
@@ -46,6 +50,68 @@ addLayer("a", {
             },
         },
     },
+
+
+    clickables: {
+
+        // 11: {
+        //     display() {
+        //         let state = ""
+        //         if(getClickableState("p",11) == 1) state = "On"
+        //         if(getClickableState("p",11) == 0) state = "Off"
+        //         return "<h2>"+state
+        //     },
+        //     canClick() {return true},
+        //     onClick() {
+        //         if (getClickableState("p",11) == 0) return setClickableState("p",11,1)
+        //         if (getClickableState("p",11) == 1) return setClickableState("p",11,0)
+        //     },
+        //     unlocked(){
+        //         return hasUpgrade("asc",11)
+        //     },
+        //     style: {'height':'60px', 'width':'120px',
+        //         "border-radius":"5%",
+        //         "border-color"(){
+        //             if (getClickableState("p",11) == 0) return "rgb(201, 45, 45)"
+        //             if (getClickableState("p",11) == 1) return "rgb(50, 211, 64)"
+        //         }, 
+        //         "background-color"(){
+        //             if (getClickableState("p",11) == 0) return "rgb(102, 49, 49)"
+        //             if (getClickableState("p",11) == 1) return "rgb(62, 105, 65)"
+        //         }, 
+        //         "color"(){
+        //             return "rgb(209, 209, 209)"
+        //         }
+        //     },
+        // },
+
+
+
+        999: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            style: {'height':'90%', 'width':'10.5%',
+                "border-radius":"0%",
+                "border-top"(){
+                     return "8px solid #3f3f3fff"
+                },
+                "border-left"(){
+                    return "2px solid black"
+                },
+                "background-color"(){
+                    return "rgba(94, 94, 94, 1)"
+                },
+                "position":"fixed",
+                "top":"14.45%",
+                "right":"0%",
+                "z-index":"-5",
+            },
+        },
+    },
+
+
     achievements: {
         rows: 4,
         cols: 8,

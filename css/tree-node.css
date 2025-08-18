@@ -59,6 +59,7 @@
 	transform: scale(1, 1);
 	height: 6.5%;
 	width: 10.4%;
+	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
 	border-radius: 0%;
@@ -68,16 +69,15 @@
 	color: rgba(100, 49, 49, 0.808);
 	text-shadow: var(--hqProperty3);
 	padding: 0;
-	margin: 0 10px 0 10px;
+	margin: 0 0 0 0;
 	position: absolute;
-	right: -0.5%;
-	top: 20.85%;
+	right: 0%;
+	top: 15.3%;
 }
 
 .p.treeNode:hover {
 	transform: scale(1, 1);
-	height: 6.5%;
-	width: 11%;
+	background-color: rgb(138, 138, 138);
 	text-shadow: 0 0 0px var(--color);
 }
 
@@ -85,6 +85,7 @@
 	transform: scale(1, 1);
 	height: 6.5%;
 	width: 10.4%;
+	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
 	border-radius: 0%;
@@ -94,16 +95,15 @@
 	color: rgba(100, 49, 49, 0.808);
 	text-shadow: var(--hqProperty3);
 	padding: 0;
-	margin: 0 10px 0 10px;
+	margin: 0 0 0 0;
 	position: absolute;
-	right: -0.5%;
-	top: 27.25%;
+	right: 0%;
+	top: 21.8%;
 }
 
 .inf.treeNode:hover {
 	transform: scale(1, 1);
-	height: 6.5%;
-	width: 11%;
+	background-color: rgb(138, 138, 138);
 	text-shadow: 0 0 0px var(--color);
 }
 
@@ -111,8 +111,9 @@
 	transform: scale(1, 1);
 	height: 6.5%;
 	width: 10.4%;
+	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
-	border-color: rgba(0, 0, 0, 0.125);
+	border-color: rgba(0, 0, 0, 0);
 	border-radius: 0%;
 	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
 	font-size: 32px;
@@ -120,16 +121,15 @@
 	color: rgba(255, 255, 255, 0.808);
 	text-shadow: var(--hqProperty3);
 	padding: 0;
-	margin: 0 10px 0 10px;
+	margin: 0 0 0 0;
 	position: absolute;
-	right: -0.5%;
-	top: 14.35%;
+	right: 0%;
+	top: 28.3%;
 }
 
 .a.treeNode:hover {
 	transform: scale(1, 1);
-	height: 6.5%;
-	width: 11%;
+	background-color: rgb(138, 138, 138);
 	text-shadow: 0 0 0px var(--color);
 }
 

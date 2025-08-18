@@ -102,16 +102,6 @@ function prestigeReset() {
   player.p.violetBuyAmt = decimalZero
   player.p.pinkBuyAmt = decimalZero
   player.p.whiteBuyAmt = decimalZero
-  player.p.rProg = decimalZero
-  player.p.oProg = decimalZero
-  player.p.yProg = decimalZero
-  player.p.lProg = decimalZero
-  player.p.gProg = decimalZero
-  player.p.cProg = decimalZero
-  player.p.bProg = decimalZero
-  player.p.vProg = decimalZero
-  player.p.pProg = decimalZero
-  player.p.wProg = decimalZero
   player.p.rMult = decimalOne
   player.p.oMult = decimalOne
   player.p.yMult = decimalOne
@@ -142,6 +132,16 @@ function prestigeReset() {
   player.p.violetAscCost = decimalZero
   player.p.pinkAscCost = decimalZero
   player.p.whiteAscCost = decimalZero
+  player.p.rProg = decimalZero
+  player.p.oProg = decimalZero
+  player.p.yProg = decimalZero
+  player.p.lProg = decimalZero
+  player.p.gProg = decimalZero
+  player.p.cProg = decimalZero
+  player.p.bProg = decimalZero
+  player.p.vProg = decimalZero
+  player.p.pProg = decimalZero
+  player.p.wProg = decimalZero
   player.p.addEnergy = decimalOne
 }
 
@@ -173,4 +173,15 @@ function ascend3() {
 function ascend4() {
   player.p.baseAscend = ((player.p.ascendPower).max(player.p.baseAscend))
   ascend()
+}
+
+function infinity() {
+  ascend()
+  player.p.ascendAmt = decimalZero
+  player.p.baseMult = decimalOne
+  player.p.baseSpeed = decimalOne
+  player.p.baseBoost = decimalOne
+  player.p.baseAscend = decimalOne
+  player.inf.infinities = player.inf.infinities.add(1)
+  player.inf.points = player.inf.points.add(1)
 }
