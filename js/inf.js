@@ -59,7 +59,7 @@ addLayer("inf", {
     ],
     shouldNotify: false,
     layerShown() {
-        return player.inf.unlocked
+        return tmp.inf.unlocked
     },
     tabFormat: {
         "Main" :{
