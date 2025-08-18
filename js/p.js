@@ -2466,9 +2466,9 @@ addLayer("p", {
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.35).floor().max(1).log2().pow(2.8).floor().times(2).add(2).pow(player.p.baseAscend)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.35).floor().div(2).max(1).log2().pow(0.7).max(1).add(1).pow(player.p.baseAscend)
-        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.15).max(1).log10().times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
+        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.35).floor().max(1).log2().pow(4.25).floor().times(2).add(2).pow(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.35).floor().div(2).max(1).log2().pow(0.775).max(1).add(1).pow(player.p.baseAscend)
+        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.25).max(1).log10().times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
         player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.065).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
