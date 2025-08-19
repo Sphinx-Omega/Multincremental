@@ -58,7 +58,7 @@
 .p.treeNode {
 	transform: scale(1, 1);
 	height: 6.5%;
-	width: 10.4%;
+	width: 10.85%;
 	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
@@ -84,7 +84,7 @@
 .inf.treeNode {
 	transform: scale(1, 1);
 	height: 6.5%;
-	width: 10.4%;
+	width: 10.85%;
 	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0.125);
@@ -110,7 +110,7 @@
 .a.treeNode {
 	transform: scale(1, 1);
 	height: 6.5%;
-	width: 10.4%;
+	width: 10.85%;
 	background-color: rgba(94, 94, 94, 1);
 	border: var(--hqProperty1);
 	border-color: rgba(0, 0, 0, 0);

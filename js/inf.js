@@ -408,7 +408,7 @@ addLayer("inf", {
             unlocked(){
                 return true
             },
-            style: {'height':'90%', 'width':'10.5%',
+            style: {'height':'90%', 'width':'11%',
                 "border-radius":"0%",
                 "border-top"(){
                      return "8px solid #3f3f3fff"

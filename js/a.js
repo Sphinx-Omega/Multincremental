@@ -42,7 +42,8 @@ addLayer("a", {
                 "blank",
                 "blank",
             "achievements",
-            ["clickable",999]
+            ["clickables",1],
+            ["clickables",99]
             ],
             buttonStyle: {
                 "border-radius":"0%",
@@ -85,14 +86,64 @@ addLayer("a", {
         //     },
         // },
 
+        11: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return "<h1>Achievements"
+            },
+            style: {'height':'5%', 'width':'8%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"5%",
+                "left":"0%",
+                "right":"11.5%",
+                "z-index":"10",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
 
+        991: {
+            canClick() {return false},
+            unlocked(){
+                return (!hasAchievement("a",43))
+            },
+            display(){
+                return "Locked"
+            },
+            style: {'height':'6.5%', 'width':'10.85%',
+                "border-radius":"0%",
+                "border-color":"transparent",
+                "background-color"(){
+                    return "rgba(94, 94, 94, 1)"
+                },
+                "position":"fixed",
+                "top":"21.8%",
+                "right":"0%",
+                "z-index":"1",
+                "color":"#414141ff",
+                "font-size":"32px"
+            },
+        },
 
         999: {
             canClick() {return false},
             unlocked(){
                 return true
             },
-            style: {'height':'90%', 'width':'10.5%',
+            style: {'height':'90%', 'width':'11%',
                 "border-radius":"0%",
                 "border-top"(){
                      return "8px solid #3f3f3fff"

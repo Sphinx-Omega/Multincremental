@@ -225,6 +225,7 @@ addLayer("p", {
                 ["clickables",5],
                 ["buyables",1],
                 ["buyable",21],
+                ["clickable",991],
                 ["clickable",999],
             ],
             style: {
@@ -2027,12 +2028,35 @@ addLayer("p", {
             },
         },
 
+        991: {
+            canClick() {return false},
+            unlocked(){
+                return (!hasAchievement("a",43))
+            },
+            display(){
+                return "Locked"
+            },
+            style: {'height':'6.5%', 'width':'10.85%',
+                "border-radius":"0%",
+                "border-color":"transparent",
+                "background-color"(){
+                    return "rgba(94, 94, 94, 1)"
+                },
+                "position":"fixed",
+                "top":"21.8%",
+                "right":"0%",
+                "z-index":"1",
+                "color":"#414141ff",
+                "font-size":"32px"
+            },
+        },
+
         999: {
             canClick() {return false},
             unlocked(){
                 return true
             },
-            style: {'height':'90%', 'width':'10.5%',
+            style: {'height':'90%', 'width':'11%',
                 "border-radius":"0%",
                 "border-top"(){
                      return "8px solid #3f3f3fff"
@@ -2624,7 +2648,7 @@ addLayer("p", {
             player.points = player.points.min("1.798e308")
             player.p.addEnergy = player.p.addEnergy.min("1.798e308")
             player.p.truedisplay = player.p.truedisplay.min("1.798e308")
-            //infinity()
+            infinity()
         }
         if(player.p.points.gte("1.798e308")) player.p.points = player.p.points.min("1.798e308")
     },
