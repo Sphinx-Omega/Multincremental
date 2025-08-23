@@ -285,6 +285,8 @@ addLayer("info-tab", {
 
 addLayer("options-tab", {
     tabFormat: [
+        "blank",
+        "blank",
         "options-tab",
     //     ["raw-html", function() { return `
     //     <div class="slidecontainer">

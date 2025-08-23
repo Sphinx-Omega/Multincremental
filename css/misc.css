@@ -33,12 +33,13 @@
 .tooltip { 
     pointer-events: none;
     text-align: center;
+    vertical-align: text-top;
     width: 180px;
     height: 100px;
     font-size: 12px;
     line-height: 1.2;
-    bottom: 25%;
-    left: 150%;
+    bottom: 40%;
+    left: 133%;
     margin-bottom: 5px;
     transform: translateY(50%);
     padding: 7px;
@@ -72,6 +73,49 @@
     border-style: solid;
     border-color: transparent transparent transparent transparent;
 }
+
+/* .tooltip2 { 
+    pointer-events: none;
+    text-align: center;
+    width: 180px;
+    height: 100px;
+    font-size: 12px;
+    line-height: 1.2;
+    bottom: 45%;
+    left: 90%;
+    margin-bottom: 5px;
+    transform: translateY(50%);
+    padding: 7px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 0px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  
+    position: absolute;
+    z-index: 20000;
+  
+    background-color: red;
+    color: var(--points);
+    content: attr(tooltip2);
+    font-size:12px;
+
+}
+
+.tooltip2::after {
+    content: " ";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent;
+} */
 
 /* Horizontal/vertical lines */
 .vl {

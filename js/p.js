@@ -1075,7 +1075,7 @@ addLayer("p", {
                 "position":"fixed",
                 "top":"25%",
                 "left":"0%",
-                "right":"0%"
+                "right":"10%"
             },
         },
 
@@ -1443,7 +1443,7 @@ addLayer("p", {
                 "position":"fixed",
                 "top":"17.5%",
                 "left":"0%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"20px"
@@ -1470,7 +1470,7 @@ addLayer("p", {
                 "bottom":"10%",
                 "top":"90%",
                 "left":"0%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"16px"
@@ -1510,7 +1510,7 @@ addLayer("p", {
                 "bottom":"50%",
                 "top":"11.5%",
                 "left":"55%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"12px"
@@ -1537,7 +1537,7 @@ addLayer("p", {
                 "bottom":"60%",
                 "top":"0%",
                 "left":"55%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#585858ff",
                 "font-size":"32px"
@@ -1573,7 +1573,7 @@ addLayer("p", {
                 "bottom":"50%",
                 "top":"45%",
                 "left":"43%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1609,7 +1609,7 @@ addLayer("p", {
                 "bottom":"50%",
                 "top":"45%",
                 "left":"67%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1645,7 +1645,7 @@ addLayer("p", {
                 "bottom":"30%",
                 "top":"55%",
                 "left":"43%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -1681,7 +1681,7 @@ addLayer("p", {
                 "bottom":"30%",
                 "top":"55%",
                 "left":"67%",
-                "right":"0%",
+                "right":"10%",
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size":"10px"
@@ -2093,7 +2093,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"25%"
             },
             fillStyle: {
@@ -2130,7 +2130,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"29.8%"
             },
             fillStyle: {
@@ -2167,7 +2167,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"34.6%"
             },
             fillStyle: {
@@ -2204,7 +2204,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"39.4%"
             },
             fillStyle: {
@@ -2241,7 +2241,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"44.2%"
             },
             fillStyle: {
@@ -2278,7 +2278,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"49%"
             },
             fillStyle: {
@@ -2315,7 +2315,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"53.8%"
             },
             fillStyle: {
@@ -2352,7 +2352,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"58.6%"
             },
             fillStyle: {
@@ -2389,7 +2389,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"63.4%"
             },
             fillStyle: {
@@ -2426,7 +2426,7 @@ addLayer("p", {
                 "background-position":"center",
                 "background-size":"180px",
                 "opacity":"100%",
-                "left":"37%",
+                "left":"32%",
                 "top":"68.2%"
             },
             fillStyle: {
@@ -2446,7 +2446,7 @@ addLayer("p", {
 
         infBar: {
             direction: RIGHT,
-            width: 50,
+            width: 40,
             height: 2,
             progress() {
                 return (player.points).div(1.79769).max(1).log10().div(308).min(1)

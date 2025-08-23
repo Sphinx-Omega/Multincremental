@@ -65,17 +65,18 @@ addLayer("inf", {
         return tmp.inf.unlocked
     },
     tabFormat: {
-        "Main" :{
+        "Upgrades" :{
             content: [
                 ["raw-html",
                     function(){
-                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Coming Soon™!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                        return ""
                     }
                 ],
                 "blank",
                 ["clickables",1],
                 ["clickables",2],
-                ["clickable",999]
+                ["clickable",999],
+                "upgrades"
             ],
             style: {
                 "background-size":"400px",
@@ -90,7 +91,7 @@ addLayer("inf", {
                 "border-top-right-radius":"50px 50px",
                 "border-color":"transparent",
                 "background-color"(){
-                    return ((player.subtabs.inf.mainTabs == "Main")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                    return ((player.subtabs.inf.mainTabs == "Upgrades")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
                 },
                 "visibility":"visible",
                 "position":"fixed",
@@ -105,11 +106,11 @@ addLayer("inf", {
             },
         },
 
-        "Test" :{
+        "Generator" :{
             content: [
                 ["raw-html",
                     function(){
-                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Testing Area!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                        return ""
                     }
                 ],
                 "blank",
@@ -130,7 +131,7 @@ addLayer("inf", {
                 "border-top-right-radius":"50px 50px",
                 "border-color":"transparent",
                 "background-color"(){
-                    return ((player.subtabs.inf.mainTabs == "Test")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                    return ((player.subtabs.inf.mainTabs == "Generator")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
                 },
                 "visibility":"visible",
                 "position":"fixed",
@@ -143,13 +144,16 @@ addLayer("inf", {
                 "text-shadow":"4px 4px 2px #000000c7",
                 "transition-duration":"0s"
             },
+            unlocked(){
+                return (hasUpgrade("inf",11))
+            }
         },
 
-        "Test 2" :{
+        "Challenges" :{
             content: [
                 ["raw-html",
                     function(){
-                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Testing Area 2!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                        return ""
                     }
                 ],
                 "blank",
@@ -170,7 +174,7 @@ addLayer("inf", {
                 "border-top-right-radius":"50px 50px",
                 "border-color":"transparent",
                 "background-color"(){
-                    return ((player.subtabs.inf.mainTabs == "Test 2")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                    return ((player.subtabs.inf.mainTabs == "Challenges")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
                 },
                 "visibility":"visible",
                 "position":"fixed",
@@ -183,6 +187,9 @@ addLayer("inf", {
                 "text-shadow":"4px 4px 2px #000000c7",
                 "transition-duration":"0s"
             },
+            unlocked(){
+                return false
+            }
         },
     },
 
@@ -257,38 +264,46 @@ addLayer("inf", {
 
     upgrades: {
         
-        // 11: {
-        //     title: "",
-        //     description() {
-        //         return "<h2>Particle Generators are x2 stronger"
-        //     },
-        //     canAfford(){
-        //         if(inChallenge("asc",12) && ((player.p.upgrades.length) >= (12))) return false
-        //         if(inChallenge("asc",22) && ((player.p.upgrades.length) >= (8))) return false
-        //         return player.points.gte(250)
-        //     },
-        //     pay(){
-        //         if(!hasUpgrade("asc",24)) player.points = player.points.sub(250)
-        //         player.p.upgrades.push("11")
-        //     },
-        //     unlocked(){
-        //         return true
-        //     },
-        //     style: {"width":"200px","height":"80px",
-        //         "color"(){
-        //             return (hasUpgrade("p",11))?"rgb(0, 0, 0)":((tmp.p.upgrades[11].canAfford)?"white":"black")
-        //         },
-        //         "background-color"() {
-        //             let a = "rgb(0, 0, 0)"
-        //             let b = "rgb(122, 77, 77)"
-        //             return (hasUpgrade("p",11))?"rgb(221, 42, 42)":((tmp.p.upgrades[11].canAfford)?a:b)
-        //         },
-        //         "border-color"(){
-        //             return (hasUpgrade("p",11))?"rgb(0, 0, 0)":((tmp.p.upgrades[11].canAfford)?"white":"black")
-        //         },
-        //         "border-radius":"5%"
-        //     },
-        // },
+        11: {
+            title: "",
+            description() {
+                return "<h2>"
+            },
+            cost(){
+                return decimalOne
+            },
+            tooltip(){
+                return "<h3>UPG-1<br><br>Unlock the Generator<br><br>Cost: 1 IP"
+            },
+            canAfford(){
+                return player.inf.points.gte(1)
+            },
+            pay(){
+                player.inf.points = player.inf.points.sub(1)
+            },
+            unlocked(){
+                return true
+            },
+            style: {"width":"5%","height":"10%","position":"fixed",
+                "color"(){
+                    return (hasUpgrade("inf",11))?"rgb(0, 0, 0)":((tmp.inf.upgrades[11].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    let a = "url(images/icons/generatorUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/bgs/fog.gif)"
+                    return (hasUpgrade("inf",11))?"url(images/icons/generatorUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[11].unlocked)?a:b)
+                },
+                "background-size":"110% 110%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",11))?"lime":((tmp.inf.upgrades[11].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"52.5%",
+                "left":"15%",
+            },
+        },
     },
 
     clickables: {
