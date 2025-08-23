@@ -36,15 +36,22 @@ addLayer("a", {
             content: [
                 ["raw-html",
                     function(){
-                    return "<b>You have "+ ((getThemeName() == "grayscale")?("<h2>"+formatWhole(player.a.points)):(layerText("h2","a",formatWhole(player.a.points)))) + ((getThemeName() == "grayscale")?"<h2>/12":layerText("h2","a","/12")) + "</h2><b> Achievements, giving an additional " + ((getThemeName() == "grayscale")?("<h2>x"+format(tmp.a.effect, 2)):(layerText("h2","a",("x"+format(tmp.a.effect, 2))))) + "</h2><b> multiplier"
+                    return "<b>You have "+ ((getThemeName() == "grayscale")?("<h2>"+formatWhole(player.a.points)):(layerText("h2","a",formatWhole(player.a.points)))) + ((getThemeName() == "grayscale")?"<h2>/30":layerText("h2","a","/30")) + "</h2><b> Achievements, giving an additional " + ((getThemeName() == "grayscale")?("<h2>x"+format(tmp.a.effect, 2)):(layerText("h2","a",("x"+format(tmp.a.effect, 2))))) + "</h2><b> multiplier"
                     }
                 ],
                 "blank",
                 "blank",
-            "achievements",
             ["clickables",1],
-            ["clickables",99]
+            ["clickables",99],    
+            "achievements",
             ],
+            style: {
+                "position":"absolute",
+                "top":"2%",
+                "bottom":"0%",
+                "left":"0%",
+                "right":"10%"
+            },
             buttonStyle: {
                 "border-radius":"0%",
                 "visibility":"hidden"
@@ -105,8 +112,8 @@ addLayer("a", {
                 "position":"fixed",
                 "top":"5%",
                 "left":"0%",
-                "right":"11.5%",
-                "z-index":"10",
+                "right":"22.5%",
+                "z-index":"20",
                 "color":"#ffffffff",
                 "font-size"() {
                     return "24px"
@@ -138,6 +145,52 @@ addLayer("a", {
             },
         },
 
+        // 992: {
+        //     canClick() {return false},
+        //     unlocked(){
+        //         return (!hasAchievement("a",43))
+        //     },
+        //     display(){
+        //         return ""
+        //     },
+        //     style: {'height':'14%', 'width':'100%',
+        //         "border-radius":"0%",
+        //         "border-color":"white",
+        //         "background-color"(){
+        //             return "#ffffffff"
+        //         },
+        //         "position":"fixed",
+        //         "top":"10%",
+        //         "right":"20%",
+        //         "z-index":"10",
+        //         "color":"#414141ff",
+        //         "font-size":"32px"
+        //     },
+        // },
+
+        993: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'14.45%', 'width':'110%',
+                "border-radius":"0%",
+                "border-top":"2px solid white",
+                "border-bottom":"2px solid white",
+                "background-color"(){
+                    return "#496132ff"
+                },
+                "position":"fixed",
+                "top":"0%",
+                "right":"-5%",
+                "z-index":"10",
+                "font-size":"32px"
+            },
+        },
+
         999: {
             canClick() {return false},
             unlocked(){
@@ -164,7 +217,7 @@ addLayer("a", {
 
 
     achievements: {
-        rows: 4,
+        rows: 10,
         cols: 8,
         11: {
             name: "<h3>Millionaire!<br><br></h3>Reach 1Mil Energy",
@@ -175,7 +228,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"33%",
+                "left":"10%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",11)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -198,7 +254,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"33%",
+                "left":"37.5%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",12)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -223,7 +282,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"33%",
+                "left":"65%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",13)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -246,7 +308,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"50%",
+                "left":"10%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",21)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -271,7 +336,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"50%",
+                "left":"37.5%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",22)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -294,7 +362,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"50%",
+                "left":"65%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",23)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -317,7 +388,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"67%",
+                "left":"10%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",31)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -342,7 +416,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"67%",
+                "left":"37.5%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",32)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -367,7 +444,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"67%",
+                "left":"65%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",33)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -392,7 +472,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"84%",
+                "left":"10%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",41)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -417,7 +500,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"84%",
+                "left":"37.5%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",42)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -442,7 +528,10 @@ addLayer("a", {
             onComplete() {
                 addPoints("a",1)
             },
-            style: {"width":"400px","height":"120px","margin":"2px","border":"4px solid","border-radius":"0%",
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"84%",
+                "left":"65%",
                 "background"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
                     if (hasAchievement("a",43)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
@@ -451,6 +540,510 @@ addLayer("a", {
                 "border-color"() {
                     let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
                     if (hasAchievement("a",43)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        51: {
+            name() {
+                return "<h3>Back for seconds<br><br></h3>Reach Infinity again!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"101%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",51)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",51)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        52: {
+            name() {
+                return "<h3>Fast and Finite<br><br></h3>Reach Infinity in under 2 hours"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"101%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",52)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",52)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        53: {
+            name() {
+                return "<h3>Generational<br><br></h3>Reach 1,000 IE"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"101%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",53)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",53)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        61: {
+            name() {
+                return "<h3>Unenlightened...<br><br></h3>Reach Infinity without ascending!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"118%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",61)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",61)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        62: {
+            name() {
+                return "<h3>Challenging!<br><br></h3>Complete your first challenge!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"118%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",62)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",62)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        63: {
+            name() {
+                return "<h3>Poor Man's Infinity<br><br></h3>Reach infinity without prestiging!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"118%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",63)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",63)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        71: {
+            name() {
+                return "<h3>Taskmaster<br><br></h3>Complete 4 challenges!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"135%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",71)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",71)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        72: {
+            name() {
+                return "<h3>I think you're addicted...<br><br></h3>Play for 3 days"
+            },
+            tooltip: " ",
+            done() {
+                return (player.timePlayed >= 259200)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"135%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",72)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",72)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        73: {
+            name() {
+                return "<h3>Infinity miles/hr<br><br></h3>Reach infinity in under 15 minutes!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"135%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",73)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",73)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        81: {
+            name() {
+                return "<h3>Are these really infinite...?<br><br></h3>Reach 1000 infinities"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(1e3)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"152%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",81)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",81)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        82: {
+            name() {
+                return "<h3>√Nine Circles<br><br></h3>Reach infinity with only Red, Orange and Yellow"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"152%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",82)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",82)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        83: {
+            name() {
+                return "<h3>Broken Bonds<br><br></h3>Break Infinity!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"152%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",83)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",83)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        91: {
+            name() {
+                return "<h3>I AM SPEED<br><br></h3>Get all challenge times under 10 seconds"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"169%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",91)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",91)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        92: {
+            name() {
+                return "<h3>No Boosts?<br><br></h3>Reach infinity without boosting!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"169%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",92)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",92)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        93: {
+            name() {
+                return "<h3>Infinity/s<br><br></h3>Reach infinity in under 250ms!"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.infinities.gte(2e5)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"169%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",93)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",93)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        101: {
+            name() {
+                return "<h3>Are we there yet?<br><br></h3>Reach 1.00e154 IE"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.points.gte(1e154)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"186%",
+                "left":"10%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",101)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",101)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        102: {
+            name() {
+                return "<h3>Boostmaxxing<br><br></h3>Reach Boost #50 on all bars"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.points.gte(1e300)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"186%",
+                "left":"37.5%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",102)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",102)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
+                    return color
+                }
+            },
+        },
+
+        103: {
+            name() {
+                return "<h3>Beyond<br><br></h3>Reach Eternity"
+            },
+            tooltip: " ",
+            done() {
+                return player.inf.points.gte(1.797e308)
+            },
+            onComplete() {
+                addPoints("a",1)
+            },
+            style: {"width":"20%","height":"12.5%","margin":"2px","border":"4px solid","border-radius":"0%",
+                "position":"absolute",
+                "top":"186%",
+                "left":"65%",
+                "background"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#505050ff"
+                    if (hasAchievement("a",103)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#8d8d8dff"
+                    return color
+                },
+                "border-color"() {
+                    let color = (getThemeName() == "grayscale")?"#4b4b4bff":"#b66f6fff"
+                    if (hasAchievement("a",103)) color = (getThemeName() == "grayscale")?"#a3a3a3ff":"#7ed17eff"
                     return color
                 }
             },

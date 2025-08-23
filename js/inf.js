@@ -69,23 +69,119 @@ addLayer("inf", {
             content: [
                 ["raw-html",
                     function(){
-                        return rainbowText("h1","Coming Soon™!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Coming Soon™!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
                     }
                 ],
                 "blank",
                 ["clickables",1],
+                ["clickables",2],
                 ["clickable",999]
             ],
             style: {
+                "background-size":"400px",
                 "padding-bottom":"-400px",
                 "position":"fixed",
-                "left":"0px",
-                "right":"0px",
+                "right":"35%",
                 "height":"616px",
             },
             buttonStyle: {
                 "border-radius":"0%",
-                "visibility":"hidden"
+                "border-top-left-radius":"50px 50px",
+                "border-top-right-radius":"50px 50px",
+                "border-color":"transparent",
+                "background-color"(){
+                    return ((player.subtabs.inf.mainTabs == "Main")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                },
+                "visibility":"visible",
+                "position":"fixed",
+                "height":"7.5%",
+                "width":"26.85%",
+                "top":"19.5%",
+                "left":"3.9%",
+                "z-index":"9",
+                "font-size":"40px",
+                "text-shadow":"4px 4px 2px #000000c7",
+                "transition-duration":"0s"
+            },
+        },
+
+        "Test" :{
+            content: [
+                ["raw-html",
+                    function(){
+                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Testing Area!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                    }
+                ],
+                "blank",
+                ["clickables",1],
+                ["clickables",2],
+                ["clickable",999]
+            ],
+            style: {
+                "background-size":"400px",
+                "padding-bottom":"-400px",
+                "position":"fixed",
+                "right":"35%",
+                "height":"616px",
+            },
+            buttonStyle: {
+                "border-radius":"0%",
+                "border-top-left-radius":"50px 50px",
+                "border-top-right-radius":"50px 50px",
+                "border-color":"transparent",
+                "background-color"(){
+                    return ((player.subtabs.inf.mainTabs == "Test")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                },
+                "visibility":"visible",
+                "position":"fixed",
+                "height":"7.5%",
+                "width":"26.85%",
+                "top":"19.5%",
+                "left":"30.85%",
+                "z-index":"9",
+                "font-size":"40px",
+                "text-shadow":"4px 4px 2px #000000c7",
+                "transition-duration":"0s"
+            },
+        },
+
+        "Test 2" :{
+            content: [
+                ["raw-html",
+                    function(){
+                        return rainbowText("h1","<br><br><br><br><br><br><br><br>Testing Area 2!<br><br><br><br>For now, you can go play Revolution Idle on Steam!!<br><br>(It's peak)")
+                    }
+                ],
+                "blank",
+                ["clickables",1],
+                ["clickables",2],
+                ["clickable",999]
+            ],
+            style: {
+                "background-size":"400px",
+                "padding-bottom":"-400px",
+                "position":"fixed",
+                "right":"35%",
+                "height":"616px",
+            },
+            buttonStyle: {
+                "border-radius":"0%",
+                "border-top-left-radius":"50px 50px",
+                "border-top-right-radius":"50px 50px",
+                "border-color":"transparent",
+                "background-color"(){
+                    return ((player.subtabs.inf.mainTabs == "Test 2")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                },
+                "visibility":"visible",
+                "position":"fixed",
+                "height":"7.5%",
+                "width":"26.8%",
+                "top":"19.5%",
+                "left":"57.75%",
+                "z-index":"9",
+                "font-size":"40px",
+                "text-shadow":"4px 4px 2px #000000c7",
+                "transition-duration":"0s"
             },
         },
     },
@@ -250,7 +346,7 @@ addLayer("inf", {
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size"() {
-                    return "18px"
+                    return "24px"
                 },
                 "text-align":"center",
                 "text-shadow":"2px 2px 3px #000000c7"
@@ -280,7 +376,7 @@ addLayer("inf", {
                 "z-index":"10",
                 "color":"#ffffffff",
                 "font-size"() {
-                    return "18px"
+                    return "24px"
                 },
                 "text-align":"center",
                 "text-shadow":"2px 2px 3px #000000c7"
@@ -401,6 +497,158 @@ addLayer("inf", {
             },
         },
 
+        17: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'12.9%', 'width':'89%',
+                "border-top":"0px solid",
+                "border-left":"0px solid",
+                "border-right":"0px solid",
+                "border-bottom":"0px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(70, 70, 70, 1)"
+                },
+                "position":"fixed",
+                "top":"14.45%",
+                "right":"11%",
+                "z-index":"2",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+        
+        18: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'10%', 'width':'89%',
+                "border-top":"0px solid",
+                "border-left":"0px solid",
+                "border-right":"0px solid",
+                "border-bottom":"0px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(70, 70, 70, 1)"
+                },
+                "position":"fixed",
+                "bottom":"0%",
+                "right":"11%",
+                "z-index":"2",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
+        19: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'75%', 'width':'4.1%',
+                "border-top":"0px solid",
+                "border-left":"0px solid",
+                "border-right":"0px solid",
+                "border-bottom":"0px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(70, 70, 70, 1)"
+                },
+                "position":"fixed",
+                "bottom":"0%",
+                "left":"0%",
+                "z-index":"2",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
+        21: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'75%', 'width':'4.26%',
+                "border-top":"0px solid",
+                "border-left":"0px solid",
+                "border-right":"0px solid",
+                "border-bottom":"0px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(70, 70, 70, 1)"
+                },
+                "position":"fixed",
+                "bottom":"0%",
+                "right":"11%",
+                "z-index":"2",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
+        // 21: {
+        //     canClick() {return false},
+        //     unlocked(){
+        //         return true
+        //     },
+        //     display(){
+        //         return "<h2>"
+        //     },
+        //     style: {'height':'7.5%', 'width':'25%',
+        //         "border-radius":"0%",
+        //         "border-color"(){
+        //              return "rgba(0, 0, 0, 0)"
+        //         }, 
+        //         "background-color"(){
+        //             return "transparent"
+        //         },
+        //         "position":"fixed",
+        //         "top":"20%",
+        //         "left":"4.15%",
+        //         "z-index":"10",
+        //         "color":"#ffffffff",
+        //         "font-size"() {
+        //             return "24px"
+        //         },
+        //         "text-shadow":"4px 4px 2px #000000c7"
+        //     },
+        // },
+
 
 
         999: {
@@ -422,7 +670,7 @@ addLayer("inf", {
                 "position":"fixed",
                 "top":"14.45%",
                 "right":"0%",
-                "z-index":"-5",
+                "z-index":"3",
             },
         },
     },
