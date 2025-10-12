@@ -156,22 +156,28 @@ function ascend() {
 }
 
 function ascend1() {
-  player.p.baseMult = ((player.p.ascendMult).max(player.p.baseMult))
+  player.p.baseMult = (((player.p.ascendMult).mul(player.p.baseAscend)).max(player.p.baseMult))
   ascend()
 }
 
 function ascend2() {
-  player.p.baseSpeed = ((player.p.ascendSpeed).max(player.p.baseSpeed))
+  player.p.baseSpeed = (((player.p.ascendSpeed).mul(player.p.baseAscend)).max(player.p.baseSpeed))
   ascend()
 }
 
 function ascend3() {
-  player.p.baseBoost = ((player.p.ascendBoost).max(player.p.baseBoost))
+  player.p.baseBoost = (((player.p.ascendBoost).mul(player.p.baseAscend)).max(player.p.baseBoost))
   ascend()
 }
 
 function ascend4() {
+  player.p.baseMult = ((player.p.baseMult).div(player.p.baseAscend))
+  player.p.baseSpeed = ((player.p.baseSpeed).div(player.p.baseAscend))
+  player.p.baseBoost = ((player.p.baseBoost).div(player.p.baseAscend))
   player.p.baseAscend = ((player.p.ascendPower).max(player.p.baseAscend))
+  player.p.baseMult = ((player.p.baseMult).mul(player.p.baseAscend))
+  player.p.baseSpeed = ((player.p.baseSpeed).mul(player.p.baseAscend))
+  player.p.baseBoost = ((player.p.baseBoost).mul(player.p.baseAscend))
   ascend()
 }
 
@@ -183,5 +189,5 @@ function infinity() {
   player.p.baseBoost = decimalOne
   player.p.baseAscend = decimalOne
   player.inf.infinities = player.inf.infinities.add(1)
-  player.inf.points = player.inf.points.add(1)
+  player.inf.infenergy = player.inf.infenergy.add(1)
 }

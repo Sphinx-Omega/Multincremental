@@ -1,5 +1,5 @@
 addLayer("inf", {
-    name: "nfnt", // This is optional, only used in a few places, If absent it just uses the layer id.
+    name: "inf", // This is optional, only used in a few places, If absent it just uses the layer id.
     symbol: "∞ Infinity", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
@@ -8,6 +8,7 @@ addLayer("inf", {
         total: decimalZero,
         best: decimalZero,
         infinities: decimalZero,
+        infenergy: decimalZero,
     }},
     color: "#ffffff",
     nodeStyle(){ return {
@@ -23,19 +24,19 @@ addLayer("inf", {
         "font-size":"22px"
         }
     },
-    requires: new Decimal(1), // Can be a function that takes requirement increases into account
-    resource: "infps", // Name of prestige currency
+    requires: decimalZero, // Can be a function that takes requirement increases into account
+    resource: "points", // Name of prestige currency
     baseResource: "energy", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
     type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
     softcapPower: 0.6,
     gainMult() { // Calculate the multiplier for main currency from bonuses
-        pmult = new Decimal(1)
+        pmult = new Decimal(0)
         return pmult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
-        return new Decimal(1)
+        return new Decimal(0)
     },
     row: 1, // Row the layer is in on the tree (0 is the first row)
     unlocked() {
@@ -265,21 +266,19 @@ addLayer("inf", {
     upgrades: {
         
         11: {
-            title: "",
+            title: " ",
             description() {
                 return "<h2>"
             },
-            cost(){
-                return decimalOne
-            },
             tooltip(){
-                return "<h3>UPG-1<br><br>Unlock the Generator<br><br>Cost: 1 IP"
+                return "<h3>UPG-1<br><br>Unlock the Generator<br><br>Cost: 1 IE"
             },
             canAfford(){
-                return player.inf.points.gte(1)
+                return player.inf.infenergy.gte(1)
             },
             pay(){
-                player.inf.points = player.inf.points.sub(1)
+                player.inf.infenergy = player.inf.infenergy.sub(1)
+                player.inf.upgrades.push(11)
             },
             unlocked(){
                 return true
@@ -290,7 +289,7 @@ addLayer("inf", {
                 },
                 "background-image"() {
                     let a = "url(images/icons/generatorUPGlocked.png), url(images/bgs/Ascension.gif)"
-                    let b = "url(images/bgs/fog.gif)"
+                    let b = "url(images/icons/generatorUPG.png)"
                     return (hasUpgrade("inf",11))?"url(images/icons/generatorUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[11].unlocked)?a:b)
                 },
                 "background-size":"110% 110%",
@@ -375,7 +374,7 @@ addLayer("inf", {
             },
             display(){
                 //return rainbowText("b",(formatWhole(player.inf.points) + " IE"))
-                return "<b>"+(format(player.inf.points, 2) + " IE")
+                return "<b>"+(format(player.inf.infenergy, 2) + " IE")
             },
             style: {'height':'5%', 'width':'14%',
                 "border-radius":"0%",

@@ -151,7 +151,7 @@ addLayer("p", {
         {
             key: "m", description: "M: Rapid buy all bars",
                 onPress(){
-                    for(i = 0; i<10 ; i++){
+                    for(i = 0; i<5 ; i++){
                         if (canBuyBuyable("p",11)) buyBuyable("p",11)
                         if (canBuyBuyable("p",12)) buyBuyable("p",12)
                         if (canBuyBuyable("p",13)) buyBuyable("p",13)
@@ -169,7 +169,7 @@ addLayer("p", {
         {
             key: "b", description: "B: Boost all bars",
                 onPress(){
-                    for(i = 0; i<10 ; i++){
+                    for(i = 0; i<5 ; i++){
                         if (tmp.p.clickables[41].unlocked == true) clickClickable("p",41)
                         if (tmp.p.clickables[42].unlocked == true) clickClickable("p",42)
                         if (tmp.p.clickables[43].unlocked == true) clickClickable("p",43)
@@ -312,7 +312,7 @@ addLayer("p", {
 
         11: {
             cost() { 
-                let cost = Decimal.pow(1.2,((this.bought()).div(4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1)
+                let cost = Decimal.pow(1.1,((this.bought()).div(4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1)
                 return cost 
             },
             bought() {
@@ -380,7 +380,7 @@ addLayer("p", {
 
         12: {
             cost() { 
-                let cost = Decimal.pow(1.25,((this.bought()).div(3.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(100)
+                let cost = Decimal.pow(1.15,((this.bought()).div(3.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(100)
                 return cost 
             },
             bought() {
@@ -448,7 +448,7 @@ addLayer("p", {
 
         13: {
             cost() { 
-                let cost = Decimal.pow(1.3,((this.bought()).div(3.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e3)
+                let cost = Decimal.pow(1.2,((this.bought()).div(3.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e3)
                 return cost 
             },
             bought() {
@@ -516,7 +516,7 @@ addLayer("p", {
 
         14: {
             cost() { 
-                let cost = Decimal.pow(1.35,((this.bought()).div(2.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(3.5e5)
+                let cost = Decimal.pow(1.25,((this.bought()).div(2.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e5)
                 return cost 
             },
             bought() {
@@ -584,7 +584,7 @@ addLayer("p", {
 
         15: {
             cost() { 
-                let cost = Decimal.pow(1.4,((this.bought()).div(2.4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e8)
+                let cost = Decimal.pow(1.3,((this.bought()).div(2.4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e6)
                 return cost 
             },
             bought() {
@@ -652,7 +652,7 @@ addLayer("p", {
 
         16: {
             cost() { 
-                let cost = Decimal.pow(1.45,((this.bought()).div(2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e10)
+                let cost = Decimal.pow(1.35,((this.bought()).div(2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e9)
                 return cost 
             },
             bought() {
@@ -720,7 +720,7 @@ addLayer("p", {
 
         17: {
             cost() { 
-                let cost = Decimal.pow(1.5,((this.bought()).div(1.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e13)
+                let cost = Decimal.pow(1.4,((this.bought()).div(1.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e13)
                 return cost 
             },
             bought() {
@@ -788,7 +788,7 @@ addLayer("p", {
 
         18: {
             cost() { 
-                let cost = Decimal.pow(1.55,((this.bought()).div(1.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(3.333e17)
+                let cost = Decimal.pow(1.45,((this.bought()).div(1.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e18)
                 return cost 
             },
             bought() {
@@ -856,7 +856,7 @@ addLayer("p", {
 
         19: {
             cost() { 
-                let cost = Decimal.pow(1.6,((this.bought()).div(0.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e24)
+                let cost = Decimal.pow(1.45,((this.bought()).div(0.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e24)
                 return cost 
             },
             bought() {
@@ -924,7 +924,7 @@ addLayer("p", {
 
         21: {
             cost() { 
-                let cost = Decimal.pow(1.667,((this.bought()).div(0.5))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e33)
+                let cost = Decimal.pow(1.5,((this.bought()).div(0.5))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e33)
                 return cost 
             },
             bought() {
@@ -1554,7 +1554,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
-                return "<h2>Mult Ascension</h2><br><br><b>x" + formatWhole(player.p.baseMult) + " → x" + formatWhole((player.p.ascendMult).max(player.p.baseMult))
+                return "<h2>Mult Ascension</h2><br><br><b>x" + formatWhole(player.p.baseMult) + " → x" + formatWhole(((player.p.ascendMult).mul(player.p.baseAscend)).max(player.p.baseMult))
             },
             style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
@@ -1590,7 +1590,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
-                return "<h2>Speed Ascension</h2><br><br><b>x" + format((player.p.baseSpeed), 3) + " → x" + format(((player.p.ascendSpeed).max(player.p.baseSpeed)), 3)
+                return "<h2>Speed Ascension</h2><br><br><b>x" + format((player.p.baseSpeed), 3) + " → x" + format((((player.p.ascendSpeed).mul(player.p.baseAscend)).max(player.p.baseSpeed)), 3)
             },
             style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
@@ -1626,7 +1626,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
-                return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole((player.p.baseBoost).times(10)) + " → x" + formatWhole(((player.p.ascendBoost).max(player.p.baseBoost)).times(10))
+                return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole((player.p.baseBoost).times(10)) + " → x" + formatWhole((((player.p.ascendBoost).mul(player.p.baseAscend)).max(player.p.baseBoost)).times(10))
             },
             style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
@@ -1662,7 +1662,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
-                return "<h2>Ascension Power</h2><br><br><b><sup>^</sup>" + format((player.p.baseAscend), 3) + " → <sup>^</sup>" + format(((player.p.ascendPower).max(player.p.baseAscend)), 3)
+                return "<h2>Ascension Power</h2><br><br><b>x" + format((player.p.baseAscend), 3) + " → x" + format(((player.p.ascendPower).max(player.p.baseAscend)), 3)
             },
             style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
@@ -2507,18 +2507,18 @@ addLayer("p", {
         let a41 = decimalOne
         if(hasAchievement("a",41)) a41 = new Decimal(1.05)
 
-        player.p.presexp = (player.p.points).div(1e5).max(1).log10().max(1).pow(0.01725).add(a22).add(a33)
-        player.p.presmult = (player.p.points).div(1e6).pow(0.25).max(1).pow(0.8).times(1.2).times(a13)
+        player.p.presexp = (player.p.points).div(1e4).max(1).log10().max(1).pow(0.033).add(a22).add(a33)
+        player.p.presmult = (player.p.points).div(1e6).pow(0.4).max(1).pow(0.7).times(2).times(a13)
 
         player.p.multdisplay = (player.p.addEnergy).add(0.01)
         player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22).add(a33))
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
-        player.p.ascendMult = (player.p.maxMult).div(500).max(1).pow(0.35).floor().max(1).log2().pow(4.25).floor().times(2).add(2).pow(player.p.baseAscend)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.35).floor().div(2).max(1).log2().pow(0.775).max(1).add(1).pow(player.p.baseAscend)
-        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.5).floor().pow(0.25).max(1).log10().times(10).round().div(10).add(1.2).pow(player.p.baseAscend)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.065).max(1).times(a41)
+        player.p.ascendMult = (player.p.maxMult).div(250).max(1).pow(0.4).floor().max(1).log2().pow(3.33).floor().times(2).add(2).mul(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.25).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).mul(player.p.baseAscend)
+        player.p.ascendBoost = (player.p.maxMult).div(250).max(1).pow(0.4).floor().pow(0.2).max(1).log10().times(10).round().div(10).add(1.2).mul(player.p.baseAscend)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.05).max(1).times(a41)
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)

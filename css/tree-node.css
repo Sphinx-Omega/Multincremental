@@ -133,6 +133,32 @@
 	text-shadow: 0 0 0px var(--color);
 }
 
+.helptab.treeNode {
+	transform: scale(1, 1);
+	height: 6.5%;
+	width: 10.85%;
+	background-color: rgba(94, 94, 94, 1);
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 40px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(255, 255, 255, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 0 0 0;
+	position: absolute;
+	right: 0%;
+	top: 34.8%;
+}
+
+.helptab.treeNode:hover {
+	transform: scale(1, 1);
+	background-color: rgb(138, 138, 138);
+	text-shadow: 0 0 0px var(--color);
+}
+
 
 .mark {
 	position: relative;

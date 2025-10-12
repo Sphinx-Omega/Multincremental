@@ -47,7 +47,7 @@ addLayer("a", {
             ],
             style: {
                 "position":"absolute",
-                "top":"2%",
+                "top":"5%",
                 "bottom":"0%",
                 "left":"0%",
                 "right":"10%"
@@ -112,7 +112,7 @@ addLayer("a", {
                 "position":"fixed",
                 "top":"5%",
                 "left":"0%",
-                "right":"22.5%",
+                "right":"20%",
                 "z-index":"20",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -523,7 +523,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return (player.points.gte(1.797e308))
+                return (player.inf.infinities.gte(1))
             },
             onComplete() {
                 addPoints("a",1)
