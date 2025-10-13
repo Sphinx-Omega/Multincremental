@@ -69,7 +69,12 @@ addLayer("helptab", {
                 ],
                 ["raw-html",
                     function(){
-                    return "<h1>Hotkeys<br><br><h3>M: buys each bar (can be held)<br><br>B: boosts all bars (can be held)<br><br><br><br><br>"
+                    return "<h1>Generators<br><br><h3>Buying the first infinity upgrade will unlock generators<br><br>Generators will, as the name implies, generate GP (generator points)<br><br>GP increases the multiplier gained from each bar upon completing a cycle<br><br>Each generator after the first will generate the previous one (G2 generates G1, G3 generates G2, etc)<br><br><br><br><br>"
+                    }
+                ],
+                ["raw-html",
+                    function(){
+                    return "<h1>Hotkeys<br><br><h3>M: buys each bar (can be held)<br><br>B: boosts all bars (can be held)<br><br>G: buys generators in descending order (G10 -> G1, can be held)<br><br><br><br><br>"
                     }
                 ],
             ],

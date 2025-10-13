@@ -21,7 +21,7 @@ addLayer("a", {
         "border-size":"2px",
         "border-color":"transparent",
         "color":"white",
-        "font-size":"18px"
+        "font-size":"22px"
         }
     },
     requires: decimalZero, // Can be a function that takes requirement increases into account

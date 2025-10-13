@@ -9,6 +9,49 @@ addLayer("inf", {
         best: decimalZero,
         infinities: decimalZero,
         infenergy: decimalZero,
+        gen1: decimalOne,
+        gen2: decimalZero,
+        gen3: decimalZero,
+        gen4: decimalZero,
+        gen5: decimalZero,
+        gen6: decimalZero,
+        gen7: decimalZero,
+        gen8: decimalZero,
+        gen9: decimalZero,
+        gen10: decimalZero,
+        gen1bought: decimalZero,
+        gen2bought: decimalZero,
+        gen3bought: decimalZero,
+        gen4bought: decimalZero,
+        gen5bought: decimalZero,
+        gen6bought: decimalZero,
+        gen7bought: decimalZero,
+        gen8bought: decimalZero,
+        gen9bought: decimalZero,
+        gen10bought: decimalZero,
+        gen1mult: decimalOne,
+        gen2mult: decimalOne,
+        gen3mult: decimalOne,
+        gen4mult: decimalOne,
+        gen5mult: decimalOne,
+        gen6mult: decimalOne,
+        gen7mult: decimalOne,
+        gen8mult: decimalOne,
+        gen9mult: decimalOne,
+        gen10mult: decimalOne,
+        gen1prod: decimalOne,
+        gen2prod: decimalZero,
+        gen3prod: decimalZero,
+        gen4prod: decimalZero,
+        gen5prod: decimalZero,
+        gen6prod: decimalZero,
+        gen7prod: decimalZero,
+        gen8prod: decimalZero,
+        gen9prod: decimalZero,
+        gen10prod: decimalZero,
+        genpower: decimalZero,
+        genmult: decimalOne,
+        genexp: new Decimal(1/3)
     }},
     color: "#ffffff",
     nodeStyle(){ return {
@@ -107,7 +150,7 @@ addLayer("inf", {
             },
         },
 
-        "Generator" :{
+        "Generators" :{
             content: [
                 ["raw-html",
                     function(){
@@ -117,7 +160,9 @@ addLayer("inf", {
                 "blank",
                 ["clickables",1],
                 ["clickables",2],
-                ["clickable",999]
+                ["clickables",3],
+                ["clickable",999],
+                "buyables"
             ],
             style: {
                 "background-size":"400px",
@@ -132,7 +177,7 @@ addLayer("inf", {
                 "border-top-right-radius":"50px 50px",
                 "border-color":"transparent",
                 "background-color"(){
-                    return ((player.subtabs.inf.mainTabs == "Generator")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
+                    return ((player.subtabs.inf.mainTabs == "Generators")?"#1a1a1aff":"rgba(70, 70, 70, 1)")
                 },
                 "visibility":"visible",
                 "position":"fixed",
@@ -261,6 +306,726 @@ addLayer("inf", {
         //         "text-shadow":"0 0 3px black"
         //     },
         // },
+
+        11: {
+            cost() { 
+                let cost = Decimal.pow(10,(this.bought())).max(1).times(10)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen1bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[11].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen1mult, 2) + ")"
+                let dis = "<h1>First generator:  " + format(player.inf.gen1, 2) + " (" + formatWhole(player.inf.gen1bought) + ") " + "<br><br><h2>GP/sec: " + format(player.inf.gen1prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen1bought = player.inf.gen1bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#e94141ff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator1.png), url(images/icons/generator1.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"37.5%",
+                "left":"7.5%"
+            },
+        },
+
+        12: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(2))).max(1).times(100)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen2bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[12].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen2mult, 2) + ")"
+                let dis = "<h1>Second generator:  " + format(player.inf.gen2, 2) + " (" + formatWhole(player.inf.gen2bought) + ") " + "<br><br><h2>G1/sec: " + format(player.inf.gen2prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen2bought = player.inf.gen2bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#ff853fff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator2.png), url(images/icons/generator2.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"37.5%",
+                "left":"46.5%"
+            },
+        },
+
+        13: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(4))).max(1).times(1e4)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen3bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[13].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen3mult, 2) + ")"
+                let dis = "<h1>Third generator:  " + format(player.inf.gen3, 2) + " (" + formatWhole(player.inf.gen3bought) + ") " + "<br><br><h2>G2/sec: " + format(player.inf.gen3prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen3bought = player.inf.gen3bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#ffec3fff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator3.png), url(images/icons/generator3.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"47.5%",
+                "left":"7.5%"
+            },
+        },
+
+        14: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(6))).max(1).times(1e7)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen4bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[14].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen4mult, 2) + ")"
+                let dis = "<h1>Fourth generator:  " + format(player.inf.gen4, 2) + " (" + formatWhole(player.inf.gen4bought) + ") " + "<br><br><h2>G3/sec: " + format(player.inf.gen4prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen4bought = player.inf.gen4bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#b1ee6cff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator4.png), url(images/icons/generator4.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"47.5%",
+                "left":"46.5%"
+            },
+        },
+
+        15: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(9))).max(1).times(1e12)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen5bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[15].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen5mult, 2) + ")"
+                let dis = "<h1>Fifth generator:  " + format(player.inf.gen5, 2) + " (" + formatWhole(player.inf.gen5bought) + ") " + "<br><br><h2>G4/sec: " + format(player.inf.gen5prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen5bought = player.inf.gen5bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#16f834ff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator5.png), url(images/icons/generator5.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"57.5%",
+                "left":"7.5%"
+            },
+        },
+
+        16: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(12))).max(1).times(1e18)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen6bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[16].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen6mult, 2) + ")"
+                let dis = "<h1>Sixth generator:  " + format(player.inf.gen6, 2) + " (" + formatWhole(player.inf.gen6bought) + ") " + "<br><br><h2>G5/sec: " + format(player.inf.gen6prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen6bought = player.inf.gen6bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#16f8daff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator6.png), url(images/icons/generator6.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"57.5%",
+                "left":"46.5%"
+            },
+        },
+
+        17: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(15))).max(1).times(1e25)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen7bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[17].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen7mult, 2) + ")"
+                let dis = "<h1>Seventh generator:  " + format(player.inf.gen7, 2) + " (" + formatWhole(player.inf.gen7bought) + ") " + "<br><br><h2>G6/sec: " + format(player.inf.gen7prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen7bought = player.inf.gen7bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#164bf8ff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator7.png), url(images/icons/generator7.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"67.5%",
+                "left":"7.5%"
+            },
+        },
+
+        18: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(18))).max(1).times(1e35)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen8bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[18].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen8mult, 2) + ")"
+                let dis = "<h1>Eighth generator:  " + format(player.inf.gen8, 2) + " (" + formatWhole(player.inf.gen8bought) + ") " + "<br><br><h2>G7/sec: " + format(player.inf.gen8prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen8bought = player.inf.gen8bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#9216f8ff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator8.png), url(images/icons/generator8.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"67.5%",
+                "left":"46.5%"
+            },
+        },
+
+        19: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(21))).max(1).times(1e50)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen9bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[19].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen9mult, 2) + ")"
+                let dis = "<h1>Ninth generator:  " + format(player.inf.gen9, 2) + " (" + formatWhole(player.inf.gen9bought) + ") " + "<br><br><h2>G8/sec: " + format(player.inf.gen9prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen9bought = player.inf.gen9bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#f148d5ff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generator9.png), url(images/icons/generator9.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"77.5%",
+                "left":"7.5%"
+            },
+        },
+
+        21: {
+            cost() { 
+                let cost = Decimal.pow(10,((this.bought()).times(25))).max(1).times(1e75)
+                return cost 
+            },
+            bought() {
+                let b = player.inf.gen10bought
+                return b
+            },
+            extra(){
+                let ex = decimalZero
+                return ex
+            },
+            effect(){
+                let eff = decimalOne
+                return eff
+            },
+            // tooltip() {
+            //     let ascnum = player.p.rAsc
+            //     return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+            // },
+            display() {
+                if (player.tab != "inf") return
+                let x = tmp.inf.buyables[21].extra
+                let extra = ""
+                let bonus = " (Maxed)"
+                let bonusDis = ""
+                let effbonus = 1
+                let multdis = " (x"+ format(player.inf.gen10mult, 2) + ")"
+                let dis = "<h1>Tenth generator:  " + format(player.inf.gen10, 2) + " (" + formatWhole(player.inf.gen10bought) + ") " + "<br><br><h2>G9/sec: " + format(player.inf.gen10prod, 2) + multdis
+                let costdis = " IE"
+                return dis + "<h2>\n\n\
+                Cost: " + formatWhole(this.cost()) + costdis
+            },
+            canAfford() {
+                if(player.inf.infenergy.gte(tmp[this.layer].buyables[this.id].cost)) return true
+            },
+
+            buy() {
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
+                player.inf.gen10bought = player.inf.gen10bought.add(1)
+            },
+
+            // buyMax() {
+            //     buyBuyable("p",11)
+            // },
+
+            unlocked() { return true }, 
+            style: {'height':'9.5%', 'width':'35%',
+                "border-radius"(){
+                    return "20px/20%"
+                },
+                "border":"1px solid",
+                "border-color":"#0000005d",
+                "background-color"(){
+                    return "#ffffffff"
+                },
+                "background-image"(){
+                    return "url(images/icons/generatorfinal.png), url(images/icons/generatorfinal.png)"
+                },
+                "background-size":"20%, 20%",
+                "background-position":"left, right",
+                "background-repeat":"no-repeat",
+                "color":"black",
+                "text-shadow":"0 0 1px white",
+                "position":"fixed",
+                "top":"77.5%",
+                "left":"46.5%"
+            },
+        },
     },
 
     upgrades: {
@@ -271,7 +1036,7 @@ addLayer("inf", {
                 return "<h2>"
             },
             tooltip(){
-                return "<h3>UPG-1<br><br>Unlock the Generator<br><br>Cost: 1 IE"
+                return "<h3>UPG-1<br><br>Unlock Generators<br><br>Cost: 1 IE"
             },
             canAfford(){
                 return player.inf.infenergy.gte(1)
@@ -635,6 +1400,34 @@ addLayer("inf", {
             },
         },
 
+        31: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return colorText("h2","cyan"," You have ") + colorText("h1","cyan",(format(player.inf.genpower, 2))) + "<h2>" + colorText("sup","cyan",(format(player.inf.genexp, 3))) + colorText("h2","cyan"," Generator Power") + "<br><br>" + colorText("h3","lime"," boosting multiplier gains by x") + colorText("h2","lime",(format(player.inf.genmult, 2)))
+            },
+            style: {'height':'7.5%', 'width':'80%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "top":"28.5%",
+                "right":"10%",
+                "left":"0%",
+                "z-index":"9999",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
         // 21: {
         //     canClick() {return false},
         //     unlocked(){
@@ -694,6 +1487,9 @@ addLayer("inf", {
     },
 
     update(diff){
+
+        player.inf.genpower = player.inf.genpower.add(new Decimal(1/30).times(Decimal.pow(2,(player.inf.gen1bought))))
+        player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp)
         
     },
 

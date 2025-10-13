@@ -329,7 +329,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.rAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.redBuyAmt)+" / "+formatWhole(player.p.rMax)+"<br>"+"Mult: x"+format(((player.p.rBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -397,7 +397,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.oAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.orangeBuyAmt)+" / "+formatWhole(player.p.oMax)+"<br>"+"Mult: x"+format(((player.p.oBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.orangeBuyAmt)+" / "+formatWhole(player.p.oMax)+"<br>"+"Mult: x"+format(((player.p.oBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -465,7 +465,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.yAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.yellowBuyAmt)+" / "+formatWhole(player.p.yMax)+"<br>"+"Mult: x"+format(((player.p.yBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.yellowBuyAmt)+" / "+formatWhole(player.p.yMax)+"<br>"+"Mult: x"+format(((player.p.yBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -533,7 +533,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.lAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.limeBuyAmt)+" / "+formatWhole(player.p.lMax)+"<br>"+"Mult: x"+format(((player.p.lBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.limeBuyAmt)+" / "+formatWhole(player.p.lMax)+"<br>"+"Mult: x"+format(((player.p.lBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -601,7 +601,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.gAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.greenBuyAmt)+" / "+formatWhole(player.p.gMax)+"<br>"+"Mult: x"+format(((player.p.gBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.greenBuyAmt)+" / "+formatWhole(player.p.gMax)+"<br>"+"Mult: x"+format(((player.p.gBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -669,7 +669,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.cAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.cyanBuyAmt)+" / "+formatWhole(player.p.cMax)+"<br>"+"Mult: x"+format(((player.p.cBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.cyanBuyAmt)+" / "+formatWhole(player.p.cMax)+"<br>"+"Mult: x"+format(((player.p.cBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -737,7 +737,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.bAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.blueBuyAmt)+" / "+formatWhole(player.p.bMax)+"<br>"+"Mult: x"+format(((player.p.bBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.blueBuyAmt)+" / "+formatWhole(player.p.bMax)+"<br>"+"Mult: x"+format(((player.p.bBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -805,7 +805,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.vAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.violetBuyAmt)+" / "+formatWhole(player.p.vMax)+"<br>"+"Mult: x"+format(((player.p.vBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.violetBuyAmt)+" / "+formatWhole(player.p.vMax)+"<br>"+"Mult: x"+format(((player.p.vBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -873,7 +873,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.pAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.pinkBuyAmt)+" / "+formatWhole(player.p.pMax)+"<br>"+"Mult: x"+format(((player.p.pBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.pinkBuyAmt)+" / "+formatWhole(player.p.pMax)+"<br>"+"Mult: x"+format(((player.p.pBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -941,7 +941,7 @@ addLayer("p", {
             },
             tooltip() {
                 let ascnum = player.p.wAsc
-                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.whiteBuyAmt)+" / "+formatWhole(player.p.wMax)+"<br>"+"Mult: x"+format(((player.p.wBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum))), 3)
+                return "<h2>Boost #" + formatWhole(ascnum) + "</h2><h3><br><br>Level: "+formatWhole(player.p.whiteBuyAmt)+" / "+formatWhole(player.p.wMax)+"<br>"+"Mult: x"+format(((player.p.wBaseMult).times(player.p.baseMult).times(tmp.a.effect).times(Decimal.pow(((player.p.baseBoost).times(10)),ascnum)).times(player.inf.genmult)), 3)
             },
             display() {
                 if (player.tab != "p") return
@@ -2548,7 +2548,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.rTimes = player.p.rTimes.add(1)
-            player.p.rMult = player.p.rMult.add(((player.p.rBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.rAsc)))).times(tmp.a.effect).times((player.p.redSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.rMult = player.p.rMult.add(((player.p.rBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.rAsc)))).times(tmp.a.effect).times((player.p.redSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.rProg = decimalZero
         }
 
@@ -2558,7 +2558,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.oTimes = player.p.oTimes.add(1)
-            player.p.oMult = player.p.oMult.add(((player.p.oBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.oAsc)))).times(tmp.a.effect).times((player.p.orangeSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.oMult = player.p.oMult.add(((player.p.oBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.oAsc)))).times(tmp.a.effect).times((player.p.orangeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.oProg = decimalZero
         }
 
@@ -2568,7 +2568,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.yTimes = player.p.yTimes.add(1)
-            player.p.yMult = player.p.yMult.add(((player.p.yBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.yAsc)))).times(tmp.a.effect).times((player.p.yellowSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.yMult = player.p.yMult.add(((player.p.yBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.yAsc)))).times(tmp.a.effect).times((player.p.yellowSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.yProg = decimalZero
         }
 
@@ -2578,7 +2578,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.lTimes = player.p.lTimes.add(1)
-            player.p.lMult = player.p.lMult.add(((player.p.lBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.lAsc)))).times(tmp.a.effect).times((player.p.limeSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.lMult = player.p.lMult.add(((player.p.lBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.lAsc)))).times(tmp.a.effect).times((player.p.limeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.lProg = decimalZero
         }
 
@@ -2588,7 +2588,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.gTimes = player.p.gTimes.add(1)
-            player.p.gMult = player.p.gMult.add(((player.p.gBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.gAsc)))).times(tmp.a.effect).times((player.p.greenSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.gMult = player.p.gMult.add(((player.p.gBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.gAsc)))).times(tmp.a.effect).times((player.p.greenSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.gProg = decimalZero
         }
 
@@ -2598,7 +2598,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.cTimes = player.p.cTimes.add(1)
-            player.p.cMult = player.p.cMult.add(((player.p.cBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.cAsc)))).times(tmp.a.effect).times((player.p.cyanSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.cMult = player.p.cMult.add(((player.p.cBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.cAsc)))).times(tmp.a.effect).times((player.p.cyanSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.cProg = decimalZero
         }
 
@@ -2608,7 +2608,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.bTimes = player.p.bTimes.add(1)
-            player.p.bMult = player.p.bMult.add(((player.p.bBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.bAsc)))).times(tmp.a.effect).times((player.p.blueSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.bMult = player.p.bMult.add(((player.p.bBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.bAsc)))).times(tmp.a.effect).times((player.p.blueSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.bProg = decimalZero
         }
 
@@ -2618,7 +2618,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.vTimes = player.p.vTimes.add(1)
-            player.p.vMult = player.p.vMult.add(((player.p.vBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.vAsc)))).times(tmp.a.effect).times((player.p.violetSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.vMult = player.p.vMult.add(((player.p.vBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.vAsc)))).times(tmp.a.effect).times((player.p.violetSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.vProg = decimalZero
         }
 
@@ -2628,7 +2628,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.pTimes = player.p.pTimes.add(1)
-            player.p.pMult = player.p.pMult.add(((player.p.pBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.pAsc)))).times(tmp.a.effect).times((player.p.pinkSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.pMult = player.p.pMult.add(((player.p.pBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.pAsc)))).times(tmp.a.effect).times((player.p.pinkSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.pProg = decimalZero
         }
 
@@ -2638,7 +2638,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.wTimes = player.p.wTimes.add(1)
-            player.p.wMult = player.p.wMult.add(((player.p.wBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.wAsc)))).times(tmp.a.effect).times((player.p.whiteSpd).div(100/3).max(1)).times(player.p.baseMult))
+            player.p.wMult = player.p.wMult.add(((player.p.wBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.wAsc)))).times(tmp.a.effect).times((player.p.whiteSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult))
             player.p.wProg = decimalZero
         }
 

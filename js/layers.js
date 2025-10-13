@@ -190,4 +190,15 @@ function infinity() {
   player.p.baseAscend = decimalOne
   player.inf.infinities = player.inf.infinities.add(1)
   player.inf.infenergy = player.inf.infenergy.add(1)
+  player.inf.genpower = decimalZero
+  player.inf.gen1 = decimalOne
+  player.inf.gen2 = decimalZero
+  player.inf.gen3 = decimalZero
+  player.inf.gen4 = decimalZero
+  player.inf.gen5 = decimalZero
+  player.inf.gen6 = decimalZero
+  player.inf.gen7 = decimalZero
+  player.inf.gen8 = decimalZero
+  player.inf.gen9 = decimalZero
+  player.inf.gen10 = decimalZero
 }
