@@ -19,7 +19,7 @@ addLayer("inf", {
         gen8: decimalZero,
         gen9: decimalZero,
         gen10: decimalZero,
-        gen1bought: decimalZero,
+        gen1bought: decimalOne,
         gen2bought: decimalZero,
         gen3bought: decimalZero,
         gen4bought: decimalZero,
@@ -29,17 +29,17 @@ addLayer("inf", {
         gen8bought: decimalZero,
         gen9bought: decimalZero,
         gen10bought: decimalZero,
-        gen1mult: decimalOne,
-        gen2mult: decimalOne,
-        gen3mult: decimalOne,
-        gen4mult: decimalOne,
-        gen5mult: decimalOne,
-        gen6mult: decimalOne,
-        gen7mult: decimalOne,
-        gen8mult: decimalOne,
-        gen9mult: decimalOne,
-        gen10mult: decimalOne,
-        gen1prod: decimalOne,
+        gen1mult: new Decimal(0.1),
+        gen2mult: new Decimal(0.05),
+        gen3mult: new Decimal(0.01),
+        gen4mult: new Decimal(0.005),
+        gen5mult: new Decimal(0.001),
+        gen6mult: new Decimal(0.0005),
+        gen7mult: new Decimal(0.0001),
+        gen8mult: new Decimal(0.00005),
+        gen9mult: new Decimal(0.00001),
+        gen10mult: new Decimal(0.000005),
+        gen1prod: new Decimal(0.1),
         gen2prod: decimalZero,
         gen3prod: decimalZero,
         gen4prod: decimalZero,
@@ -51,7 +51,7 @@ addLayer("inf", {
         gen10prod: decimalZero,
         genpower: decimalZero,
         genmult: decimalOne,
-        genexp: new Decimal(1/3)
+        genexp: new Decimal(2/3)
     }},
     color: "#ffffff",
     nodeStyle(){ return {
@@ -106,7 +106,7 @@ addLayer("inf", {
     ],
     shouldNotify: false,
     layerShown() {
-        return tmp.inf.unlocked
+        return player.inf.unlocked
     },
     tabFormat: {
         "Upgrades" :{
@@ -117,15 +117,12 @@ addLayer("inf", {
                     }
                 ],
                 "blank",
+                "upgrades",
                 ["clickables",1],
                 ["clickables",2],
                 ["clickable",999],
-                "upgrades"
             ],
             style: {
-                "background-size":"400px",
-                "padding-bottom":"-400px",
-                "position":"fixed",
                 "right":"35%",
                 "height":"616px",
             },
@@ -309,9 +306,12 @@ addLayer("inf", {
 
         11: {
             cost() { 
-                let cost = Decimal.pow(10,(this.bought())).max(1).times(10)
+                let cost = Decimal.pow(10,((this.bought()).sub(1))).max(1).times(10)
                 return cost 
             },
+            currencyInternalName:"infenergy",
+            currencyLayer:"inf",
+            currencyDisplayName:"IE",
             bought() {
                 let b = player.inf.gen1bought
                 return b
@@ -346,9 +346,10 @@ addLayer("inf", {
             },
 
             buy() {
-                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost)
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen1bought = player.inf.gen1bought.add(1)
+                player.inf.gen1 = player.inf.gen1.add(1)
             },
 
             // buyMax() {
@@ -1048,7 +1049,7 @@ addLayer("inf", {
             unlocked(){
                 return true
             },
-            style: {"width":"5%","height":"10%","position":"fixed",
+            style: {"width":"5%","height":"10%","position":"absolute",
                 "color"(){
                     return (hasUpgrade("inf",11))?"rgb(0, 0, 0)":((tmp.inf.upgrades[11].canAfford)?"white":"black")
                 },
@@ -1064,8 +1065,166 @@ addLayer("inf", {
                     return (hasUpgrade("inf",11))?"lime":((tmp.inf.upgrades[11].canAfford)?"yellow":"transparent")
                 },
                 "border-radius":"10%",
-                "top":"52.5%",
-                "left":"15%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"0%",
+                "right":"70%"
+            },
+        },
+
+        21: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                return "<h3>UPG-2a<br><br>Unlock Autoboost<br><br>Cost: 1 IE"
+            },
+            cost(){
+                return decimalOne
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(1) && hasUpgrade("inf",11))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(1)
+                player.inf.upgrades.push(21)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",21)?([['11',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",11)?[['11',1,10,'white']]:[['11',3,10,'gray']])
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",21))?"rgb(0, 0, 0)":((tmp.inf.upgrades[21].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autoboostUPG.png)"
+                    return (hasUpgrade("inf",21))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[21].unlocked)?a:b)
+                },
+                "background-size":"150% 150%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",21))?"lime":((tmp.inf.upgrades[21].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"0%",
+                "bottom":"10%",
+                "left":"0%",
+                "right":"50%",
+            },
+        },
+
+        22: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                return "<h3>UPG-2b<br><br>Unlock Autobuy<br><br>Cost: 1 IE"
+            },
+            cost(){
+                return decimalOne
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(1) && hasUpgrade("inf",11))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(1)
+                player.inf.upgrades.push(22)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",22)?([['11',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",11)?[['11',1,10,'white']]:[['11',3,10,'gray']])
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",22))?"rgb(0, 0, 0)":((tmp.inf.upgrades[22].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    let a = "url(images/icons/autobuyUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autobuyUPG.png)"
+                    return (hasUpgrade("inf",22))?"url(images/icons/autobuyUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[22].unlocked)?a:b)
+                },
+                "background-size":"112.5% 112.5%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",22))?"lime":((tmp.inf.upgrades[22].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"50%",
+                "bottom":"0%",
+                "left":"0%",
+                "right":"50%"
+            },
+        },
+
+        31: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                return "<h3>UPG-3<br><br>x1.3 to cycle speed<br><br>Cost: 1 IE"
+            },
+            cost(){
+                return decimalOne
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(1) && hasUpgrade("inf",21) && hasUpgrade("inf",22))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(1)
+                player.inf.upgrades.push(31)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                let a = (hasUpgrade("inf",21)?true:false)
+                let b = (hasUpgrade("inf",22)?true:false)
+                let e = (hasUpgrade("inf",31)?true:false)
+                let c = ['21',3,10,'gray']
+                let d = ['22',3,10,'gray']
+                if(a == true){
+                    c = ['21',1,10,'white']
+                }
+                if(b == true){
+                    d = ['22',1,10,'white']
+                }
+                if(e == true){
+                    c = ['21',1,10,getFasterUndulatingColor()]
+                    d = ['22',1,10,getFasterUndulatingColor()]
+                }
+                return [c,d]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",31))?"rgb(0, 0, 0)":((tmp.inf.upgrades[31].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",31))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[22].unlocked)?a:b)
+                },
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",31))?"lime":((tmp.inf.upgrades[31].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"0%",
+                "right":"30%"
             },
         },
     },
@@ -1488,9 +1647,14 @@ addLayer("inf", {
 
     update(diff){
 
-        player.inf.genpower = player.inf.genpower.add(new Decimal(1/30).times(Decimal.pow(2,(player.inf.gen1bought))))
+        if(hasAchievement("a",43)) player.inf.unlocked = true
+
+        player.inf.gen1mult = Decimal.pow(2,((player.inf.gen1bought).sub(1))).div(10)
+        player.inf.gen1prod = player.inf.gen1mult.times(player.inf.gen1)
+
+        player.inf.genpower = player.inf.genpower.add(new Decimal(1/300).times(Decimal.pow(2,((player.inf.gen1bought).sub(1)))).times(player.inf.gen1))
         player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp)
-        
+
     },
 
     passiveGeneration(){

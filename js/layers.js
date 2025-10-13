@@ -56,6 +56,13 @@ function getRedTimes() {
   return times
 }
 
+function IEgen() {
+  let ieGen = decimalOne
+  if (hasAchievement("a",52)) ieGen = ieGen.times(2)
+  
+  return ieGen
+}
+
 function getEnergyLimit() {
   let lim = new Decimal(100)
   if(getEnergyBarFilledTimes() >= 1) lim = new Decimal(1e4)
@@ -189,7 +196,7 @@ function infinity() {
   player.p.baseBoost = decimalOne
   player.p.baseAscend = decimalOne
   player.inf.infinities = player.inf.infinities.add(1)
-  player.inf.infenergy = player.inf.infenergy.add(1)
+  player.inf.infenergy = player.inf.infenergy.add(IEgen())
   player.inf.genpower = decimalZero
   player.inf.gen1 = decimalOne
   player.inf.gen2 = decimalZero
@@ -201,4 +208,8 @@ function infinity() {
   player.inf.gen8 = decimalZero
   player.inf.gen9 = decimalZero
   player.inf.gen10 = decimalZero
+  if(player.p.infTime.lt(player.p.infRecord)){
+    player.p.infRecord = player.p.infTime
+  }
+  player.p.infTime = decimalZero
 }

@@ -28,7 +28,7 @@ addLayer("a", {
     resource: "Achievements",
     type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     exponent: 0.5, // Prestige currency exponent
-    row: 9, // Row the layer is in on the tree (0 is the first row)
+    row: 8, // Row the layer is in on the tree (0 is the first row)
     layerShown() { return true },
     achievementPopups: false,
     tabFormat: {
@@ -575,11 +575,11 @@ addLayer("a", {
 
         52: {
             name() {
-                return "<h3>Fast and Finite<br><br></h3>Reach Infinity in under 2 hours"
+                return "<h3>Fast and Finite<br><br></h3>Reach Infinity in under 2 hours<br><br><br><br>"+((hasAchievement("a",52))?(colorText("h3","lime","x2 IE gain")):(colorText("h3","red","x2 IE gain")))
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infRecord.lt(7200)
             },
             onComplete() {
                 addPoints("a",1)
@@ -603,11 +603,11 @@ addLayer("a", {
 
         53: {
             name() {
-                return "<h3>Generational<br><br></h3>Reach 1,000 IE"
+                return "<h3>Generational<br><br></h3>Reach 10,000 GP"
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.inf.genpower.gte(1e4)
             },
             onComplete() {
                 addPoints("a",1)
@@ -775,7 +775,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infRecord.lt(900)
             },
             onComplete() {
                 addPoints("a",1)
@@ -943,7 +943,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infRecord.lt(0.25)
             },
             onComplete() {
                 addPoints("a",1)
