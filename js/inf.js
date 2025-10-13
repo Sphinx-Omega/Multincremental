@@ -1101,6 +1101,7 @@ addLayer("inf", {
                     return (hasUpgrade("inf",21))?"rgb(0, 0, 0)":((tmp.inf.upgrades[21].canAfford)?"white":"black")
                 },
                 "background-image"() {
+                    if (!hasUpgrade("inf",11)) return "url(images/bgs/fog.gif)"
                     let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
                     let b = "url(images/icons/autoboostUPG.png)"
                     return (hasUpgrade("inf",21))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[21].unlocked)?a:b)
@@ -1148,6 +1149,7 @@ addLayer("inf", {
                     return (hasUpgrade("inf",22))?"rgb(0, 0, 0)":((tmp.inf.upgrades[22].canAfford)?"white":"black")
                 },
                 "background-image"() {
+                    if (!hasUpgrade("inf",11)) return "url(images/bgs/fog.gif)"
                     let a = "url(images/icons/autobuyUPGlocked.png), url(images/bgs/Ascension.gif)"
                     let b = "url(images/icons/autobuyUPG.png)"
                     return (hasUpgrade("inf",22))?"url(images/icons/autobuyUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[22].unlocked)?a:b)
@@ -1210,6 +1212,7 @@ addLayer("inf", {
                     return (hasUpgrade("inf",31))?"rgb(0, 0, 0)":((tmp.inf.upgrades[31].canAfford)?"white":"black")
                 },
                 "background-image"() {
+                    if ((!hasUpgrade("inf",21)) && (!hasUpgrade("inf",22))) return "url(images/bgs/fog.gif)"
                     let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
                     let b = "url(images/icons/speed1UPG.png)"
                     return (hasUpgrade("inf",31))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[22].unlocked)?a:b)
