@@ -1078,6 +1078,7 @@ addLayer("inf", {
                 return "<h2>"
             },
             tooltip(){
+                if (!hasUpgrade("inf",11)) return " "
                 return "<h3>UPG-2a<br><br>Unlock Autoboost<br><br>Cost: 1 IE"
             },
             cost(){
@@ -1126,6 +1127,7 @@ addLayer("inf", {
                 return "<h2>"
             },
             tooltip(){
+                if (!hasUpgrade("inf",11)) return " "
                 return "<h3>UPG-2b<br><br>Unlock Autobuy<br><br>Cost: 1 IE"
             },
             cost(){
@@ -1174,6 +1176,7 @@ addLayer("inf", {
                 return "<h2>"
             },
             tooltip(){
+                if ((!hasUpgrade("inf",21)) && (!hasUpgrade("inf",22))) return " "
                 return "<h3>UPG-3<br><br>x1.3 to cycle speed<br><br>Cost: 1 IE"
             },
             cost(){
