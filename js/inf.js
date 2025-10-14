@@ -231,7 +231,7 @@ addLayer("inf", {
                 "transition-duration":"0s"
             },
             unlocked(){
-                return (hasUpgrade("inf",51))
+                return false
             }
         },
     },
@@ -1817,8 +1817,6 @@ addLayer("inf", {
     bars: {
 
     },
-
-    
 
     update(diff){
 

@@ -139,14 +139,12 @@ function loadVue() {
 		template: `
 		<div v-if="tmp[layer].challenges && tmp[layer].challenges[data]!== undefined && tmp[layer].challenges[data].unlocked && !(options.hideChallenges && maxedChallenge(layer, [data]) && !inChallenge(layer, [data]))"
 			v-bind:class="['challenge', challengeStyle(layer, data), player[layer].activeChallenge === data ? 'resetNotify' : '']" v-bind:style="tmp[layer].challenges[data].style">
-			<br><br><br>
+			<br>
 			<span v-if="layers[layer].challenges[data].fullDisplay" v-html="run(layers[layer].challenges[data].fullDisplay, layers[layer].challenges[data])"></span>
 			<span v-else>
 				<span v-html="tmp[layer].challenges[data].challengeDescription"></span><br><br>
 			</span>
-			<br><br>
 			<button v-bind:class="{ longUpg: true, can: true, [layer]: true }" v-bind:style="{'background-color': (tmp[layer].challenges[data].buttonColor) ? (tmp[layer].challenges[data].buttonColor) : tmp[layer].color,'border-color': (tmp[layer].challenges[data].buttonBorderColor) ? (tmp[layer].challenges[data].buttonBorderColor) : tmp[layer].color, 'color': (tmp[layer].challenges[data].buttonTextColor) ? (tmp[layer].challenges[data].buttonTextColor) : tmp[layer].color}" v-on:click="startChallenge(layer, data)">{{challengeButtonText(layer, data)}}</button>
-
 		</div>
 		`
 	})

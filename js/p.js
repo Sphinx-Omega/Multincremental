@@ -1628,7 +1628,9 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
-                return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole(boostPower()) + " → x" + formatWhole((((player.p.ascendBoost).mul(player.p.baseAscend)).max((boostPower()).div(10))).times(10))
+                let chalnerf = decimalOne
+                if(inChallenge("chal",12)) chalnerf = new Decimal(0.2)
+                return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole(boostPower()) + " → x" + formatWhole((((player.p.ascendBoost).mul(player.p.baseAscend)).max((boostPower()).div(10))).times(chalnerf).times(10))
             },
             style: {'height':'13%', 'width':'11%',
                 "border":"3px solid",
@@ -1655,7 +1657,10 @@ addLayer("p", {
         },
 
         39: {
-            canClick() {return true},
+            canClick() {
+                if(inChallenge("chal",11)) return false
+                else return true
+            },
             onClick() {
                 ascend4()
                 player.p.ascendAmt = player.p.ascendAmt.add(1)
@@ -1664,6 +1669,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
+                if(inChallenge("chal",11)) return "<h2>Ascension Power</h2><br><br>"+colorText("h3","red","DISABLED")
                 return "<h2>Ascension Power</h2><br><br><b>x" + format((player.p.baseAscend), 3) + " → x" + format(((player.p.ascendPower).max(player.p.baseAscend)), 3)
             },
             style: {'height':'13%', 'width':'11%',
@@ -1673,6 +1679,7 @@ addLayer("p", {
                      return "rgba(0, 0, 0, 0)"
                 },
                 "background-color"(){
+                    if(inChallenge("chal",11)) return "rgba(66, 41, 75, 1)"
                     return "rgba(166, 90, 196, 1)"
                 },
                 "border-top-color":"white",
@@ -2532,6 +2539,8 @@ addLayer("p", {
         player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.25).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).mul(player.p.baseAscend)
         player.p.ascendBoost = (player.p.maxMult).div(5e3).max(1).pow(0.225).floor().pow(0.12).max(1).log10().times(10).round().div(10).add(1.2).mul(player.p.baseAscend).times(inf41)
         player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.05).max(1).times(a41)
+
+        if(inChallenge("chal",11)) player.p.ascendPower = decimalOne
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)

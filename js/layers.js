@@ -50,6 +50,31 @@ function playTransc() {
   
 // }
 
+function enterinfchallenge() {
+  prestigeReset()
+  player.p.multExp = decimalOne
+  player.p.extraMult = decimalOne
+  player.p.prestotal = decimalZero
+  player.p.presamt = decimalZero
+  player.p.ascendAmt = decimalZero
+  player.p.baseMult = decimalOne
+  player.p.baseSpeed = decimalOne
+  player.p.baseBoost = decimalOne
+  player.p.baseAscend = decimalOne
+  player.inf.genpower = decimalZero
+  player.inf.gen1 = decimalOne
+  player.inf.gen2 = decimalZero
+  player.inf.gen3 = decimalZero
+  player.inf.gen4 = decimalZero
+  player.inf.gen5 = decimalZero
+  player.inf.gen6 = decimalZero
+  player.inf.gen7 = decimalZero
+  player.inf.gen8 = decimalZero
+  player.inf.gen9 = decimalZero
+  player.inf.gen10 = decimalZero
+  player.p.infTime = decimalZero
+}
+
 function getRedTimes() {
   let times = decimalZero
 
@@ -65,9 +90,11 @@ function IEgen() {
 
 function boostPower() {
   let base = player.p.baseBoost
-  if (hasUpgrade("inf",41)) base = base.times(1.5)
+  let inchal12 = decimalOne
+  if(inChallenge("chal",12)) inchal12 = new Decimal(0.2)
+  if (hasUpgrade("inf",41)) base = ((player.p.baseBoost).times(1.5))
 
-  return base.times(10)
+  return base.times(inchal12).times(10)
 }
 
 function getEnergyLimit() {

@@ -261,7 +261,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -296,7 +296,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -331,7 +331,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -366,7 +366,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -401,7 +401,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -436,7 +436,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -471,7 +471,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -506,7 +506,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -541,7 +541,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -576,7 +576,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -611,7 +611,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -646,7 +646,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -681,7 +681,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -716,7 +716,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -751,7 +751,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -786,7 +786,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -821,7 +821,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -856,7 +856,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -891,7 +891,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
@@ -926,7 +926,7 @@ addLayer("auto", {
                 return ((st == 1)?"On":"Off")
             },
             style: {'height':'10%', 'width':'5%',
-                "border":"2px solid",
+                "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
                      return "rgba(0, 0, 0, 1)"
