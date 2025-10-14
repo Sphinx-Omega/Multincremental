@@ -63,6 +63,13 @@ function IEgen() {
   return ieGen
 }
 
+function boostPower() {
+  let base = player.p.baseBoost
+  if (hasUpgrade("inf",41)) base = base.times(1.5)
+
+  return base.times(10)
+}
+
 function getEnergyLimit() {
   let lim = new Decimal(100)
   if(getEnergyBarFilledTimes() >= 1) lim = new Decimal(1e4)

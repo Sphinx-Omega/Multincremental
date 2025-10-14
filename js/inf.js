@@ -231,7 +231,7 @@ addLayer("inf", {
                 "transition-duration":"0s"
             },
             unlocked(){
-                return false
+                return (hasUpgrade("inf",51))
             }
         },
     },
@@ -1218,7 +1218,7 @@ addLayer("inf", {
                     if ((!hasUpgrade("inf",21)) && (!hasUpgrade("inf",22))) return "url(images/bgs/fog.gif)"
                     let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
                     let b = "url(images/icons/speed1UPG.png)"
-                    return (hasUpgrade("inf",31))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[22].unlocked)?a:b)
+                    return (hasUpgrade("inf",31))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[31].unlocked)?a:b)
                 },
                 "background-size":"125% 125%",
                 "background-position":"center",
@@ -1231,6 +1231,173 @@ addLayer("inf", {
                 "bottom":"0%",
                 "left":"0%",
                 "right":"30%"
+            },
+        },
+
+        41: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",31)) return " "
+                return "<h3>UPG-4a<br><br>Boosts are x1.5 stronger<br><br>Cost: 3 IE"
+            },
+            cost(){
+                return new Decimal(3)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(3) && hasUpgrade("inf",31))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(3)
+                player.inf.upgrades.push(41)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",41)?([['31',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",31)?[['31',1,10,'white']]:[['31',3,10,'gray']])
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",41))?"rgb(0, 0, 0)":((tmp.inf.upgrades[41].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",31)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autoboostUPG.png)"
+                    return (hasUpgrade("inf",41))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[41].unlocked)?a:b)
+                },
+                "background-size":"150% 150%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",41))?"lime":((tmp.inf.upgrades[41].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"0%",
+                "bottom":"10%",
+                "left":"0%",
+                "right":"10%",
+            },
+        },
+
+        42: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",31)) return " "
+                return "<h3>UPG-4b<br><br>Mults are stronger based on infinities<br><br>Currently: x" + format(this.effect(),2) + "<br><br>Cost: 3 IE"
+            },
+            cost(){
+                return new Decimal(3)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(3) && hasUpgrade("inf",31))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(3)
+                player.inf.upgrades.push(42)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",42)?([['31',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",31)?[['31',1,10,'white']]:[['31',3,10,'gray']])
+            },
+            effect(){
+                let infs = player.inf.infinities
+                let eff = infs.add(2).log2()
+                return eff
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",42))?"rgb(0, 0, 0)":((tmp.inf.upgrades[42].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",31)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autoboostUPG.png)"
+                    return (hasUpgrade("inf",42))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[42].unlocked)?a:b)
+                },
+                "background-size":"150% 150%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",42))?"lime":((tmp.inf.upgrades[42].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"50%",
+                "bottom":"0%",
+                "left":"0%",
+                "right":"10%",
+            },
+        },
+
+        51: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if ((!hasUpgrade("inf",41)) && (!hasUpgrade("inf",42))) return " "
+                return "<h3>UPG-5<br><br>Unlock Challenges<br><br>Cost: 5 IE"
+            },
+            cost(){
+                return new Decimal(5)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(5) && hasUpgrade("inf",41) && hasUpgrade("inf",42))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(5)
+                player.inf.upgrades.push(51)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                let a = (hasUpgrade("inf",41)?true:false)
+                let b = (hasUpgrade("inf",42)?true:false)
+                let e = (hasUpgrade("inf",51)?true:false)
+                let c = ['41',3,10,'gray']
+                let d = ['42',3,10,'gray']
+                if(a == true){
+                    c = ['41',1,10,'white']
+                }
+                if(b == true){
+                    d = ['42',1,10,'white']
+                }
+                if(e == true){
+                    c = ['41',1,10,getFasterUndulatingColor()]
+                    d = ['42',1,10,getFasterUndulatingColor()]
+                }
+                return [c,d]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",51))?"rgb(0, 0, 0)":((tmp.inf.upgrades[51].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if ((!hasUpgrade("inf",41)) && (!hasUpgrade("inf",42))) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",51))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[51].unlocked)?a:b)
+                },
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",51))?"lime":((tmp.inf.upgrades[51].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"10%",
+                "right":"0%"
             },
         },
     },
@@ -1650,6 +1817,8 @@ addLayer("inf", {
     bars: {
 
     },
+
+    
 
     update(diff){
 
