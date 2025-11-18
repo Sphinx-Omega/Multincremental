@@ -5,10 +5,25 @@ addLayer("chal", {
     startData() { return {
         unlocked: false,
         points: decimalZero,
+        chal11timer: decimalZero,
+        chal12timer: decimalZero,
+        chal13timer: decimalZero,
+        chal14timer: decimalZero,
+        chal15timer: decimalZero,
+        chal16timer: decimalZero,
+        chal17timer: decimalZero,
+        chal18timer: decimalZero,
+        chal19timer: decimalZero,
+        chal11rec: new Decimal(31536000),
+        chal12rec: new Decimal(31536000),
+        chal13rec: new Decimal(31536000),
+        chal14rec: new Decimal(31536000),
+        chal15rec: new Decimal(31536000),
+        chal16rec: new Decimal(31536000),
+        chal17rec: new Decimal(31536000),
+        chal18rec: new Decimal(31536000),
+        chal19rec: new Decimal(31536000),
     }},
-    tooltip() {
-      return "Challenges"
-    },
     color: "#00ffddff",
     nodeStyle(){ return {
         //"background-image": "url(images/nodes/Inf.gif)",
@@ -39,12 +54,13 @@ addLayer("chal", {
             content: [
             ["clickables",1],
             ["clickables",2],
+            ["clickables",3],
             ["clickables",99],
             "challenges"
             ],
             style: {
-                "height":"616px",
-                "right":"35%"
+                "height":"100%",
+                "right":"35%",
             },
             buttonStyle: {
                 "border-radius":"0%",
@@ -255,6 +271,39 @@ addLayer("chal", {
             },
         },
 
+        31: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return "<h3>Hold shift to see formulas for challenges 4-6"
+            },
+            style: {'height':'5%', 'width':'50%',
+                "border-top":"0px solid",
+                "border-left":"0px solid",
+                "border-right":"0px solid",
+                "border-bottom":"0px solid",
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "bottom":"0%",
+                "right":"11%",
+                "left":"0%",
+                "top":"70%",
+                "z-index":"2",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
         991: {
             canClick() {return false},
             unlocked(){
@@ -354,12 +403,12 @@ addLayer("chal", {
          11: {
             name: "",
             challengeDescription: function() {
-                let c11 = "<h2>Challenge 1</h1><br><br><b>You can't buy the Ascension Power upgrade</b><br><br><b>Ascension Power upgrade is slightly stronger"
+                let c11 = "<h2>Challenge 1</h1><br><br><b>You can't buy the Ascension Power upgrade</b><br><br><b>" + ((hasChallenge("chal",11))?(colorText("b","yellow","Ascension Power upgrade is x1.05 stronger")):(colorText("b","black","Ascension Power upgrade is x1.05 stronger")))
                 //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
                 return c11
             },
             goal(){
-                return new Decimal("1.78e308")
+                return new Decimal("1.779e308")
             },
             completionLimit:1 ,
             currencyDisplayName: "energy",
@@ -391,7 +440,7 @@ addLayer("chal", {
             },
             buttonTextColor: "white",
             buttonBorderColor: "#70e412ff",
-            style: {"width":"22.5%","height":"15%","position":"absolute",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
                 "background-color"(){
                     if(inChallenge("chal",11)) return "#612a2aff"
                     return (hasChallenge("chal",11))?"#72af3aff":"#686868ff"
@@ -409,7 +458,7 @@ addLayer("chal", {
          12: {
             name: "",
             challengeDescription: function() {
-                let c12 = "<h2>Challenge 2</h1><br><br><b>Boosts are only 20% as effective</b><br><br><b>Boosts are 20% stronger"
+                let c12 = "<h2>Challenge 2</h1><br><br><b>Boosts are only 20% as effective</b><br><br><b>" + ((hasChallenge("chal",12))?(colorText("b","yellow","Boosts are 20% stronger")):(colorText("b","black","Boosts are 20% stronger")))
                 //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
                 return c12
             },
@@ -446,7 +495,7 @@ addLayer("chal", {
             },
             buttonTextColor: "white",
             buttonBorderColor: "#70e412ff",
-            style: {"width":"22.5%","height":"15%","position":"absolute",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
                 "background-color"(){
                     if(inChallenge("chal",12)) return "#612a2aff"
                     return (hasChallenge("chal",12))?"#72af3aff":"#686868ff"
@@ -464,12 +513,12 @@ addLayer("chal", {
          13: {
             name: "",
             challengeDescription: function() {
-                let c13 = "<h2>Challenge 3</h1><br><br><b>All mults are raised to ^0.67</b><br><br><b>Mults are raised to ^1.05"
+                let c13 = "<h2>Challenge 3</h1><br><br><b>Bar mults are raised to ^0.67</b><br><br><b>" + ((hasChallenge("chal",13))?(colorText("b","yellow","Mults are raised to ^1.05")):(colorText("b","black","Mults are raised to ^1.05")))
                 //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
                 return c13
             },
             goal(){
-                return new Decimal("1.78e308")
+                return new Decimal("1.779e308")
             },
             completionLimit:1 ,
             currencyDisplayName: "energy",
@@ -501,7 +550,7 @@ addLayer("chal", {
             },
             buttonTextColor: "white",
             buttonBorderColor: "#70e412ff",
-            style: {"width":"22.5%","height":"15%","position":"absolute",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
                 "background-color"(){
                     if(inChallenge("chal",13)) return "#612a2aff"
                     return (hasChallenge("chal",13))?"#72af3aff":"#686868ff"
@@ -515,6 +564,354 @@ addLayer("chal", {
                 "right":"0%",
             },
          },
+
+         14: {
+            name: "",
+            challengeDescription: function() {
+                let infoNerf = shiftDown?"Prestige bonuses<sup>(1/((energy.log2())^0.075)</sup>":"Prestige mult and exp are weaker based on energy"
+                let infoReward = shiftDown?(((hasChallenge("chal",14))?(colorText("b","yellow","Prestige bonuses<sup>((energy.log10())^(0.05))</sup>")):(colorText("b","black","Prestige bonuses<sup>((energy.log10())^(0.05))</sup>")))):(((hasChallenge("chal",14))?(colorText("b","yellow","Prestige mult and exp are stronger based on energy")):(colorText("b","black","Prestige mult and exp are stronger based on energy"))))
+                let c14 = "<h2>Challenge 4</h1><br><br><b>"+infoNerf+"</b><br><br><b>" + infoReward
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                //pres mult/exp are raised to (1/((energy.log2())^0.1))
+                //completed === pres mult/exp raised to ((energy.log10())^(0.05))
+                return c14
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",14)) return "#612a2aff"
+                    return (hasChallenge("chal",14))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"25%",
+                "bottom":"15%",
+                "left":"0%",
+                "right":"65%",
+            },
+         },
+
+         15: {
+            name: "",
+            challengeDescription: function() {
+                let infoNerf = shiftDown?"All ascensions log10":"All ascensions are significantly weaker"
+                let infoReward = shiftDown?(((hasChallenge("chal",15))?(colorText("b","yellow","All ascensions<sup>1.25</sup>")):(colorText("b","black","All ascensions<sup>1.25</sup>")))):(((hasChallenge("chal",15))?(colorText("b","yellow","All ascensions are moderately stronger")):(colorText("b","black","All ascensions are moderately stronger"))))
+                let c15 = "<h2>Challenge 5</h1><br><br><b>"+infoNerf+"</b><br><br><b>" + infoReward
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                //ascension mults log10
+                //completed === ascension mults ^1.25
+                return c15
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",15)) return "#612a2aff"
+                    return (hasChallenge("chal",15))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"25%",
+                "bottom":"15%",
+                "left":"0%",
+                "right":"11%",
+            },
+         },
+
+         16: {
+            name: "",
+            challengeDescription: function() {
+                let infoNerf = shiftDown?"Mults = mults/(cycle spd)<sup>2</sup>":"Cycle speeds divide bar mults"
+                let infoReward = shiftDown?(((hasChallenge("chal",16))?(colorText("b","yellow","Mults = mults*(cycle spd)<sup>0.5</sup>")):(colorText("b","black","Mults = mults*(cycle spd)<sup>0.5</sup>")))):(((hasChallenge("chal",16))?(colorText("b","yellow","Mults are stronger based on cycle speeds")):(colorText("b","black","Mults are stronger based on cycle speeds"))))
+                let c16 = "<h2>Challenge 6</h1><br><br><b>"+infoNerf+"</b><br><br><b>" + infoReward
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                //mults / (lap spd ^2)
+                //completed === mults * (lap spd ^0.5)
+                return c16
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",16)) return "#612a2aff"
+                    return (hasChallenge("chal",16))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"25%",
+                "bottom":"15%",
+                "left":"43%",
+                "right":"0%",
+            },
+         },
+
+         17: {
+            name: "",
+            challengeDescription: function() {
+                let c17 = "<h2>Challenge 7</h1><br><br><b>Buying bars reduces speed and mults to 0.1% and Ascension Speed is disabled</b><br><br><b>" + ((hasChallenge("chal",17))?(colorText("b","yellow","Bar upgrades no longer spend energy")):(colorText("b","black","Bar upgrades no longer spend energy")))
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                return c17
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",17)) return "#612a2aff"
+                    return (hasChallenge("chal",17))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"50%",
+                "bottom":"5%",
+                "left":"0%",
+                "right":"65%",
+            },
+         },
+
+         18: {
+            name: "",
+            challengeDescription: function() {
+                let c18 = "<h2>Challenge 8</h1><br><br><b>Boosts are disabled, max level is 5 and mults gradually get weaker over time</b><br><br><b>" + ((hasChallenge("chal",18))?(colorText("b","yellow","x2 to base boost strength")):(colorText("b","black","x2 to base boost strength")))
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                return c18
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",18)) return "#612a2aff"
+                    return (hasChallenge("chal",18))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"50%",
+                "bottom":"5%",
+                "left":"0%",
+                "right":"11%",
+            },
+         },
+
+         19: {
+            name: "",
+            challengeDescription: function() {
+                let c19 = "<h2>Challenge 9</h1><br><br><b>Only 5 bars, weaker prestige bonuses, no ascension</b><br><br><b>" + ((hasChallenge("chal",19))?(colorText("b","yellow","Ascension formulae are improved")):(colorText("b","black","Ascension formulae are improved")))
+                //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
+                
+                //completed ===
+                //ascendMult => (player.p.maxMult).div(200).max(1).pow(0.5).floor().max(1).log2().pow(2.75).floor().times(1.5).add(2).mul(player.p.baseAscend)
+                //ascendSpeed = (player.p.maxMult).div(333).max(1).pow(0.2625).floor().div(2).max(1).log2().pow(1.875).max(1).add(1).mul(player.p.baseAscend)
+                //ascendBoost = (player.p.maxMult).div(2.5e3).max(1).pow(0.25).floor().pow(0.1125).max(1).log10().times(10).round().div(10).add(1.25).times(10).mul(player.p.baseAscend).mul(boostPower()).mul(player.p.infchallenge12).max(0.1)
+                //ascendPower = (player.p.maxMult).max(1).log10().pow(0.0875).max(1).times(a41).times(chal11comp)
+                return c19
+            },
+            goal(){
+                return new Decimal("1.779e308")
+            },
+            completionLimit:1 ,
+            currencyDisplayName: "energy",
+            rewardDescription: "",
+            function() {
+                if (challengeCompletions("chal",this.id) == 0) {
+                tmp[this.layer].challenges[this.id].buttonColor = (tmp[this.layer].challenges[this.id].can)?"green":"white"
+                }
+            },
+            onEnter() {
+                enterinfchallenge()
+                //player.chal.c11time = new Decimal(0.001)
+            },
+            onComplete(){
+                //player.chal.c11record = player.chal.c11time
+                enterinfchallenge()
+            },
+            onExit() {
+                //if ((hasChallenge("chal",11)) && (player.points > 1.797692e308) && (player.chal.c11time < player.chal.c11record)) {
+                //player.chal.c11record = player.chal.c11time
+                //}
+                enterinfchallenge()
+            },
+            unlocked(){
+                return true
+            },
+            buttonColor(){
+                return "#5f992fff"
+            },
+            buttonTextColor: "white",
+            buttonBorderColor: "#70e412ff",
+            style: {"width":"22.5%","height":"15%","position":"fixed",
+                "background-color"(){
+                    if(inChallenge("chal",19)) return "#612a2aff"
+                    return (hasChallenge("chal",19))?"#72af3aff":"#686868ff"
+                },
+                "border-radius":"40px/40px",
+                "border-color":"#000000",
+                "color":"white",
+                "top":"50%",
+                "bottom":"5%",
+                "left":"43%",
+                "right":"0%",
+            },
+         },
     },
 
     update(diff){
@@ -522,5 +919,47 @@ addLayer("chal", {
             player.chal.unlocked = true
             tmp.chal.unlocked = true
         }
+
+        let chalid = player.chal.activeChallenge
+        if((inChallenge("chal",chalid)) && (canCompleteChallenge("chal",chalid))) {
+            if(chalid == 11) player.chal.chal11rec = player.chal.chal11timer
+            if(chalid == 12) player.chal.chal12rec = player.chal.chal12timer
+            if(chalid == 13) player.chal.chal13rec = player.chal.chal13timer
+            if(chalid == 14) player.chal.chal14rec = player.chal.chal14timer
+            if(chalid == 15) player.chal.chal15rec = player.chal.chal15timer
+            if(chalid == 16) player.chal.chal16rec = player.chal.chal16timer
+            if(chalid == 17) player.chal.chal17rec = player.chal.chal17timer
+            if(chalid == 18) player.chal.chal18rec = player.chal.chal18timer
+            if(chalid == 19) player.chal.chal19rec = player.chal.chal19timer
+            startChallenge("chal",chalid)
+            infinity()
+        }
+        
+        if(inChallenge("chal",11)) player.chal.chal11timer = player.chal.chal11timer.add(diff)
+        else player.chal.chal11timer = decimalZero
+
+        if(inChallenge("chal",12)) player.chal.chal12timer = player.chal.chal12timer.add(diff)
+        else player.chal.chal12timer = decimalZero
+
+        if(inChallenge("chal",13)) player.chal.chal13timer = player.chal.chal13timer.add(diff)
+        else player.chal.chal13timer = decimalZero
+
+        if(inChallenge("chal",14)) player.chal.chal14timer = player.chal.chal14timer.add(diff)
+        else player.chal.chal14timer = decimalZero
+
+        if(inChallenge("chal",15)) player.chal.chal15timer = player.chal.chal15timer.add(diff)
+        else player.chal.chal15timer = decimalZero
+
+        if(inChallenge("chal",16)) player.chal.chal16timer = player.chal.chal16timer.add(diff)
+        else player.chal.chal16timer = decimalZero
+
+        if(inChallenge("chal",17)) player.chal.chal17timer = player.chal.chal17timer.add(diff)
+        else player.chal.chal17timer = decimalZero
+
+        if(inChallenge("chal",18)) player.chal.chal18timer = player.chal.chal18timer.add(diff)
+        else player.chal.chal18timer = decimalZero
+
+        if(inChallenge("chal",19)) player.chal.chal19timer = player.chal.chal19timer.add(diff)
+        else player.chal.chal19timer = decimalZero
     }
 })

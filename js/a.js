@@ -355,7 +355,6 @@ addLayer("a", {
 
         23: {
             name: "<h3>Multiplier Millenium<br><br></h3>Have a multiplier reach x1,000",
-            tooltip: " ",
             done() {
                 return ((player.p.rMult.gte(1e3)) || (player.p.oMult.gte(1e3)) || (player.p.yMult.gte(1e3)) || (player.p.lMult.gte(1e3)) || (player.p.gMult.gte(1e3)) || (player.p.cMult.gte(1e3)) || (player.p.bMult.gte(1e3)) || (player.p.vMult.gte(1e3)) || (player.p.pMult.gte(1e3)) || (player.p.wMult.gte(1e3)))
             },
@@ -635,7 +634,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infNoAscend
             },
             onComplete() {
                 addPoints("a",1)
@@ -663,7 +662,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return (getChallengeCompletions() >= 1)
             },
             onComplete() {
                 addPoints("a",1)
@@ -691,7 +690,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infNoPres
             },
             onComplete() {
                 addPoints("a",1)
@@ -719,7 +718,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return (getChallengeCompletions() >= 4)
             },
             onComplete() {
                 addPoints("a",1)

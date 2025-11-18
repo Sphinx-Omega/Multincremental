@@ -120,11 +120,18 @@ addLayer("inf", {
                 "upgrades",
                 ["clickables",1],
                 ["clickables",2],
+                ["clickables",4],
                 ["clickable",999],
             ],
             style: {
-                "right":"35%",
-                "height":"616px",
+                "right":"0",
+                "left":"0",
+                "height":"10%",
+                "width":"125%",
+                // "overflow-x":"scroll",
+                // "scrollbar-color":"darkgray dimgray",
+                "transition":"instant",
+                "position":"static"
             },
             buttonStyle: {
                 "border-radius":"0%",
@@ -236,6 +243,7 @@ addLayer("inf", {
         },
     },
 
+
     buyables: {
         
         // 11: {
@@ -346,7 +354,7 @@ addLayer("inf", {
             },
 
             buy() {
-                player.inf.infenergy = player.inf.infenergy.sub(this.cost)
+                player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen1bought = player.inf.gen1bought.add(1)
                 player.inf.gen1 = player.inf.gen1.add(1)
@@ -364,7 +372,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#e94141ff"
+                    return (tmp.inf.buyables[11].canAfford)?("#e94141ff"):("#613f3fff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator1.png), url(images/icons/generator1.png)"
@@ -422,6 +430,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen2bought = player.inf.gen2bought.add(1)
+                player.inf.gen2 = player.inf.gen2.add(1)
             },
 
             // buyMax() {
@@ -436,7 +445,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#ff853fff"
+                    return (tmp.inf.buyables[12].canAfford)?("#ff853fff"):("#70522fff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator2.png), url(images/icons/generator2.png)"
@@ -508,7 +517,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#ffec3fff"
+                    return (tmp.inf.buyables[13].canAfford)?("#ffec3fff"):("#555228ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator3.png), url(images/icons/generator3.png)"
@@ -580,7 +589,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#b1ee6cff"
+                    return (tmp.inf.buyables[14].canAfford)?("#b1ee6cff"):("#627430ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator4.png), url(images/icons/generator4.png)"
@@ -652,7 +661,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#16f834ff"
+                    return (tmp.inf.buyables[15].canAfford)?("#16f834ff"):("#234d25ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator5.png), url(images/icons/generator5.png)"
@@ -724,7 +733,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#16f8daff"
+                    return (tmp.inf.buyables[16].canAfford)?("#16f8daff"):("#46887aff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator6.png), url(images/icons/generator6.png)"
@@ -796,7 +805,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#164bf8ff"
+                    return (tmp.inf.buyables[17].canAfford)?("#164bf8ff"):("#2c305fff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator7.png), url(images/icons/generator7.png)"
@@ -868,7 +877,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#9216f8ff"
+                    return (tmp.inf.buyables[18].canAfford)?("#9216f8ff"):("#503761ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator8.png), url(images/icons/generator8.png)"
@@ -940,7 +949,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#f148d5ff"
+                    return (tmp.inf.buyables[19].canAfford)?("#f148d5ff"):("#4b2d48ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generator9.png), url(images/icons/generator9.png)"
@@ -1012,7 +1021,7 @@ addLayer("inf", {
                 "border":"1px solid",
                 "border-color":"#0000005d",
                 "background-color"(){
-                    return "#ffffffff"
+                    return (tmp.inf.buyables[21].canAfford)?("#ffffffff"):("#646464ff")
                 },
                 "background-image"(){
                     return "url(images/icons/generatorfinal.png), url(images/icons/generatorfinal.png)"
@@ -1400,6 +1409,574 @@ addLayer("inf", {
                 "right":"0%"
             },
         },
+
+        61: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",51)) return " "
+                return "<h3>UPG-6a<br><br>Infinities boost cycle speed<br><br>Currently: x" + format(this.effect(),2) + "<br><br>Cost: 16 IE"
+            },
+            cost(){
+                return new Decimal(10)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(16) && hasUpgrade("inf",51))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(16)
+                player.inf.upgrades.push(61)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",61)?([['51',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",51)?[['51',1,10,'white']]:[['51',3,10,'gray']])
+            },
+            effect(){
+                let infs = player.inf.infinities
+                let eff = infs.add(2).log2().times(0.42).max(1)
+                return eff
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",61))?"rgb(0, 0, 0)":((tmp.inf.upgrades[61].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",51)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autoboostUPG.png)"
+                    return (hasUpgrade("inf",61))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[61].unlocked)?a:b)
+                },
+                "background-size":"150% 150%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",61))?"lime":((tmp.inf.upgrades[61].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"0%",
+                "bottom":"10%",
+                "left":"30%",
+                "right":"0%",
+            },
+        },
+
+        62: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",51)) return " "
+                return "<h3>UPG-6b<br><br>IE boosts prestige mult gain<br><br>Currently: x" + format(this.effect(),2) + "<br><br>Cost: 16 IE"
+            },
+            cost(){
+                return new Decimal(10)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(16) && hasUpgrade("inf",51))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(16)
+                player.inf.upgrades.push(62)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                return hasUpgrade("inf",62)?([['51',1,10,getFasterUndulatingColor()]]):(hasUpgrade("inf",51)?[['51',1,10,'white']]:[['51',3,10,'gray']])
+            },
+            effect(){
+                let ie = player.inf.infenergy
+                let eff = ie.add(2).log2().times(2.3).max(1)
+                return eff
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",62))?"rgb(0, 0, 0)":((tmp.inf.upgrades[62].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",51)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/autoboostUPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/autoboostUPG.png)"
+                    return (hasUpgrade("inf",62))?"url(images/icons/autoboostUPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[62].unlocked)?a:b)
+                },
+                "background-size":"150% 150%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",62))?"lime":((tmp.inf.upgrades[62].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"50%",
+                "bottom":"0%",
+                "left":"30%",
+                "right":"0%",
+            },
+        },
+
+        71: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if ((!hasUpgrade("inf",61)) && (!hasUpgrade("inf",62))){
+                    return (processText(this.realname, garbledNameTemplate(71)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(71)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(71)))
+                }
+                return "<h3>UPG-7<br><br>Completed challenges boost IE gain by +1 each<br><br>Cost: 32 IE"
+            },
+            realtooltip(){
+                return "Completed challenges boost IE gain by +1 each"
+            },
+            realname(){
+                return "UPG-7"
+            },
+            realcost(){
+                return "Cost: 32IE"
+            },
+            cost(){
+                return new Decimal(32)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(32) && hasUpgrade("inf",61) && hasUpgrade("inf",62))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(32)
+                player.inf.upgrades.push(71)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                let a = (hasUpgrade("inf",61)?true:false)
+                let b = (hasUpgrade("inf",62)?true:false)
+                let e = (hasUpgrade("inf",71)?true:false)
+                let c = ['61',3,10,'gray']
+                let d = ['62',3,10,'gray']
+                if(a == true){
+                    c = ['61',1,10,'white']
+                }
+                if(b == true){
+                    d = ['62',1,10,'white']
+                }
+                if(e == true){
+                    c = ['61',1,10,getFasterUndulatingColor()]
+                    d = ['62',1,10,getFasterUndulatingColor()]
+                }
+                return [c,d]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",71))?"rgb(0, 0, 0)":((tmp.inf.upgrades[71].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if ((!hasUpgrade("inf",61)) && (!hasUpgrade("inf",62))) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",71))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[71].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",71))?"lime":((tmp.inf.upgrades[71].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"50%",
+                "right":"0%"
+            },
+        },
+
+        81: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",71)){
+                    return (processText(this.realname, garbledNameTemplate(81)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(81)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(81)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(81)))
+                }
+                return "<h3>UPG-8a<br><br>Gain more IE based on your fastest infinity<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 64 IE"
+            },
+            realtooltip(){
+                return "Gain more IE based on your fastest infinity"
+            },
+            realname(){
+                return "UPG-8a"
+            },
+            realcost(){
+                return "Cost: 64IE"
+            },
+            realeffect(){
+                return "Currently: "
+            },
+            cost(){
+                return new Decimal(64)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(64) && hasUpgrade("inf",71))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(64)
+                player.inf.upgrades.push(81)
+            },
+            unlocked(){
+                return true
+            },
+            effect(){
+                let time = player.p.infRecord
+                let eff = new Decimal(300).div(time).max(1).min(30000)
+                return eff
+            },
+            branches(){
+                let a = (hasUpgrade("inf",71)?true:false)
+                let b = (hasUpgrade("inf",81)?true:false)
+                let c = ['71',3,10,'gray']
+                if(a == true){
+                    c = ['71',1,10,'white']
+                }
+                if(b == true){
+                    c = ['71',1,10,getFasterUndulatingColor()]
+                }
+                return [c]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",81))?"rgb(0, 0, 0)":((tmp.inf.upgrades[81].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",71)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",81))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[81].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",81))?"lime":((tmp.inf.upgrades[81].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"0%",
+                "bottom":"10%",
+                "left":"70%",
+                "right":"0%"
+            },
+        },
+
+        82: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",71)){
+                    return (processText(this.realname, garbledNameTemplate(82)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(82)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(82)))
+                }
+                return "<h3>UPG-8b<br><br>Unlock Auto prestige"+"<br><br>Cost: 128 IE"
+            },
+            realtooltip(){
+                return "Unlock Auto prestige"
+            },
+            realname(){
+                return "UPG-8b"
+            },
+            realcost(){
+                return "Cost: 128IE"
+            },
+            cost(){
+                return new Decimal(64)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(128) && hasUpgrade("inf",71))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(128)
+                player.inf.upgrades.push(82)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                let a = (hasUpgrade("inf",71)?true:false)
+                let b = (hasUpgrade("inf",82)?true:false)
+                let c = ['71',3,10,'gray']
+                if(a == true){
+                    c = ['71',1,10,'white']
+                }
+                if(b == true){
+                    c = ['71',1,10,getFasterUndulatingColor()]
+                }
+                return [c]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",82))?"rgb(0, 0, 0)":((tmp.inf.upgrades[82].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",71)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",82))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[82].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",82))?"lime":((tmp.inf.upgrades[82].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"70%",
+                "right":"0%"
+            },
+        },
+
+        83: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if (!hasUpgrade("inf",71)){
+                    return (processText(this.realname, garbledNameTemplate(82)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(82)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(82)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(82)))
+                }
+                return "<h3>UPG-8c<br><br>Mults are stronger based on time spent in this infinity<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 64 IE"
+            },
+            realtooltip(){
+                return "Mults are stronger based on time spent in this infinity"
+            },
+            realname(){
+                return "UPG-8c"
+            },
+            realcost(){
+                return "Cost: 64IE"
+            },
+            realeffect(){
+                return "Currently: x"+format(this.effect(),2)
+            },
+            cost(){
+                return new Decimal(64)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(64) && hasUpgrade("inf",71))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(64)
+                player.inf.upgrades.push(83)
+            },
+            unlocked(){
+                return true
+            },
+            effect(){
+                let time = player.p.infTime
+                let eff = time.pow(1.2).max(1)
+                if(eff.gte(100)) eff = eff.log2().pow(2.125).max(1)
+                return eff
+            },
+            branches(){
+                let a = (hasUpgrade("inf",71)?true:false)
+                let b = (hasUpgrade("inf",83)?true:false)
+                let c = ['71',3,10,'gray']
+                if(a == true){
+                    c = ['71',1,10,'white']
+                }
+                if(b == true){
+                    c = ['71',1,10,getFasterUndulatingColor()]
+                }
+                return [c]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",83))?"rgb(0, 0, 0)":((tmp.inf.upgrades[83].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if (!hasUpgrade("inf",71)) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",83))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[83].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",83))?"lime":((tmp.inf.upgrades[83].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"50%",
+                "bottom":"0%",
+                "left":"70%",
+                "right":"0%"
+            },
+        },
+
+        91: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if ((!hasUpgrade("inf",81)) && (!hasUpgrade("inf",82))){
+                    return (processText(this.realname, garbledNameTemplate(91)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(91)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(91)))
+                }
+                return "<h3>UPG-9a<br><br>x3 to cycle speed<br><br>Cost: 256 IE"
+            },
+            realtooltip(){
+                return "x3 to cycle speed"
+            },
+            realname(){
+                return "UPG-9a"
+            },
+            realcost(){
+                return "Cost: 256IE"
+            },
+            cost(){
+                return new Decimal(256)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(256) && hasUpgrade("inf",81) && hasUpgrade("inf",82))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(256)
+                player.inf.upgrades.push(91)
+            },
+            unlocked(){
+                return true
+            },
+            effect(){
+                let time = player.p.infRecord
+                let eff = new Decimal(300).div(time).max(1).min(30000)
+                return eff
+            },
+            branches(){
+                let a = (hasUpgrade("inf",81)?true:false)
+                let b = (hasUpgrade("inf",82)?true:false)
+                let c = (hasUpgrade("inf",91)?true:false)
+                let d = ['81',3,10,'gray']
+                let e = ['82',3,10,'gray']
+                if(a == true){
+                    d = ['81',1,10,'white']
+                }
+                if(b == true){
+                    e = ['82',1,10,'white']
+                }
+                if(c == true){
+                    d = ['81',1,10,getFasterUndulatingColor()]
+                    e = ['82',1,10,getFasterUndulatingColor()]
+                }
+                return [d,e]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",91))?"rgb(0, 0, 0)":((tmp.inf.upgrades[91].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if ((!hasUpgrade("inf",81)) && (!hasUpgrade("inf",82))) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",91))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[91].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",91))?"lime":((tmp.inf.upgrades[91].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"5%",
+                "bottom":"0%",
+                "left":"90%",
+                "right":"0%"
+            },
+        },
+
+        92: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if ((!hasUpgrade("inf",82)) && (!hasUpgrade("inf",83))){
+                    return (processText(this.realname, garbledNameTemplate(92)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(92)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(92)))
+                }
+                return "<h3>UPG-9b<br><br>First Generator is x3 stronger<br><br>Cost: 256 IE"
+            },
+            realtooltip(){
+                return "First Generator is x3 stronger"
+            },
+            realname(){
+                return "UPG-9b"
+            },
+            realcost(){
+                return "Cost: 256IE"
+            },
+            cost(){
+                return new Decimal(256)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(256) && hasUpgrade("inf",82) && hasUpgrade("inf",83))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(256)
+                player.inf.upgrades.push(92)
+            },
+            unlocked(){
+                return true
+            },
+            branches(){
+                let a = (hasUpgrade("inf",82)?true:false)
+                let b = (hasUpgrade("inf",83)?true:false)
+                let c = (hasUpgrade("inf",92)?true:false)
+                let d = ['82',3,10,'gray']
+                let e = ['83',3,10,'gray']
+                if(a == true){
+                    d = ['82',1,10,'white']
+                }
+                if(b == true){
+                    e = ['83',1,10,'white']
+                }
+                if(c == true){
+                    d = ['82',1,10,getFasterUndulatingColor()]
+                    e = ['83',1,10,getFasterUndulatingColor()]
+                }
+                return [d,e]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",92))?"rgb(0, 0, 0)":((tmp.inf.upgrades[92].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if ((!hasUpgrade("inf",82)) && (!hasUpgrade("inf",83))) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",92))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[92].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",92))?"lime":((tmp.inf.upgrades[92].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"35%",
+                "bottom":"0%",
+                "left":"90%",
+                "right":"0%"
+            },
+        },
     },
 
     clickables: {
@@ -1738,6 +2315,7 @@ addLayer("inf", {
                 return true
             },
             display(){
+                if(player.subtabs.inf.mainTabs != "Generators") return
                 return colorText("h2","cyan"," You have ") + colorText("h1","cyan",(format(player.inf.genpower, 2))) + "<h2>" + colorText("sup","cyan",(format(player.inf.genexp, 3))) + colorText("h2","cyan"," Generator Power") + "<br><br>" + colorText("h3","lime"," boosting multiplier gains by x") + colorText("h2","lime",(format(player.inf.genmult, 2)))
             },
             style: {'height':'7.5%', 'width':'80%',
@@ -1750,6 +2328,34 @@ addLayer("inf", {
                 },
                 "position":"fixed",
                 "top":"28.5%",
+                "right":"10%",
+                "left":"0%",
+                "z-index":"9999",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "20px"
+                }
+            },
+        },
+
+        41: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return "<b>Scroll with shift + mouse wheel</b>"
+            },
+            style: {'height':'7.5%', 'width':'80%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "bottom":"8%",
                 "right":"10%",
                 "left":"0%",
                 "z-index":"9999",
@@ -1820,13 +2426,65 @@ addLayer("inf", {
 
     update(diff){
 
+      this.processedDescription = processText(tmp.inf.upgrades[id].tooltip, this.garbledDescriptionTemplate);
+
+      // This uses key-swapping to force the garbled achievements to re-render their text, because otherwise they
+      // would remain static. Keys for non-garbled achievements won't change, and all keys remain unique.
+      this.garbleTimer++;
+      if (this.isObscured) {
+        this.garbleKey = 10 * this.id + Math.floor(this.garbleTimer / 3);
+      } else {
+        this.garbleKey = this.id;
+      }
+
         if(hasAchievement("a",43)) player.inf.unlocked = true
 
-        player.inf.gen1mult = Decimal.pow(2,((player.inf.gen1bought).sub(1))).div(10)
+        let inf92 = decimalOne
+        if(hasUpgrade("inf",92)) inf92 = new Decimal(3)
+
+        player.inf.gen1mult = Decimal.pow(2,((player.inf.gen1bought).sub(1))).div(10).times(inf92)
         player.inf.gen1prod = player.inf.gen1mult.times(player.inf.gen1)
+
+        player.inf.gen2mult = Decimal.pow(2,((player.inf.gen2bought).sub(1))).div(10)
+        player.inf.gen2prod = player.inf.gen2mult.times(player.inf.gen2)
+
+        player.inf.gen3mult = Decimal.pow(2,((player.inf.gen3bought).sub(1))).div(10)
+        player.inf.gen3prod = player.inf.gen3mult.times(player.inf.gen3)
+
+        player.inf.gen4mult = Decimal.pow(2,((player.inf.gen4bought).sub(1))).div(10)
+        player.inf.gen4prod = player.inf.gen4mult.times(player.inf.gen4)
+
+        player.inf.gen5mult = Decimal.pow(2,((player.inf.gen5bought).sub(1))).div(10)
+        player.inf.gen5prod = player.inf.gen5mult.times(player.inf.gen5)
+
+        player.inf.gen6mult = Decimal.pow(2,((player.inf.gen6bought).sub(1))).div(10)
+        player.inf.gen6prod = player.inf.gen6mult.times(player.inf.gen6)
+
+        player.inf.gen7mult = Decimal.pow(2,((player.inf.gen7bought).sub(1))).div(10)
+        player.inf.gen7prod = player.inf.gen7mult.times(player.inf.gen7)
+
+        player.inf.gen8mult = Decimal.pow(2,((player.inf.gen8bought).sub(1))).div(10)
+        player.inf.gen8prod = player.inf.gen8mult.times(player.inf.gen8)
+
+        player.inf.gen9mult = Decimal.pow(2,((player.inf.gen9bought).sub(1))).div(10)
+        player.inf.gen9prod = player.inf.gen9mult.times(player.inf.gen9)
+
+        player.inf.gen10mult = Decimal.pow(2,((player.inf.gen10bought).sub(1))).div(10)
+        player.inf.gen10prod = player.inf.gen10mult.times(player.inf.gen10)
 
         player.inf.genpower = player.inf.genpower.add(new Decimal(1/300).times(Decimal.pow(2,((player.inf.gen1bought).sub(1)))).times(player.inf.gen1))
         player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp)
+
+        if(player.inf.gen2.gt(0)) player.inf.gen1 = player.inf.gen1.add(player.inf.gen2mult.div(30))
+        if(player.inf.gen3.gt(0)) player.inf.gen1 = player.inf.gen2.add(player.inf.gen3mult.div(30))
+        if(player.inf.gen4.gt(0)) player.inf.gen1 = player.inf.gen3.add(player.inf.gen4mult.div(30))
+        if(player.inf.gen5.gt(0)) player.inf.gen1 = player.inf.gen4.add(player.inf.gen5mult.div(30))
+        if(player.inf.gen6.gt(0)) player.inf.gen1 = player.inf.gen5.add(player.inf.gen6mult.div(30))
+        if(player.inf.gen7.gt(0)) player.inf.gen1 = player.inf.gen6.add(player.inf.gen7mult.div(30))
+        if(player.inf.gen8.gt(0)) player.inf.gen1 = player.inf.gen7.add(player.inf.gen8mult.div(30))
+        if(player.inf.gen9.gt(0)) player.inf.gen1 = player.inf.gen8.add(player.inf.gen9mult.div(30))
+        if(player.inf.gen10.gt(0)) player.inf.gen1 = player.inf.gen9.add(player.inf.gen10mult.div(30))
+
 
     },
 

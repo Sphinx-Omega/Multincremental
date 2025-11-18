@@ -48,16 +48,7 @@ var systemComponents = {
 			}"
 			v-bind:style="constructNodeStyle(layer)">
 			<span class="nodeLabel" v-html="(abb !== '' && tmp[layer].image === undefined) ? abb : '&nbsp;'"></span>
-			<tooltip
-      v-if="tmp[layer].tooltip != ''"
-			:text="(tmp[layer].isLayer) ? (
-				player[layer].unlocked ? (tmp[layer].tooltip ? tmp[layer].tooltip : formatWhole(player[layer].points) + ' ' + pluralize(player[layer].points,tmp[layer].resourceSingular?tmp[layer].resourceSingular:tmp[layer].resource,tmp[layer].resource,true))
-				: (tmp[layer].tooltipLocked ? tmp[layer].tooltipLocked : 'Reach ' + formatWhole(tmp[layer].requires) + ' ' + pluralize(tmp[layer].requires,tmp[layer].baseSingular?tmp[layer].baseSingular:tmp[layer].baseResource,tmp[layer].baseResource,true) + ' to unlock (You have ' + formatWhole(tmp[layer].baseAmount) + ' ' + pluralize(tmp[layer].baseAmount,tmp[layer].baseSingular?tmp[layer].baseSingular:tmp[layer].baseResource,tmp[layer].baseResource,true) + ')')
-			)
-			: (
-				tmp[layer].canClick ? (tmp[layer].tooltip ? tmp[layer].tooltip : 'I am a button!')
-				: (tmp[layer].tooltipLocked ? tmp[layer].tooltipLocked : 'I am a button!')
-			)"></tooltip>
+			
 			<node-mark :layer='layer' :data='tmp[layer].marked'></node-mark></span>
 		</button>
 		`

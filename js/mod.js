@@ -3,7 +3,7 @@ let modInfo = {
 	author: "Sphinx-Omega",
 	pointsName: "energy",
 	pointsNameSingular: "energy",
-	modFiles: ["layers.js", "tree.js","a.js","p.js","inf.js","help.js","auto.js","stats.js","chal.js"],
+	modFiles: ["layers.js", "tree.js","a.js","p.js","inf.js","help.js","auto.js","stats.js","chal.js","word-shift.js"],
 
 	discordName: "",
 	discordLink: "",

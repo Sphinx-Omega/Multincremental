@@ -5,6 +5,7 @@ addLayer("auto", {
     startData() { return {
         unlocked: true,
         points: decimalZero,
+        prestinput: decimalZero,
     }},
     tooltip() {
       return "Automation"
@@ -45,6 +46,7 @@ addLayer("auto", {
             ["clickables",2],
             ["clickables",5],
             ["clickables",99],
+            //["text-input",[this.prestinput]]
             ],
             style: {
                 "position":"absolute",
@@ -57,6 +59,9 @@ addLayer("auto", {
                 "border-radius":"0%",
                 "visibility":"hidden"
             },
+            // componentStyles: {
+            //     "text-input"() {return {"position":"fixed", "left":"0%", "right":"10%", "top":"0%", "bottom":"0%", "color":"red"} },
+            // },
         },
     },
 
@@ -114,7 +119,7 @@ addLayer("auto", {
                 "top":"5%",
                 "left":"0%",
                 "right":"15%",
-                "z-index":"20",
+                "z-index":"20000",
                 "color":"#ffffffff",
                 "font-size"() {
                     return "24px"
@@ -131,7 +136,7 @@ addLayer("auto", {
             display(){
                 return ""
             },
-            style: {'height':'25%', 'width':'62.5%',
+            style: {'height':'25%', 'width':'67.5%',
                 "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
@@ -140,10 +145,10 @@ addLayer("auto", {
                 "background-color"(){
                     return "rgba(73, 73, 73, 1)"
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"17.5%",
                 "left":"0%",
-                "right":"11%",
+                "right":"1.25%",
                 "z-index":"20",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -161,7 +166,7 @@ addLayer("auto", {
             display(){
                 return ""
             },
-            style: {'height':'25%', 'width':'62.5%',
+            style: {'height':'25%', 'width':'67.5%',
                 "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
@@ -170,10 +175,10 @@ addLayer("auto", {
                 "background-color"(){
                     return "rgba(73, 73, 73, 1)"
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"45%",
                 "left":"0%",
-                "right":"11%",
+                "right":"1.25%",
                 "z-index":"20",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -191,7 +196,7 @@ addLayer("auto", {
             display(){
                 return ((hasUpgrade("inf",22))?"Autobuy Cycle Speed Upgrades<br><br><br><br>":"Locked")
             },
-            style: {'height':'25%', 'width':'62.5%',
+            style: {'height':'25%', 'width':'67.5%',
                 "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
@@ -200,10 +205,10 @@ addLayer("auto", {
                 "background-color"(){
                     return "rgba(0, 0, 0, 0)"
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"17.5%",
                 "left":"0%",
-                "right":"11%",
+                "right":"1.25%",
                 "z-index":"20",
                 "color"(){
                     return ((hasUpgrade("inf",22))?"white":"#2e2e2eff")
@@ -223,7 +228,7 @@ addLayer("auto", {
             display(){
                 return ((hasUpgrade("inf",21))?"Autoboost<br><br><br><br>":"Locked")
             },
-            style: {'height':'25%', 'width':'62.5%',
+            style: {'height':'25%', 'width':'67.5%',
                 "border":"4px solid",
                 "border-radius":"50px/50px",
                 "border-color"(){
@@ -232,16 +237,80 @@ addLayer("auto", {
                 "background-color"(){
                     return "rgba(0, 0, 0, 0)"
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"45%",
                 "left":"0%",
-                "right":"11%",
+                "right":"1.25%",
                 "z-index":"20",
                 "color"(){
                     return ((hasUpgrade("inf",21))?"white":"#2e2e2eff")
                 },
                 "font-size"() {
                     return ((hasUpgrade("inf",21))?"48px":"64px")
+                },
+                "text-shadow":"2px 2px 2px #000000c7"
+            },
+        },
+
+        25: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ""
+            },
+            style: {'height':'40%', 'width':'67.5%',
+                "border":"4px solid",
+                "border-radius":"50px/50px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return "rgba(73, 73, 73, 1)"
+                },
+                "position":"absolute",
+                "top":"72.5%",
+                "left":"0%",
+                "right":"1.25%",
+                "z-index":"20",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        26: {
+            canClick() {return false},
+            unlocked(){
+                return true
+            },
+            display(){
+                return ((hasUpgrade("inf",82))?"Auto prestige<br><br>":"Locked")
+            },
+            style: {'height':'25%', 'width':'67.5%',
+                "border":"4px solid",
+                "border-radius":"50px/50px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"absolute",
+                "top"(){
+                    return hasUpgrade("inf",82)?"67.5%":"78.5%"
+                },
+                "left":"0%",
+                "right":"1.25%",
+                "z-index":"20",
+                "color"(){
+                    return ((hasUpgrade("inf",82))?"white":"#2e2e2eff")
+                },
+                "font-size"() {
+                    return ((hasUpgrade("inf",82))?"48px":"64px")
                 },
                 "text-shadow":"2px 2px 2px #000000c7"
             },
@@ -269,10 +338,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",51) == 1)?"rgba(218, 22, 22, 1)":"rgba(82, 58, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
                 "left":"0%",
-                "right":"65%",
+                "right":"57.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -304,10 +373,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",52) == 1)?"rgba(226, 121, 23, 1)":"rgba(82, 68, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
                 "left":"0%",
-                "right":"53%",
+                "right":"45%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -339,10 +408,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",53) == 1)?"rgba(228, 208, 27, 1)":"rgba(82, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
                 "left":"0%",
-                "right":"41%",
+                "right":"32.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -374,10 +443,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",54) == 1)?"rgba(158, 228, 27, 1)":"rgba(76, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
                 "left":"0%",
-                "right":"29%",
+                "right":"20%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -409,10 +478,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",55) == 1)?"rgba(50, 228, 27, 1)":"rgba(61, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
                 "left":"0%",
-                "right":"17%",
+                "right":"7.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -444,10 +513,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",56) == 1)?"rgba(27, 228, 178, 1)":"rgba(58, 82, 74, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
-                "left":"0%",
-                "right":"5%",
+                "left":"5%",
+                "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -479,9 +548,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",57) == 1)?"rgba(27, 91, 228, 1)":"rgba(58, 62, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
-                "left":"7%",
+                "left":"17.5%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -514,9 +583,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",58) == 1)?"rgba(137, 27, 228, 1)":"rgba(70, 58, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
-                "left":"19%",
+                "left":"30%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -549,9 +618,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",59) == 1)?"rgba(228, 27, 218, 1)":"rgba(82, 58, 81, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
-                "left":"31%",
+                "left":"42.5%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -584,9 +653,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",61) == 1)?"rgba(206, 206, 206, 1)":"rgba(82, 82, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"30%",
-                "left":"43%",
+                "left":"55%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -619,10 +688,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",71) == 1)?"rgba(218, 22, 22, 1)":"rgba(82, 58, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
                 "left":"0%",
-                "right":"65%",
+                "right":"57.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -654,10 +723,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",72) == 1)?"rgba(226, 121, 23, 1)":"rgba(82, 68, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
                 "left":"0%",
-                "right":"53%",
+                "right":"45%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -689,10 +758,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",73) == 1)?"rgba(228, 208, 27, 1)":"rgba(82, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
                 "left":"0%",
-                "right":"41%",
+                "right":"32.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -724,10 +793,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",74) == 1)?"rgba(158, 228, 27, 1)":"rgba(76, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
                 "left":"0%",
-                "right":"29%",
+                "right":"20%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -759,10 +828,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",75) == 1)?"rgba(50, 228, 27, 1)":"rgba(61, 82, 58, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
                 "left":"0%",
-                "right":"17%",
+                "right":"7.5%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -794,10 +863,10 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",76) == 1)?"rgba(27, 228, 178, 1)":"rgba(58, 82, 74, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
-                "left":"0%",
-                "right":"5%",
+                "left":"5%",
+                "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
                 "font-size"() {
@@ -829,9 +898,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",77) == 1)?"rgba(27, 91, 228, 1)":"rgba(58, 62, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
-                "left":"7%",
+                "left":"17.5%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -864,9 +933,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",78) == 1)?"rgba(137, 27, 228, 1)":"rgba(70, 58, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
-                "left":"19%",
+                "left":"30%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -899,9 +968,9 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",79) == 1)?"rgba(228, 27, 218, 1)":"rgba(82, 58, 81, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
-                "left":"31%",
+                "left":"42.5%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -934,9 +1003,351 @@ addLayer("auto", {
                 "background-color"(){
                     return ((getClickableState("auto",81) == 1)?"rgba(206, 206, 206, 1)":"rgba(82, 82, 82, 1)")
                 },
-                "position":"fixed",
+                "position":"absolute",
                 "top":"57.5%",
-                "left":"43%",
+                "left":"55%",
+                "right":"0%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        91: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",91) == 0) return (setClickableState("auto",91,1),setClickableState("auto",92,0),setClickableState("auto",93,0))
+                if (getClickableState("auto",91) == 1) return setClickableState("auto",91,0)
+            },
+            unlocked(){
+                return hasUpgrade("inf",82)
+            },
+            display(){
+                // let st = getClickableState("auto",91)
+                // return ((st == 1)?"Time":"Time")
+                return "Time"
+            },
+            style: {'height':'7.5%', 'width':'10%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",91) == 1)?"rgba(48, 179, 8, 1)":"rgba(233, 28, 28, 1)")
+                },
+                "position":"absolute",
+                "top":"85%",
+                "left":"0%",
+                "right":"40%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        92: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",92) == 0) return (setClickableState("auto",92,1),setClickableState("auto",91,0),setClickableState("auto",93,0))
+                if (getClickableState("auto",92) == 1) return setClickableState("auto",92,0)
+            },
+            unlocked(){
+                return hasUpgrade("inf",82)
+            },
+            display(){
+                // let st = getClickableState("auto",91)
+                // return ((st == 1)?"Time":"Time")
+                return "Amount"
+            },
+            style: {'height':'7.5%', 'width':'10%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",92) == 1)?"rgba(48, 179, 8, 1)":"rgba(233, 28, 28, 1)")
+                },
+                "position":"absolute",
+                "top":"85%",
+                "left":"0%",
+                "right":"1.5%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        93: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",93) == 0) return (setClickableState("auto",93,1),setClickableState("auto",91,0),setClickableState("auto",92,0))
+                if (getClickableState("auto",93) == 1) return setClickableState("auto",93,0)
+            },
+            unlocked(){
+                return hasUpgrade("inf",82)
+            },
+            display(){
+                // let st = getClickableState("auto",91)
+                // return ((st == 1)?"Time":"Time")
+                return "x Highest"
+            },
+            style: {'height':'7.5%', 'width':'10%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",93) == 1)?"rgba(48, 179, 8, 1)":"rgba(233, 28, 28, 1)")
+                },
+                "position":"absolute",
+                "top":"85%",
+                "left":"37%",
+                "right":"0%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        // 94: {
+        //     canClick() {return true},
+        //     onClick() {
+        //         if (getClickableState("auto",94) == 0) return setClickableState("auto",94,1)
+        //         if (getClickableState("auto",94) == 1) return setClickableState("auto",94,0)
+        //     },
+        //     unlocked(){
+        //         return hasUpgrade("inf",82)
+        //     },
+        //     display(){
+        //         // let st = getClickableState("auto",91)
+        //         // return ((st == 1)?"Time":"Time")
+        //         return ((getClickableState("auto",94) == 1)?"Mult":"Exp")
+        //     },
+        //     style: {'height':'8.75%', 'width':'10%',
+        //         "border":"4px solid",
+        //         "border-radius":"20px/20px",
+        //         "border-color"(){
+        //              return "rgba(0, 0, 0, 1)"
+        //         }, 
+        //         "background-color"(){
+        //             return ((getClickableState("auto",94) == 1)?"rgba(71, 71, 71, 1)":"rgba(71, 71, 71, 1)")
+        //         },
+        //         "position":"absolute",
+        //         "top":"100%",
+        //         "left":"0%",
+        //         "right":"40%",
+        //         "z-index":"22",
+        //         "color":"#ffffffff",
+        //         "font-size"() {
+        //             return "24px"
+        //         },
+        //         "text-shadow":"4px 4px 2px #000000c7"
+        //     },
+        // },
+
+        // 95: {
+        //     canClick() {return true},
+        //     onClick() {
+        //         return ""
+        //     },
+        //     unlocked(){
+        //         return hasUpgrade("inf",82)
+        //     },
+        //     display(){
+        //         // let st = getClickableState("auto",91)
+        //         // return ((st == 1)?"Time":"Time")
+        //         return ""
+        //     },
+        //     style: {'height':'8.75%', 'width':'10%',
+        //         "border":"4px solid",
+        //         "border-radius":"20px/20px",
+        //         "border-color"(){
+        //              return "rgba(0, 0, 0, 1)"
+        //         }, 
+        //         "background-color"(){
+        //             return ((getClickableState("auto",94) == 1)?"rgba(255, 255, 255, 1)":"rgba(255, 255, 255, 1)")
+        //         },
+        //         "position":"absolute",
+        //         "top":"100%",
+        //         "left":"0%",
+        //         "right":"1.5%",
+        //         "z-index":"22",
+        //         "color":"#000000ff",
+        //         "font-size"() {
+        //             return "24px"
+        //         },
+        //         "text-shadow":"4px 4px 2px #000000c7"
+        //     },
+        // },
+
+        811: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",811) == 0) return (
+                    setClickableState("auto",811,1),
+                    setClickableState("auto",51,1),
+                    setClickableState("auto",52,1),
+                    setClickableState("auto",53,1),
+                    setClickableState("auto",54,1),
+                    setClickableState("auto",55,1),
+                    setClickableState("auto",56,1),
+                    setClickableState("auto",57,1),
+                    setClickableState("auto",58,1),
+                    setClickableState("auto",59,1),
+                    setClickableState("auto",61,1)
+                )
+                if (getClickableState("auto",811) == 1) return (
+                    setClickableState("auto",811,0),
+                    setClickableState("auto",51,0),
+                    setClickableState("auto",52,0),
+                    setClickableState("auto",53,0),
+                    setClickableState("auto",54,0),
+                    setClickableState("auto",55,0),
+                    setClickableState("auto",56,0),
+                    setClickableState("auto",57,0),
+                    setClickableState("auto",58,0),
+                    setClickableState("auto",59,0),
+                    setClickableState("auto",61,0)
+                )
+
+                    
+            },
+            unlocked(){
+                return hasUpgrade("inf",22)
+            },
+            display(){
+                let st = getClickableState("auto",811)
+                return ((st == 1)?"All On":"All Off")
+            },
+            style: {'height':'7.5%', 'width':'7.5%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",811) == 1)?"rgba(10, 167, 31, 1)":"rgba(194, 14, 14, 1)")
+                },
+                "position":"absolute",
+                "top":"20%",
+                "left":"55%",
+                "right":"0%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        812: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",812) == 0) return (
+                    setClickableState("auto",812,1),
+                    setClickableState("auto",71,1),
+                    setClickableState("auto",72,1),
+                    setClickableState("auto",73,1),
+                    setClickableState("auto",74,1),
+                    setClickableState("auto",75,1),
+                    setClickableState("auto",76,1),
+                    setClickableState("auto",77,1),
+                    setClickableState("auto",78,1),
+                    setClickableState("auto",79,1),
+                    setClickableState("auto",81,1)
+                )
+                if (getClickableState("auto",812) == 1) return (
+                    setClickableState("auto",812,0),
+                    setClickableState("auto",71,0),
+                    setClickableState("auto",72,0),
+                    setClickableState("auto",73,0),
+                    setClickableState("auto",74,0),
+                    setClickableState("auto",75,0),
+                    setClickableState("auto",76,0),
+                    setClickableState("auto",77,0),
+                    setClickableState("auto",78,0),
+                    setClickableState("auto",79,0),
+                    setClickableState("auto",81,0)
+                )
+
+                    
+            },
+            unlocked(){
+                return hasUpgrade("inf",21)
+            },
+            display(){
+                let st = getClickableState("auto",812)
+                return ((st == 1)?"All On":"All Off")
+            },
+            style: {'height':'7.5%', 'width':'7.5%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",812) == 1)?"rgba(10, 167, 31, 1)":"rgba(194, 14, 14, 1)")
+                },
+                "position":"absolute",
+                "top":"47.5%",
+                "left":"55%",
+                "right":"0%",
+                "z-index":"22",
+                "color":"#ffffffff",
+                "font-size"() {
+                    return "24px"
+                },
+                "text-shadow":"4px 4px 2px #000000c7"
+            },
+        },
+
+        813: {
+            canClick() {return true},
+            onClick() {
+                if (getClickableState("auto",813) == 0) return (
+                    setClickableState("auto",813,1)
+                )
+                if (getClickableState("auto",813) == 1) return (
+                    setClickableState("auto",813,0)
+                )
+
+                    
+            },
+            unlocked(){
+                return hasUpgrade("inf",82)
+            },
+            display(){
+                let st = getClickableState("auto",813)
+                return ((st == 1)?"On":"Off")
+            },
+            style: {'height':'7.5%', 'width':'7.5%',
+                "border":"4px solid",
+                "border-radius":"20px/20px",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 1)"
+                }, 
+                "background-color"(){
+                    return ((getClickableState("auto",813) == 1)?"rgba(10, 167, 31, 1)":"rgba(194, 14, 14, 1)")
+                },
+                "position":"absolute",
+                "top":"75%",
+                "left":"55%",
                 "right":"0%",
                 "z-index":"22",
                 "color":"#ffffffff",
@@ -1011,7 +1422,7 @@ addLayer("auto", {
                 "position":"fixed",
                 "top":"0%",
                 "right":"-5%",
-                "z-index":"10",
+                "z-index":"1000",
                 "font-size":"32px"
             },
         },
@@ -1062,6 +1473,14 @@ addLayer("auto", {
         if(getClickableState("auto",78) == undefined) setClickableState("auto",78,0)
         if(getClickableState("auto",79) == undefined) setClickableState("auto",79,0)
         if(getClickableState("auto",81) == undefined) setClickableState("auto",81,0)
+
+        if(getClickableState("auto",91) == undefined) setClickableState("auto",91,0)
+        if(getClickableState("auto",92) == undefined) setClickableState("auto",92,0)
+        if(getClickableState("auto",93) == undefined) setClickableState("auto",93,0)
+        if(getClickableState("auto",94) == undefined) setClickableState("auto",94,0)
+        if(getClickableState("auto",811) == undefined) setClickableState("auto",811,0)
+        if(getClickableState("auto",812) == undefined) setClickableState("auto",812,0)
+        if(getClickableState("auto",813) == undefined) setClickableState("auto",813,0)
     },
 
     update(diff){
@@ -1241,6 +1660,15 @@ addLayer("auto", {
             for(i = 0 ; i < 5 ; i++) {
                 if(tmp.p.clickables[51].unlocked) {
                     clickClickable("p",51)
+                }
+                else break;
+            }
+        }
+
+        if(getClickableState("auto",813) == 1) {
+            for(i = 0 ; i < 2 ; i++) {
+                if(tmp.p.clickables[34].unlocked) {
+                    clickClickable("p",34)
                 }
                 else break;
             }

@@ -1,5 +1,5 @@
 * {
-	transition-duration: 0.5s;
+	transition-duration: 0.2s;
 	text-align: center;
 	font-family: "Inconsolata", monospace;
 	font-weight: bold;
@@ -136,6 +136,7 @@ td {
 .col::-webkit-scrollbar {
 	display: none;
 }
+
 
 .instant {
 	transition-duration: 0s !important

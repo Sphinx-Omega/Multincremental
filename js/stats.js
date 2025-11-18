@@ -6,9 +6,6 @@ addLayer("statstab", {
         unlocked: true,
         points: decimalZero,
     }},
-    tooltip() {
-      return "Stats"
-    },
     color: "#15ff00ff",
     nodeStyle(){ return {
         //"background-image": "url(images/nodes/Inf.gif)",
@@ -43,7 +40,21 @@ addLayer("statstab", {
             ],   
             ["raw-html",
                 function(){
-                return "<h2>Time this infinity: " + formatTime(player.p.infTime) + "<br><br><br>Fastest infinity: " + formatTime(player.p.infRecord)
+                return "<h2>Time this infinity: " + formatTime(player.p.infTime) + "<br><br><br>Fastest infinity: " + formatTime(player.p.infRecord) + "<br><br><br><br>"
+                }
+            ],
+            ["raw-html",
+                function(){
+                let nch1rec = formatTime(player.chal.chal11rec)
+                let nch2rec = formatTime(player.chal.chal12rec)
+                let nch3rec = formatTime(player.chal.chal13rec)
+                let nch4rec = formatTime(player.chal.chal14rec)
+                let nch5rec = formatTime(player.chal.chal15rec)
+                let nch6rec = formatTime(player.chal.chal16rec)
+                let nch7rec = formatTime(player.chal.chal17rec)
+                let nch8rec = formatTime(player.chal.chal18rec)
+                let nch9rec = formatTime(player.chal.chal19rec)
+                return "<h2>Challenge times:<br><br><h3>Normal challenge 1:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch1rec + "<br><br>Normal challenge 2:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch2rec + "<br><br>Normal challenge 3:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch3rec + "<br><br>Normal challenge 4:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch4rec + "<br><br>Normal challenge 5:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch5rec + "<br><br>Normal challenge 6:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch6rec + "<br><br>Normal challenge 7:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch7rec + "<br><br>Normal challenge 8:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch8rec + "<br><br>Normal challenge 9:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch9rec + "<br><br><br><br>"
                 }
             ],
             ],

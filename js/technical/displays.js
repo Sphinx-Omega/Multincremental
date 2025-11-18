@@ -32,7 +32,7 @@ function challengeStyle(layer, id) {
 }
 
 function challengeButtonText(layer, id) {
-    return (player[layer].activeChallenge==(id)?(canCompleteChallenge(layer, id)?"Overcome this Trial":"Exit"):(maxedChallenge(layer, id)?"Ascended":"Begin"))
+    return (player[layer].activeChallenge==(id)?(canCompleteChallenge(layer, id)?"Click to complete":"Exit"):(maxedChallenge(layer, id)?"Completed":"Begin"))
 
 }
 

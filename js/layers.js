@@ -59,19 +59,20 @@ function enterinfchallenge() {
   player.p.ascendAmt = decimalZero
   player.p.baseMult = decimalOne
   player.p.baseSpeed = decimalOne
-  player.p.baseBoost = decimalOne
+  player.p.baseBoost = decimalOne.times(boostPower())
   player.p.baseAscend = decimalOne
+  player.p.ascboostcheck = false
   player.inf.genpower = decimalZero
-  player.inf.gen1 = decimalOne
-  player.inf.gen2 = decimalZero
-  player.inf.gen3 = decimalZero
-  player.inf.gen4 = decimalZero
-  player.inf.gen5 = decimalZero
-  player.inf.gen6 = decimalZero
-  player.inf.gen7 = decimalZero
-  player.inf.gen8 = decimalZero
-  player.inf.gen9 = decimalZero
-  player.inf.gen10 = decimalZero
+  player.inf.gen1 = player.inf.gen1bought
+  player.inf.gen2 = player.inf.gen2bought
+  player.inf.gen3 = player.inf.gen3bought
+  player.inf.gen4 = player.inf.gen4bought
+  player.inf.gen5 = player.inf.gen5bought
+  player.inf.gen6 = player.inf.gen6bought
+  player.inf.gen7 = player.inf.gen7bought
+  player.inf.gen8 = player.inf.gen8bought
+  player.inf.gen9 = player.inf.gen9bought
+  player.inf.gen10 = player.inf.gen10bought
   player.p.infTime = decimalZero
 }
 
@@ -81,20 +82,81 @@ function getRedTimes() {
   return times
 }
 
+function makeGarbledTemplate(input) {
+      // Input might be either text or number
+      const text = `${input}`;
+      let garbled = "";
+      for (let i = 0; i < text.length; i++) {
+        if (text[i] === " ") garbled += " ";
+        else {
+          const n = text[i].charCodeAt();
+          // Essentially seeded randomness so that the static parts of the randomized text are deterministic
+          garbled += String.fromCharCode(33 + ((n * n + i * i) % 93));
+        }
+      }
+      return garbled;
+    }
+    // When appropriate, garbles input text for achievements on the last row. Otherwise leaves it unchanged
+function processText(unmodified, garbledTemplate) {
+      if (this.isObscured) return unmodified;
+
+      // The garbling effect often replaces spaces with non-spaces, which affects line length and can cause individual
+      // lines to become long enough that they can't word-wrap. To address that, we take the template as a reference
+      // and put spaces back into the same spots, ensuring that text can't overflow any worse than the original text
+      const raw = randomCrossWords(garbledTemplate);
+      if (raw == undefined) return;
+      let modified = "";
+      for (let i = 0; i < raw.length; i++) {
+        if (garbledTemplate[i] === " ") modified += " ";
+        // if ((garbledTemplate[i] === ">") && (garbledTemplate[i-1] === "r") && (garbledTemplate[i-2] === "b") && (garbledTemplate[i-3] === "<")) modified += "<br>";
+        else modified += raw[i];
+      }
+      return "<h3>"+modified;
+    }
+function garbledNameTemplate(id) {
+      return makeGarbledTemplate(tmp.inf.upgrades[id].realname);
+    }
+function garbledDescriptionTemplate(id) {
+      return makeGarbledTemplate(tmp.inf.upgrades[id].realtooltip);
+    }
+function garbledCostTemplate(id) {
+      return makeGarbledTemplate(tmp.inf.upgrades[id].realcost);
+    }
+function garbledEffectTemplate(id) {
+      return makeGarbledTemplate(tmp.inf.upgrades[id].realeffect);
+    }
+
 function IEgen() {
   let ieGen = decimalOne
   if (hasAchievement("a",52)) ieGen = ieGen.times(2)
+  if (hasUpgrade("inf",81)) ieGen = ieGen.times(upgradeEffect("inf",81))
+
+  if (hasUpgrade("inf",71)) {
+  if (hasChallenge("chal",11)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",12)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",13)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",14)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",15)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",16)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",17)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",18)) ieGen = ieGen.add(1)
+  if (hasChallenge("chal",19)) ieGen = ieGen.add(1)
+  }
   
   return ieGen
 }
 
 function boostPower() {
-  let base = player.p.baseBoost
+  let base = decimalOne
   let inchal12 = decimalOne
+  let chal12comp = decimalOne
+  let chal18comp = decimalOne
   if(inChallenge("chal",12)) inchal12 = new Decimal(0.2)
-  if (hasUpgrade("inf",41)) base = ((player.p.baseBoost).times(1.5))
+  if(hasChallenge("chal",12)) chal12comp = new Decimal(1.2)
+  if(hasChallenge("chal",18)) chal18comp = new Decimal(2)
+  if (hasUpgrade("inf",41)) base = ((base).times(1.5))
 
-  return base.times(inchal12).times(10)
+  return (base.times(inchal12).times(chal12comp).times(chal18comp))
 }
 
 function getEnergyLimit() {
@@ -207,7 +269,8 @@ function ascend2() {
 }
 
 function ascend3() {
-  player.p.baseBoost = (((player.p.ascendBoost).mul(player.p.baseAscend)).max(player.p.baseBoost))
+  player.p.baseBoost = ((player.p.ascendBoost).max(player.p.baseBoost))
+  player.p.ascboostcheck = true
   ascend()
 }
 
@@ -224,26 +287,50 @@ function ascend4() {
 
 function infinity() {
   ascend()
+  if(player.p.ascendAmt == 0){
+    player.p.infNoAscend = true
+  }
+  if(player.p.truepresamt == 0){
+    player.p.infNoPres = true
+  }
   player.p.ascendAmt = decimalZero
+  player.p.truepresamt = decimalZero
   player.p.baseMult = decimalOne
   player.p.baseSpeed = decimalOne
-  player.p.baseBoost = decimalOne
+  player.p.baseBoost = decimalOne.times(boostPower())
   player.p.baseAscend = decimalOne
+  player.p.ascboostcheck = false
   player.inf.infinities = player.inf.infinities.add(1)
   player.inf.infenergy = player.inf.infenergy.add(IEgen())
   player.inf.genpower = decimalZero
-  player.inf.gen1 = decimalOne
-  player.inf.gen2 = decimalZero
-  player.inf.gen3 = decimalZero
-  player.inf.gen4 = decimalZero
-  player.inf.gen5 = decimalZero
-  player.inf.gen6 = decimalZero
-  player.inf.gen7 = decimalZero
-  player.inf.gen8 = decimalZero
-  player.inf.gen9 = decimalZero
-  player.inf.gen10 = decimalZero
+  player.inf.gen1 = player.inf.gen1bought
+  player.inf.gen2 = player.inf.gen2bought
+  player.inf.gen3 = player.inf.gen3bought
+  player.inf.gen4 = player.inf.gen4bought
+  player.inf.gen5 = player.inf.gen5bought
+  player.inf.gen6 = player.inf.gen6bought
+  player.inf.gen7 = player.inf.gen7bought
+  player.inf.gen8 = player.inf.gen8bought
+  player.inf.gen9 = player.inf.gen9bought
+  player.inf.gen10 = player.inf.gen10bought
   if(player.p.infTime.lt(player.p.infRecord)){
-    player.p.infRecord = player.p.infTime
+    if (player.p.infTime.gt(0)) player.p.infRecord = player.p.infTime
   }
   player.p.infTime = decimalZero
+}
+
+function getChallengeCompletions() {
+  let amt = decimalZero
+
+  if(hasChallenge("chal",11)) amt = amt.add(1)
+  if(hasChallenge("chal",12)) amt = amt.add(1)
+  if(hasChallenge("chal",13)) amt = amt.add(1)
+  if(hasChallenge("chal",14)) amt = amt.add(1)
+  if(hasChallenge("chal",15)) amt = amt.add(1)
+  if(hasChallenge("chal",16)) amt = amt.add(1)
+  if(hasChallenge("chal",17)) amt = amt.add(1)
+  if(hasChallenge("chal",18)) amt = amt.add(1)
+  if(hasChallenge("chal",19)) amt = amt.add(1)
+
+  return amt
 }
