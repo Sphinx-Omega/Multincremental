@@ -630,7 +630,7 @@ addLayer("a", {
 
         61: {
             name() {
-                return "<h3>Unenlightened...<br><br></h3>Reach Infinity without ascending!"
+                return "<h3>Unenlightened...<br><br></h3>Reach Infinity without ascending!<br><br><br><br>"+((hasAchievement("a",61))?(colorText("h3","lime","Mult and Speed Ascensions start at x10 on infinity")):(colorText("h3","red","Mult and Speed Ascensions start at x10 on infinity")))
             },
             tooltip: " ",
             done() {
@@ -686,7 +686,7 @@ addLayer("a", {
 
         63: {
             name() {
-                return "<h3>Poor Man's Infinity<br><br></h3>Reach infinity without prestiging!"
+                return "<h3>Poor Man's Infinity<br><br></h3>Reach infinity without prestiging!<br><br><br><br>"+((hasAchievement("a",63))?(colorText("h3","lime","x1.2 to Prestige Exponent")):(colorText("h3","red","x1.2 to Prestige Exponent")))
             },
             tooltip: " ",
             done() {
@@ -826,11 +826,11 @@ addLayer("a", {
 
         82: {
             name() {
-                return "<h3>√Nine Circles<br><br></h3>Reach infinity with only Red, Orange and Yellow"
+                return "<h3>√Nine Circles<br><br></h3>Reach infinity with only Red, Orange and Yellow<br><br><br><br>"+((hasAchievement("a",82))?(colorText("h3","lime","x1.5 to Boost strength")):(colorText("h3","red","x1.5 to Boost strength")))
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return (player.p.ach82check == true)
             },
             onComplete() {
                 addPoints("a",1)

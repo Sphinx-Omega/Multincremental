@@ -127,7 +127,10 @@ addLayer("inf", {
                 "right":"0",
                 "left":"0",
                 "height":"10%",
-                "width":"125%",
+                "width"(){
+                    if(hasUpgrade("inf",111)) return "220%"
+                    else return "145%"
+                },
                 // "overflow-x":"scroll",
                 // "scrollbar-color":"darkgray dimgray",
                 "transition":"instant",
@@ -503,6 +506,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen3bought = player.inf.gen3bought.add(1)
+                player.inf.gen3 = player.inf.gen3.add(1)
             },
 
             // buyMax() {
@@ -575,6 +579,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen4bought = player.inf.gen4bought.add(1)
+                player.inf.gen4 = player.inf.gen4.add(1)
             },
 
             // buyMax() {
@@ -647,6 +652,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen5bought = player.inf.gen5bought.add(1)
+                player.inf.gen5 = player.inf.gen5.add(1)
             },
 
             // buyMax() {
@@ -719,6 +725,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen6bought = player.inf.gen6bought.add(1)
+                player.inf.gen6 = player.inf.gen6.add(1)
             },
 
             // buyMax() {
@@ -791,6 +798,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen7bought = player.inf.gen7bought.add(1)
+                player.inf.gen7 = player.inf.gen7.add(1)
             },
 
             // buyMax() {
@@ -863,6 +871,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen8bought = player.inf.gen8bought.add(1)
+                player.inf.gen8 = player.inf.gen8.add(1)
             },
 
             // buyMax() {
@@ -935,6 +944,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen9bought = player.inf.gen9bought.add(1)
+                player.inf.gen9 = player.inf.gen9.add(1)
             },
 
             // buyMax() {
@@ -1007,6 +1017,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.inf.gen10bought = player.inf.gen10bought.add(1)
+                player.inf.gen10 = player.inf.gen10.add(1)
             },
 
             // buyMax() {
@@ -1053,7 +1064,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(1)
-                player.inf.upgrades.push(11)
             },
             unlocked(){
                 return true
@@ -1098,7 +1108,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(1)
-                player.inf.upgrades.push(21)
             },
             unlocked(){
                 return true
@@ -1147,7 +1156,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(1)
-                player.inf.upgrades.push(22)
             },
             unlocked(){
                 return true
@@ -1196,7 +1204,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(1)
-                player.inf.upgrades.push(31)
             },
             unlocked(){
                 return true
@@ -1260,7 +1267,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(3)
-                player.inf.upgrades.push(41)
             },
             unlocked(){
                 return true
@@ -1309,7 +1315,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(3)
-                player.inf.upgrades.push(42)
             },
             unlocked(){
                 return true
@@ -1363,7 +1368,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(5)
-                player.inf.upgrades.push(51)
             },
             unlocked(){
                 return true
@@ -1427,7 +1431,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(16)
-                player.inf.upgrades.push(61)
             },
             unlocked(){
                 return true
@@ -1481,7 +1484,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(16)
-                player.inf.upgrades.push(62)
             },
             unlocked(){
                 return true
@@ -1527,10 +1529,10 @@ addLayer("inf", {
                 if ((!hasUpgrade("inf",61)) && (!hasUpgrade("inf",62))){
                     return (processText(this.realname, garbledNameTemplate(71)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(71)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(71)))
                 }
-                return "<h3>UPG-7<br><br>Completed challenges boost IE gain by +1 each<br><br>Cost: 32 IE"
+                return "<h3>UPG-7<br><br>Completed challenges boost Infinity and IE gain by +1 each<br><br>Cost: 32 IE"
             },
             realtooltip(){
-                return "Completed challenges boost IE gain by +1 each"
+                return "Completed challenges boost Infinity and IE gain by +1 each"
             },
             realname(){
                 return "UPG-7"
@@ -1546,7 +1548,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(32)
-                player.inf.upgrades.push(71)
             },
             unlocked(){
                 return true
@@ -1625,7 +1626,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(64)
-                player.inf.upgrades.push(81)
             },
             unlocked(){
                 return true
@@ -1700,7 +1700,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(128)
-                player.inf.upgrades.push(82)
             },
             unlocked(){
                 return true
@@ -1773,7 +1772,6 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(64)
-                player.inf.upgrades.push(83)
             },
             unlocked(){
                 return true
@@ -1849,15 +1847,9 @@ addLayer("inf", {
             },
             pay(){
                 player.inf.infenergy = player.inf.infenergy.sub(256)
-                player.inf.upgrades.push(91)
             },
             unlocked(){
                 return true
-            },
-            effect(){
-                let time = player.p.infRecord
-                let eff = new Decimal(300).div(time).max(1).min(30000)
-                return eff
             },
             branches(){
                 let a = (hasUpgrade("inf",81)?true:false)
@@ -1911,7 +1903,7 @@ addLayer("inf", {
                 if ((!hasUpgrade("inf",82)) && (!hasUpgrade("inf",83))){
                     return (processText(this.realname, garbledNameTemplate(92)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(92)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(92)))
                 }
-                return "<h3>UPG-9b<br><br>First Generator is x3 stronger<br><br>Cost: 256 IE"
+                return "<h3>UPG-9b<br><br>First Generator is x3 stronger<br><br>Cost: 512 IE"
             },
             realtooltip(){
                 return "First Generator is x3 stronger"
@@ -1920,17 +1912,16 @@ addLayer("inf", {
                 return "UPG-9b"
             },
             realcost(){
-                return "Cost: 256IE"
+                return "Cost: 512IE"
             },
             cost(){
-                return new Decimal(256)
+                return new Decimal(512)
             },
             canAfford(){
-                return (player.inf.infenergy.gte(256) && hasUpgrade("inf",82) && hasUpgrade("inf",83))
+                return (player.inf.infenergy.gte(512) && hasUpgrade("inf",82) && hasUpgrade("inf",83))
             },
             pay(){
-                player.inf.infenergy = player.inf.infenergy.sub(256)
-                player.inf.upgrades.push(92)
+                player.inf.infenergy = player.inf.infenergy.sub(512)
             },
             unlocked(){
                 return true
@@ -1975,6 +1966,179 @@ addLayer("inf", {
                 "bottom":"0%",
                 "left":"90%",
                 "right":"0%"
+            },
+        },
+
+        101: {
+            title: " ",
+            description() {
+                return "<h2>"
+            },
+            tooltip(){
+                if ((!hasUpgrade("inf",91)) && (!hasUpgrade("inf",92))){
+                    return (processText(this.realname, garbledNameTemplate(101)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(101)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(101)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(101)))
+                }
+                return "<h3>UPG-10<br><br>IE gain boosted by total challenge time (< 1 hour)<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 5096 IE"
+            },
+            realtooltip(){
+                return "IE gain boosted by total challenge time (< 1 hour)"
+            },
+            realname(){
+                return "UPG-10"
+            },
+            realcost(){
+                return "Cost: 5096IE"
+            },
+            realeffect(){
+                return "Currently: x"+format(this.effect(),2)
+            },
+            cost(){
+                return new Decimal(5096)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(5096) && hasUpgrade("inf",91) && hasUpgrade("inf",92))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(5096)
+            },
+            unlocked(){
+                return true
+            },
+            effect(){
+                let time = player.chal.chaltotaltime
+                let eff = new Decimal(3600).div(time).max(1)
+                return eff
+            },
+            branches(){
+                let a = (hasUpgrade("inf",91)?true:false)
+                let b = (hasUpgrade("inf",92)?true:false)
+                let c = (hasUpgrade("inf",101)?true:false)
+                let d = ['91',3,10,'gray']
+                let e = ['92',3,10,'gray']
+                if(a == true){
+                    d = ['91',1,10,'white']
+                }
+                if(b == true){
+                    e = ['92',1,10,'white']
+                }
+                if(c == true){
+                    d = ['91',1,10,getFasterUndulatingColor()]
+                    e = ['92',1,10,getFasterUndulatingColor()]
+                }
+                return [d,e]
+            },
+            style: {"width":"5%","height":"10%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",101))?"rgb(0, 0, 0)":((tmp.inf.upgrades[101].canAfford)?"white":"black")
+                },
+                "background-image"() {
+                    if ((!hasUpgrade("inf",91)) && (!hasUpgrade("inf",92))) return "url(images/bgs/fog.gif)"
+                    let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                    let b = "url(images/icons/speed1UPG.png)"
+                    return (hasUpgrade("inf",101))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[101].unlocked)?a:b)
+                },
+                "background-color":"transparent",
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",101))?"lime":((tmp.inf.upgrades[101].canAfford)?"yellow":"transparent")
+                },
+                "border-radius":"10%",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"102.5%",
+                "right":"0%"
+            },
+        },
+
+        111: {
+            title: " ",
+            description() {
+                if(hasUpgrade("inf",111)) return "<h1>INFINITY IS BROKEN</h1><h2><br><br><br><br>The rest of the Infinity Upgrade tree is now accessible"
+                let upgamt = player.inf.upgrades.length
+                let req1 = (getChallengeCompletions().gte(9))?(colorText("b","lime",(formatWhole(getChallengeCompletions())+"/9 Challenges completed<br><br>"))):(colorText("b","white",(formatWhole(getChallengeCompletions())+"/9 Challenges completed<br><br>")))
+                let req2 = (player.inf.upgrades.length >= 16)?(colorText("b","lime",(formatWhole(upgamt)+"/16 Infinity Upgrades<br><br>"))):(colorText("b","white",(formatWhole(upgamt)+"/16 Infinity Upgrades<br><br>")))
+                let req3 = (player.inf.infinities.gte(1000))?(colorText("b","lime",(formatWhole(player.inf.infinities)+"/1000 Infinities<br><br>"))):(colorText("b","white",(formatWhole(player.inf.infinities)+"/1000 Infinities<br><br>")))
+                let req4 = (player.inf.infenergy.gte(25000))?(colorText("b","lime",(format(player.inf.infenergy,2)+"/25,000 IE"))):(colorText("b","white",(format(player.inf.infenergy,2)+"/25,000 IE")))
+                let reqsmet = ((getChallengeCompletions().gte(9)) && (player.inf.upgrades.length >= 16) && (player.inf.infinities.gte(1000)) && (player.inf.infenergy.gte(25000)))?(colorText("h3","lime",("Requires<br><br>"))):(colorText("h3","white",("Requires<br><br>")))
+                return "<h1>Break Infinity<br><br></h2><b>Breaking Infinity allows energy to go above 1.798e308 and costs begin increasing faster after this point<br><br>You get more IE based on your energy past Infinity<br><br><br>"+reqsmet+req1+req2+req3+req4
+            },
+            tooltip(){
+                // if ((!hasUpgrade("inf",91)) && (!hasUpgrade("inf",92))){
+                //     return (processText(this.realname, garbledNameTemplate(111)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(111)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(111)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(111)))
+                // }
+                if(hasUpgrade("inf",111)) return "<h2><br>End of content for now :3<br><br>"
+                else return
+            },
+            // realtooltip(){
+            //     return "IE gain boosted by total challenge time (< 1 hour)"
+            // },
+            // realname(){
+            //     return "UPG-10"
+            // },
+            // realcost(){
+            //     return "Cost: 25000IE"
+            // },
+            // realeffect(){
+            //     return "Currently: x"+format(this.effect(),2)
+            // },
+            cost(){
+                return new Decimal(25000)
+            },
+            canAfford(){
+                return (player.inf.infenergy.gte(25000) && player.inf.infinities.gte(1000) && (player.inf.upgrades.length >= 16) && (getChallengeCompletions().gte(9)))
+            },
+            pay(){
+                player.inf.infenergy = player.inf.infenergy.sub(25000)
+            },
+            unlocked(){
+                return true
+            },
+            effect(){
+                let time = player.chal.chaltotaltime
+                let eff = new Decimal(3600).div(time).max(1)
+                return eff
+            },
+            branches(){
+                let a = (hasUpgrade("inf",101)?true:false)
+                let b = (hasUpgrade("inf",111)?true:false)
+                let c = ['101',3,10,'gray']
+                if(a == true){
+                    c = ['101',1,10,'white']
+                }
+                if(b == true){
+                    c = ['101',1,10,getFasterUndulatingColor()]
+                }
+                return [c]
+            },
+            style: {"width":"15%","height":"55%","position":"absolute",
+                "color"(){
+                    return (hasUpgrade("inf",111))?"rgb(0, 0, 0)":((tmp.inf.upgrades[111].canAfford)?"darkviolet":"white")
+                },
+                // "background-image"() {
+                //     // if (!hasUpgrade("inf",101)) return "url(images/bgs/fog.gif)"
+                //     let a = "url(images/icons/speed1UPGlocked.png), url(images/bgs/Ascension.gif)"
+                //     let b = "url(images/icons/speed1UPG.png)"
+                //     return (hasUpgrade("inf",111))?"url(images/icons/speed1UPG.png), url(images/bgs/Ascension.gif)":((tmp.inf.upgrades[111].unlocked)?a:b)
+                // },
+                "background-color"(){
+                    return (hasUpgrade("inf",111))?"darkviolet":((tmp.inf.upgrades[111].canAfford)?"#000000ff":"#494350ff")
+                },
+                "background-size":"125% 125%",
+                "background-position":"center",
+                "background-repeat":"no-repeat",
+                "border-color"(){
+                    return (hasUpgrade("inf",111))?"black":((tmp.inf.upgrades[111].canAfford)?"darkviolet":"white")
+                },
+                "border-radius":"20px/20px",
+                "top":"20%",
+                "bottom":"0%",
+                "left":"112.5%",
+                "right":"0%",
+                "font-size":"18px",
+                "padding-right":"1%",
+                "padding-left":"1%"
             },
         },
     },
@@ -2224,7 +2388,7 @@ addLayer("inf", {
             display(){
                 return ""
             },
-            style: {'height':'10%', 'width':'89%',
+            style: {'height':'7%', 'width':'89%',
                 "border-top":"0px solid",
                 "border-left":"0px solid",
                 "border-right":"0px solid",
@@ -2316,7 +2480,7 @@ addLayer("inf", {
             },
             display(){
                 if(player.subtabs.inf.mainTabs != "Generators") return
-                return colorText("h2","cyan"," You have ") + colorText("h1","cyan",(format(player.inf.genpower, 2))) + "<h2>" + colorText("sup","cyan",(format(player.inf.genexp, 3))) + colorText("h2","cyan"," Generator Power") + "<br><br>" + colorText("h3","lime"," boosting multiplier gains by x") + colorText("h2","lime",(format(player.inf.genmult, 2)))
+                return colorText("h2","cyan"," You have ") + colorText("h1","cyan",(format(player.inf.genpower, 2))) + "<h2>" + colorText("sup","cyan",(format(player.inf.genexp, 3))) + colorText("h2","cyan",(" Generator Power (")+format(player.inf.gen1prod,2)+"/s)") + "<br><br>" + colorText("h3","lime"," boosting multiplier gains by x") + colorText("h2","lime",(format(player.inf.genmult, 2)))
             },
             style: {'height':'7.5%', 'width':'80%',
                 "border-radius":"0%",
@@ -2355,7 +2519,7 @@ addLayer("inf", {
                     return "rgba(0, 0, 0, 0)"
                 },
                 "position":"fixed",
-                "bottom":"8%",
+                "bottom":"6%",
                 "right":"10%",
                 "left":"0%",
                 "z-index":"9999",
@@ -2475,15 +2639,15 @@ addLayer("inf", {
         player.inf.genpower = player.inf.genpower.add(new Decimal(1/300).times(Decimal.pow(2,((player.inf.gen1bought).sub(1)))).times(player.inf.gen1))
         player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp)
 
-        if(player.inf.gen2.gt(0)) player.inf.gen1 = player.inf.gen1.add(player.inf.gen2mult.div(30))
-        if(player.inf.gen3.gt(0)) player.inf.gen1 = player.inf.gen2.add(player.inf.gen3mult.div(30))
-        if(player.inf.gen4.gt(0)) player.inf.gen1 = player.inf.gen3.add(player.inf.gen4mult.div(30))
-        if(player.inf.gen5.gt(0)) player.inf.gen1 = player.inf.gen4.add(player.inf.gen5mult.div(30))
-        if(player.inf.gen6.gt(0)) player.inf.gen1 = player.inf.gen5.add(player.inf.gen6mult.div(30))
-        if(player.inf.gen7.gt(0)) player.inf.gen1 = player.inf.gen6.add(player.inf.gen7mult.div(30))
-        if(player.inf.gen8.gt(0)) player.inf.gen1 = player.inf.gen7.add(player.inf.gen8mult.div(30))
-        if(player.inf.gen9.gt(0)) player.inf.gen1 = player.inf.gen8.add(player.inf.gen9mult.div(30))
-        if(player.inf.gen10.gt(0)) player.inf.gen1 = player.inf.gen9.add(player.inf.gen10mult.div(30))
+        if(player.inf.gen2.gt(0)) player.inf.gen1 = player.inf.gen1.add((player.inf.gen2mult.div(30)).times(player.inf.gen2))
+        if(player.inf.gen3.gt(0)) player.inf.gen2 = player.inf.gen2.add((player.inf.gen3mult.div(30)).times(player.inf.gen3))
+        if(player.inf.gen4.gt(0)) player.inf.gen3 = player.inf.gen3.add((player.inf.gen4mult.div(30)).times(player.inf.gen4))
+        if(player.inf.gen5.gt(0)) player.inf.gen4 = player.inf.gen4.add((player.inf.gen5mult.div(30)).times(player.inf.gen5))
+        if(player.inf.gen6.gt(0)) player.inf.gen5 = player.inf.gen5.add((player.inf.gen6mult.div(30)).times(player.inf.gen6))
+        if(player.inf.gen7.gt(0)) player.inf.gen6 = player.inf.gen6.add((player.inf.gen7mult.div(30)).times(player.inf.gen7))
+        if(player.inf.gen8.gt(0)) player.inf.gen7 = player.inf.gen7.add((player.inf.gen8mult.div(30)).times(player.inf.gen8))
+        if(player.inf.gen9.gt(0)) player.inf.gen8 = player.inf.gen8.add((player.inf.gen9mult.div(30)).times(player.inf.gen9))
+        if(player.inf.gen10.gt(0)) player.inf.gen9 = player.inf.gen9.add((player.inf.gen10mult.div(30)).times(player.inf.gen10))
 
 
     },

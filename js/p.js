@@ -24,6 +24,7 @@ addLayer("p", {
         ascendBoost: decimalOne,
         ascendPower: decimalOne,
         ascboostcheck: false,
+        ach82check: false,
         extraMult: decimalOne,
         multExp: decimalOne,
         timer: decimalZero,
@@ -110,6 +111,16 @@ addLayer("p", {
         violetBuyAmt: decimalZero,
         pinkBuyAmt: decimalZero,
         whiteBuyAmt: decimalZero,
+        TredBuyAmt: decimalZero,
+        TorangeBuyAmt: decimalZero,
+        TyellowBuyAmt: decimalZero,
+        TlimeBuyAmt: decimalZero,
+        TgreenBuyAmt: decimalZero,
+        TcyanBuyAmt: decimalZero,
+        TblueBuyAmt: decimalZero,
+        TvioletBuyAmt: decimalZero,
+        TpinkBuyAmt: decimalZero,
+        TwhiteBuyAmt: decimalZero,
         redSpd: new Decimal(1/1.5),
         orangeSpd: new Decimal(1/3),
         yellowSpd: new Decimal(1/4.5),
@@ -369,6 +380,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.redBuyAmt = player.p.redBuyAmt.add(1)
+                player.p.TredBuyAmt = player.p.TredBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -444,6 +456,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.orangeBuyAmt = player.p.orangeBuyAmt.add(1)
+                player.p.TorangeBuyAmt = player.p.TorangeBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -519,6 +532,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.yellowBuyAmt = player.p.yellowBuyAmt.add(1)
+                player.p.TyellowBuyAmt = player.p.TyellowBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -594,6 +608,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.limeBuyAmt = player.p.limeBuyAmt.add(1)
+                player.p.TlimeBuyAmt = player.p.TlimeBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -669,6 +684,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.greenBuyAmt = player.p.greenBuyAmt.add(1)
+                player.p.TgreenBuyAmt = player.p.TgreenBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -736,6 +752,7 @@ addLayer("p", {
                 " + format(this.cost(), 3) + costdis
             },
             canAfford() {
+                if(inChallenge("chal",19)) return false
                 if((player.p.cyanBuyAmt).gte(player.p.cMax)) return false
                 if(player.points.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
@@ -744,6 +761,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.cyanBuyAmt = player.p.cyanBuyAmt.add(1)
+                player.p.TcyanBuyAmt = player.p.TcyanBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -811,6 +829,7 @@ addLayer("p", {
                 " + format(this.cost(), 3) + costdis
             },
             canAfford() {
+                if(inChallenge("chal",19)) return false
                 if((player.p.blueBuyAmt).gte(player.p.bMax)) return false
                 if(player.points.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
@@ -819,6 +838,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.blueBuyAmt = player.p.blueBuyAmt.add(1)
+                player.p.TblueBuyAmt = player.p.TblueBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -886,6 +906,7 @@ addLayer("p", {
                 " + format(this.cost(), 3) + costdis
             },
             canAfford() {
+                if(inChallenge("chal",19)) return false
                 if((player.p.violetBuyAmt).gte(player.p.vMax)) return false
                 if(player.points.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
@@ -894,6 +915,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.violetBuyAmt = player.p.violetBuyAmt.add(1)
+                player.p.TvioletBuyAmt = player.p.TvioletBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -961,6 +983,7 @@ addLayer("p", {
                 " + format(this.cost(), 3) + costdis
             },
             canAfford() {
+                if(inChallenge("chal",19)) return false
                 if((player.p.pinkBuyAmt).gte(player.p.pMax)) return false
                 if(player.points.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
@@ -969,6 +992,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.pinkBuyAmt = player.p.pinkBuyAmt.add(1)
+                player.p.TpinkBuyAmt = player.p.TpinkBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1036,6 +1060,7 @@ addLayer("p", {
                 " + format(this.cost(), 3) + costdis
             },
             canAfford() {
+                if(inChallenge("chal",19)) return false
                 if((player.p.whiteBuyAmt).gte(player.p.wMax)) return false
                 if(player.points.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
@@ -1044,6 +1069,7 @@ addLayer("p", {
                 if(!hasChallenge("chal",17)) player.points = player.points.sub(this.cost())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(1))
                 player.p.whiteBuyAmt = player.p.whiteBuyAmt.add(1)
+                player.p.TwhiteBuyAmt = player.p.TwhiteBuyAmt.add(1)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1625,7 +1651,10 @@ addLayer("p", {
         },
 
         36: {
-            canClick() {return true},
+            canClick() {
+                if(inChallenge("chal",19)) return false
+                else return true
+            },
             onClick() {
                 ascend1()
                 player.p.ascendAmt = player.p.ascendAmt.add(1)
@@ -1634,6 +1663,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
+                if(inChallenge("chal",19)) return "<h2>Mult Ascension</h2><br><br>"+colorText("h3","red","DISABLED")
                 return "<h2>Mult Ascension</h2><br><br><b>x" + formatWhole(player.p.baseMult) + " → x" + formatWhole(((player.p.ascendMult).mul(player.p.baseAscend)).max(player.p.baseMult))
             },
             style: {'height':'13%', 'width':'11%',
@@ -1643,6 +1673,7 @@ addLayer("p", {
                      return "rgba(0, 0, 0, 0)"
                 },
                 "background-color"(){
+                    if(inChallenge("chal",19)) return "rgba(75, 41, 41, 1)"
                     return "rgba(184, 100, 100, 1)"
                 },
                 "border-top-color":"white",
@@ -1662,6 +1693,7 @@ addLayer("p", {
 
         37: {
             canClick() {
+                if(inChallenge("chal",19)) return false
                 if(inChallenge("chal",17)) return false
                 else return true
             },
@@ -1673,6 +1705,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
+                if(inChallenge("chal",19)) return "<h2>Speed Ascension</h2><br><br>"+colorText("h3","red","DISABLED")
                 if(inChallenge("chal",17)) return "<h2>Speed Ascension</h2><br><br>"+colorText("h3","red","DISABLED")
                 return "<h2>Speed Ascension</h2><br><br><b>x" + format((player.p.baseSpeed), 3) + " → x" + format((((player.p.ascendSpeed).mul(player.p.baseAscend)).max(player.p.baseSpeed)), 3)
             },
@@ -1683,6 +1716,7 @@ addLayer("p", {
                      return "rgba(0, 0, 0, 0)"
                 },
                 "background-color"(){
+                    if(inChallenge("chal",19)) return "rgba(62, 75, 41, 1)"
                     if(inChallenge("chal",17)) return "rgba(62, 75, 41, 1)"
                     return "rgba(176, 196, 90, 1)"
                 },
@@ -1702,7 +1736,10 @@ addLayer("p", {
         },
 
         38: {
-            canClick() {return true},
+            canClick() {
+                if(inChallenge("chal",19)) return false
+                else return true
+            },
             onClick() {
                 ascend3()
                 player.p.ascendAmt = player.p.ascendAmt.add(1)
@@ -1711,6 +1748,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
+                if(inChallenge("chal",19)) return "<h2>Boost Ascension</h2><br><br>"+colorText("h3","red","DISABLED")
                 let chalnerf = decimalOne
                 if(inChallenge("chal",12)) chalnerf = new Decimal(0.2)
                 return "<h2>Boost Ascension</h2><br><br><b>x" + formatWhole((player.p.baseBoost).times(10)) + " → x" + formatWhole(((player.p.ascendBoost)).times(10).max((player.p.baseBoost).times(10)))
@@ -1722,6 +1760,7 @@ addLayer("p", {
                      return "rgba(0, 0, 0, 0)"
                 },
                 "background-color"(){
+                    if(inChallenge("chal",19)) return "rgba(41, 75, 73, 1)"
                     return "rgba(90, 196, 191, 1)"
                 },
                 "border-top-color":"white",
@@ -1741,6 +1780,7 @@ addLayer("p", {
 
         39: {
             canClick() {
+                if(inChallenge("chal",19)) return false
                 if(inChallenge("chal",11)) return false
                 else return true
             },
@@ -1752,6 +1792,7 @@ addLayer("p", {
                 return ((player.p.presmult.gte(1e3)) || (player.p.extraMult.gte(1e3)))
             },
             display(){
+                if(inChallenge("chal",19)) return "<h2>Ascension Power</h2><br><br>"+colorText("h3","red","DISABLED")
                 if(inChallenge("chal",11)) return "<h2>Ascension Power</h2><br><br>"+colorText("h3","red","DISABLED")
                 return "<h2>Ascension Power</h2><br><br><b>x" + format((player.p.baseAscend), 3) + " → x" + format(((player.p.ascendPower).max(player.p.baseAscend)), 3)
             },
@@ -1762,6 +1803,7 @@ addLayer("p", {
                      return "rgba(0, 0, 0, 0)"
                 },
                 "background-color"(){
+                    if(inChallenge("chal",19)) return "rgba(66, 41, 75, 1)"
                     if(inChallenge("chal",11)) return "rgba(66, 41, 75, 1)"
                     return "rgba(166, 90, 196, 1)"
                 },
@@ -2736,6 +2778,9 @@ addLayer("p", {
         let a41 = decimalOne
         if(hasAchievement("a",41)) a41 = new Decimal(1.05)
 
+        let a63 = decimalOne
+        if(hasAchievement("a",63)) a63 = new Decimal(1.2)
+
         let inf31 = decimalOne
         if(hasUpgrade("inf",31)) inf31 = new Decimal(1.3)
 
@@ -2779,7 +2824,7 @@ addLayer("p", {
         }
         if((hasChallenge("chal",15)) && (!inChallenge("chal",15))) chal15rew = new Decimal(1.25)
 
-        player.p.presexp = (player.p.points).div(1e4).max(1).log10().max(1).pow(0.042).add(a22).add(a33).pow(chal14eff)
+        player.p.presexp = (player.p.points).div(1e4).max(1).log10().max(1).pow(0.042).add(a22).add(a33).pow(chal14eff).times(a63)
         player.p.presmult = (player.p.points).div(1e6).pow(0.4).max(1).pow(0.7).times(2).times(a13).times(inf62).pow(chal14eff)
 
         player.p.multdisplay = (player.p.addEnergy).add(0.01)
@@ -2787,11 +2832,23 @@ addLayer("p", {
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
+        let ascM = new Decimal(0.45)
+        let ascS = new Decimal(0.25)
+        let ascB = new Decimal(0.225)
+        let ascP = new Decimal(0.075)
+
+        if(hasChallenge("chal",19)){
+            ascM = new Decimal(0.5)
+            ascS = new Decimal(0.3)
+            ascB = new Decimal(0.25)
+            ascP = new Decimal(0.1)
+        }
+
         if(!inChallenge("chal",15)){
-        player.p.ascendMult = (player.p.maxMult).div(250).max(1).pow(0.45).floor().max(1).log2().pow(2.625).floor().times(1.5).add(2).pow(chal15rew).mul(player.p.baseAscend)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(0.25).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).pow(chal15rew).mul(player.p.baseAscend)
-        player.p.ascendBoost = (player.p.maxMult).div(5e3).max(1).pow(0.225).floor().pow(0.12).max(1).log10().times(10).round().div(10).add(1.2).times(10).pow(chal15rew).mul(player.p.baseAscend).mul(boostPower()).mul(player.p.infchallenge12).max(0.1)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(0.075).max(1).times(a41).pow(chal15rew).times(chal11comp)
+        player.p.ascendMult = (player.p.maxMult).div(250).max(1).pow(ascM).floor().max(1).log2().pow(2.625).floor().times(1.5).add(2).pow(chal15rew).mul(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(ascS).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).pow(chal15rew).mul(player.p.baseAscend)
+        player.p.ascendBoost = (player.p.maxMult).div(5e3).max(1).pow(ascB).floor().pow(0.12).max(1).log10().times(10).round().div(10).add(1.2).times(10).pow(chal15rew).mul(player.p.baseAscend).mul(boostPower()).mul(player.p.infchallenge12).max(0.1)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(ascP).max(1).times(a41).pow(chal15rew).times(chal11comp)
         }
 
         let chal16Reff = decimalOne
@@ -2854,8 +2911,15 @@ addLayer("p", {
         while(player.p.ascboostcheck = false) player.p.baseBoost = decimalOne.times(boostPower())
 
         if(inChallenge("chal",11)) player.p.ascendPower = decimalOne
-        if(inChallenge("chal",17)) player.p.baseSpeed = decimalOne
         if(inChallenge("chal",12)) player.p.infchallenge12 = new Decimal(0.2)
+        if(inChallenge("chal",17)) player.p.baseSpeed = decimalOne
+        if(inChallenge("chal",19)){
+            player.p.baseMult = decimalOne
+            player.p.baseSpeed = decimalOne
+            player.p.baseBoost = decimalOne
+            player.p.baseAscend = decimalOne
+        }
+        
         
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)

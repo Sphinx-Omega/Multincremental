@@ -54,17 +54,19 @@ addLayer("statstab", {
                 let nch7rec = formatTime(player.chal.chal17rec)
                 let nch8rec = formatTime(player.chal.chal18rec)
                 let nch9rec = formatTime(player.chal.chal19rec)
-                return "<h2>Challenge times:<br><br><h3>Normal challenge 1:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch1rec + "<br><br>Normal challenge 2:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch2rec + "<br><br>Normal challenge 3:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch3rec + "<br><br>Normal challenge 4:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch4rec + "<br><br>Normal challenge 5:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch5rec + "<br><br>Normal challenge 6:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch6rec + "<br><br>Normal challenge 7:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch7rec + "<br><br>Normal challenge 8:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch8rec + "<br><br>Normal challenge 9:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch9rec + "<br><br><br><br>"
+                let nchtotal = formatTime(player.chal.chaltotaltime)
+                return "<h2>Challenge times:<br><br><h3>Normal challenge 1:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch1rec + "<br><br>Normal challenge 2:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch2rec + "<br><br>Normal challenge 3:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch3rec + "<br><br>Normal challenge 4:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch4rec + "<br><br>Normal challenge 5:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch5rec + "<br><br>Normal challenge 6:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch6rec + "<br><br>Normal challenge 7:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch7rec + "<br><br>Normal challenge 8:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch8rec + "<br><br>Normal challenge 9:&nbsp&nbsp&nbsp&nbsp&nbsp" + nch9rec + "<br><br>Total:&nbsp&nbsp&nbsp&nbsp&nbsp" + nchtotal + "<br><br><br><br>"
                 }
             ],
             ],
             style: {
                 "position":"absolute",
                 "height":"100%",
-                "top":"-260%",
+                "top":"-180%",
                 "bottom":"0%",
                 "left":"0%",
-                "right":"10%"
+                "right":"10%",
+                "font-size":"12px"
             },
             buttonStyle: {
                 "border-radius":"0%",

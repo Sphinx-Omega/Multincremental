@@ -23,6 +23,7 @@ addLayer("chal", {
         chal17rec: new Decimal(31536000),
         chal18rec: new Decimal(31536000),
         chal19rec: new Decimal(31536000),
+        chaltotaltime: decimalOne,
     }},
     color: "#00ffddff",
     nodeStyle(){ return {
@@ -855,7 +856,7 @@ addLayer("chal", {
          19: {
             name: "",
             challengeDescription: function() {
-                let c19 = "<h2>Challenge 9</h1><br><br><b>Only 5 bars, weaker prestige bonuses, no ascension</b><br><br><b>" + ((hasChallenge("chal",19))?(colorText("b","yellow","Ascension formulae are improved")):(colorText("b","black","Ascension formulae are improved")))
+                let c19 = "<h2>Challenge 9</h1><br><br><b>You can only buy the first 5 bars and can't ascend</b><br><br><b>" + ((hasChallenge("chal",19))?(colorText("b","yellow","Ascension formulae are improved")):(colorText("b","black","Ascension formulae are improved")))
                 //if (challengeCompletions("chal", 11) == 1) c11 = c11 + "<br> (Completed)"
                 
                 //completed ===
@@ -934,6 +935,8 @@ addLayer("chal", {
             startChallenge("chal",chalid)
             infinity()
         }
+
+        player.chal.chaltotaltime = (player.chal.chal11rec).add(player.chal.chal12rec).add(player.chal.chal13rec).add(player.chal.chal14rec).add(player.chal.chal15rec).add(player.chal.chal16rec).add(player.chal.chal17rec).add(player.chal.chal18rec).add(player.chal.chal19rec)
         
         if(inChallenge("chal",11)) player.chal.chal11timer = player.chal.chal11timer.add(diff)
         else player.chal.chal11timer = decimalZero

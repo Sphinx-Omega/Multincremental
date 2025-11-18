@@ -52,13 +52,24 @@ function playTransc() {
 
 function enterinfchallenge() {
   prestigeReset()
+  player.p.TredBuyAmt = decimalOne
+  player.p.TorangeBuyAmt = decimalZero
+  player.p.TyellowBuyAmt = decimalZero
+  player.p.TlimeBuyAmt = decimalZero
+  player.p.TgreenBuyAmt = decimalZero
+  player.p.TcyanBuyAmt = decimalZero
+  player.p.TblueBuyAmt = decimalZero
+  player.p.TvioletBuyAmt = decimalZero
+  player.p.TpinkBuyAmt = decimalZero
   player.p.multExp = decimalOne
   player.p.extraMult = decimalOne
   player.p.prestotal = decimalZero
   player.p.presamt = decimalZero
   player.p.ascendAmt = decimalZero
-  player.p.baseMult = decimalOne
-  player.p.baseSpeed = decimalOne
+  let basespeedmult = decimalOne
+  if(hasAchievement("a",61)) basespeedmult = new Decimal(10)
+  player.p.baseMult = basespeedmult
+  player.p.baseSpeed = basespeedmult
   player.p.baseBoost = decimalOne.times(boostPower())
   player.p.baseAscend = decimalOne
   player.p.ascboostcheck = false
@@ -130,6 +141,7 @@ function IEgen() {
   let ieGen = decimalOne
   if (hasAchievement("a",52)) ieGen = ieGen.times(2)
   if (hasUpgrade("inf",81)) ieGen = ieGen.times(upgradeEffect("inf",81))
+  if (hasUpgrade("inf",101)) ieGen = ieGen.times(upgradeEffect("inf",101))
 
   if (hasUpgrade("inf",71)) {
   if (hasChallenge("chal",11)) ieGen = ieGen.add(1)
@@ -146,17 +158,37 @@ function IEgen() {
   return ieGen
 }
 
+function InfinityGen() {
+  let infGen = decimalOne
+
+  if (hasUpgrade("inf",71)) {
+  if (hasChallenge("chal",11)) infGen = infGen.add(1)
+  if (hasChallenge("chal",12)) infGen = infGen.add(1)
+  if (hasChallenge("chal",13)) infGen = infGen.add(1)
+  if (hasChallenge("chal",14)) infGen = infGen.add(1)
+  if (hasChallenge("chal",15)) infGen = infGen.add(1)
+  if (hasChallenge("chal",16)) infGen = infGen.add(1)
+  if (hasChallenge("chal",17)) infGen = infGen.add(1)
+  if (hasChallenge("chal",18)) infGen = infGen.add(1)
+  if (hasChallenge("chal",19)) infGen = infGen.add(1)
+  }
+  
+  return infGen
+}
+
 function boostPower() {
   let base = decimalOne
   let inchal12 = decimalOne
   let chal12comp = decimalOne
   let chal18comp = decimalOne
+  let ach82 = decimalOne
   if(inChallenge("chal",12)) inchal12 = new Decimal(0.2)
   if(hasChallenge("chal",12)) chal12comp = new Decimal(1.2)
   if(hasChallenge("chal",18)) chal18comp = new Decimal(2)
   if (hasUpgrade("inf",41)) base = ((base).times(1.5))
+  if (hasAchievement("a",82)) ach82 = new Decimal(1.5)
 
-  return (base.times(inchal12).times(chal12comp).times(chal18comp))
+  return (base.times(inchal12).times(chal12comp).times(chal18comp).times(ach82))
 }
 
 function getEnergyLimit() {
@@ -293,14 +325,30 @@ function infinity() {
   if(player.p.truepresamt == 0){
     player.p.infNoPres = true
   }
+  let basespeedmult = decimalOne
+  if(hasAchievement("a",61)) basespeedmult = new Decimal(10)
   player.p.ascendAmt = decimalZero
   player.p.truepresamt = decimalZero
-  player.p.baseMult = decimalOne
-  player.p.baseSpeed = decimalOne
+  player.p.baseMult = basespeedmult
+  player.p.baseSpeed = basespeedmult
   player.p.baseBoost = decimalOne.times(boostPower())
   player.p.baseAscend = decimalOne
   player.p.ascboostcheck = false
-  player.inf.infinities = player.inf.infinities.add(1)
+  if(player.p.TlimeBuyAmt.eq(0)){
+    player.p.ach82check = true
+  }
+  else player.p.ach82check = false
+  player.p.TredBuyAmt = decimalOne
+  player.p.TorangeBuyAmt = decimalZero
+  player.p.TyellowBuyAmt = decimalZero
+  player.p.TlimeBuyAmt = decimalZero
+  player.p.TgreenBuyAmt = decimalZero
+  player.p.TcyanBuyAmt = decimalZero
+  player.p.TblueBuyAmt = decimalZero
+  player.p.TvioletBuyAmt = decimalZero
+  player.p.TpinkBuyAmt = decimalZero
+  player.p.TwhiteBuyAmt = decimalZero
+  player.inf.infinities = player.inf.infinities.add(InfinityGen())
   player.inf.infenergy = player.inf.infenergy.add(IEgen())
   player.inf.genpower = decimalZero
   player.inf.gen1 = player.inf.gen1bought
