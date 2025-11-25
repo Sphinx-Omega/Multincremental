@@ -858,7 +858,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return hasUpgrade("inf",111)
             },
             onComplete() {
                 addPoints("a",1)
@@ -882,11 +882,11 @@ addLayer("a", {
 
         91: {
             name() {
-                return "<h3>I AM SPEED<br><br></h3>Get all challenge times under 10 seconds"
+                return "<h3>I AM SPEED<br><br></h3>Get total challenge times under 5 minutes"
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.chal.chaltotaltime.lt(300)
             },
             onComplete() {
                 addPoints("a",1)
@@ -914,7 +914,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.infinities.gte(2e5)
+                return player.p.infNoBst == true
             },
             onComplete() {
                 addPoints("a",1)
@@ -938,11 +938,11 @@ addLayer("a", {
 
         93: {
             name() {
-                return "<h3>Infinity/s<br><br></h3>Reach infinity in under 250ms!"
+                return "<h3>Infinity/s<br><br></h3>Reach infinity in under 1 second!"
             },
             tooltip: " ",
             done() {
-                return player.p.infRecord.lt(0.25)
+                return player.p.infRecord.lt(1)
             },
             onComplete() {
                 addPoints("a",1)

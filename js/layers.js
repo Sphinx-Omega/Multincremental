@@ -84,7 +84,9 @@ function enterinfchallenge() {
   player.inf.gen8 = player.inf.gen8bought
   player.inf.gen9 = player.inf.gen9bought
   player.inf.gen10 = player.inf.gen10bought
+  player.p.TAsc = decimalZero
   player.p.infTime = decimalZero
+  player.tab = "p"
 }
 
 function getRedTimes() {
@@ -142,6 +144,8 @@ function IEgen() {
   if (hasAchievement("a",52)) ieGen = ieGen.times(2)
   if (hasUpgrade("inf",81)) ieGen = ieGen.times(upgradeEffect("inf",81))
   if (hasUpgrade("inf",101)) ieGen = ieGen.times(upgradeEffect("inf",101))
+  if (hasUpgrade("inf",141)) ieGen = ieGen.times(upgradeEffect("inf",141))
+  if (hasUpgrade("inf",144)) ieGen = ieGen.times(upgradeEffect("inf",144))
 
   if (hasUpgrade("inf",71)) {
   if (hasChallenge("chal",11)) ieGen = ieGen.add(1)
@@ -154,6 +158,10 @@ function IEgen() {
   if (hasChallenge("chal",18)) ieGen = ieGen.add(1)
   if (hasChallenge("chal",19)) ieGen = ieGen.add(1)
   }
+
+  ieGen = ieGen.times((player.points.div(1.798).max(1).log10().div(308).max(1).pow(2.875)))
+  ieGen = ieGen.times(player.inf.collIE)
+  ieGen = ieGen.min("1.798e308")
   
   return ieGen
 }
@@ -210,6 +218,23 @@ function getEnergyProgress() {
 function redMult() {
   return ""
 }
+
+// function bar1Cost(x){
+//   if (x === undefined) x = decimalOne
+//   let cost = Decimal.pow(1.1,((x).div(4).pow((x).div(758).pow(1.1).max(1)))).pow(((x).div(20)).add(1)).times(x).max(1)
+//   return cost
+// }
+
+// function buyMaxBars(){
+//   let a = decimalOne
+//   while(bar1Cost(x).lt(player.points)){
+//     for(a=1; a<1000; a++){
+//       let x = a.times(tmp.p.buyables[11].bought)
+//       bar1Cost(x)
+//     }
+//   }
+//   return a
+// }
 
 function prestigeReset() {
   player.p.multExp = player.p.presexp
@@ -318,12 +343,18 @@ function ascend4() {
 }
 
 function infinity() {
+  player.inf.infinities = player.inf.infinities.add(InfinityGen())
+  player.inf.infenergy = player.inf.infenergy.add(IEgen())
+  player.inf.collparts = decimalZero
   ascend()
   if(player.p.ascendAmt == 0){
     player.p.infNoAscend = true
   }
   if(player.p.truepresamt == 0){
     player.p.infNoPres = true
+  }
+  if(player.p.TAsc == 0){
+    player.p.infNoBst = true
   }
   let basespeedmult = decimalOne
   if(hasAchievement("a",61)) basespeedmult = new Decimal(10)
@@ -348,22 +379,21 @@ function infinity() {
   player.p.TvioletBuyAmt = decimalZero
   player.p.TpinkBuyAmt = decimalZero
   player.p.TwhiteBuyAmt = decimalZero
-  player.inf.infinities = player.inf.infinities.add(InfinityGen())
-  player.inf.infenergy = player.inf.infenergy.add(IEgen())
   player.inf.genpower = decimalZero
-  player.inf.gen1 = player.inf.gen1bought
-  player.inf.gen2 = player.inf.gen2bought
-  player.inf.gen3 = player.inf.gen3bought
-  player.inf.gen4 = player.inf.gen4bought
-  player.inf.gen5 = player.inf.gen5bought
-  player.inf.gen6 = player.inf.gen6bought
-  player.inf.gen7 = player.inf.gen7bought
-  player.inf.gen8 = player.inf.gen8bought
-  player.inf.gen9 = player.inf.gen9bought
-  player.inf.gen10 = player.inf.gen10bought
+  player.inf.gen1 = new Decimal(player.inf.gen1bought)
+  player.inf.gen2 = new Decimal(player.inf.gen2bought)
+  player.inf.gen3 = new Decimal(player.inf.gen3bought)
+  player.inf.gen4 = new Decimal(player.inf.gen4bought)
+  player.inf.gen5 = new Decimal(player.inf.gen5bought)
+  player.inf.gen6 = new Decimal(player.inf.gen6bought)
+  player.inf.gen7 = new Decimal(player.inf.gen7bought)
+  player.inf.gen8 = new Decimal(player.inf.gen8bought)
+  player.inf.gen9 = new Decimal(player.inf.gen9bought)
+  player.inf.gen10 = new Decimal(player.inf.gen10bought)
   if(player.p.infTime.lt(player.p.infRecord)){
     if (player.p.infTime.gt(0)) player.p.infRecord = player.p.infTime
   }
+  player.p.TAsc = decimalZero
   player.p.infTime = decimalZero
 }
 
@@ -382,3 +412,19 @@ function getChallengeCompletions() {
 
   return amt
 }
+
+function getCollChance(min, max) {
+  let x = new Decimal(min).ceil()
+  let y = new Decimal(max).floor()
+  let z = Math.random() * 100
+  return z
+}
+
+// function getMaxBuyBars(x) {
+//   // for(i = 0 ; i < 2 ; i++) {
+//       //if(canBuyBuyable("p",x)) {
+//         buyMaxBuyable("p",x)
+//       //}
+//       //else break;
+//   //}
+// }

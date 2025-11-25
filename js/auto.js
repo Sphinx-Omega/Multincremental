@@ -33,7 +33,7 @@ addLayer("auto", {
     layerShown() { return true },
     achievementPopups: false,
     tabFormat: {
-        "Achievements" :{
+        "Normal" :{
             content: [
                 // ["raw-html",
                 //     function(){
@@ -46,7 +46,7 @@ addLayer("auto", {
             ["clickables",2],
             ["clickables",5],
             ["clickables",99],
-            //["text-input",[this.prestinput]]
+            ["text-input",[this.prestinput]]
             ],
             style: {
                 "position":"absolute",
@@ -1481,98 +1481,50 @@ addLayer("auto", {
         if(getClickableState("auto",811) == undefined) setClickableState("auto",811,0)
         if(getClickableState("auto",812) == undefined) setClickableState("auto",812,0)
         if(getClickableState("auto",813) == undefined) setClickableState("auto",813,0)
+
+        //if(getClickableState("p",61) == undefined) setClickableState("p",61,0)
     },
 
     update(diff){
 
         if(getClickableState("auto",51) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",11)) {
-                    buyBuyable("p",11)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",11)
         }
 
         if(getClickableState("auto",52) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",12)) {
-                    buyBuyable("p",12)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",12)
         }
 
         if(getClickableState("auto",53) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",13)) {
-                    buyBuyable("p",13)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",13)
         }
 
         if(getClickableState("auto",54) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",14)) {
-                    buyBuyable("p",14)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",14)
         }
 
         if(getClickableState("auto",55) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",15)) {
-                    buyBuyable("p",15)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",15)
         }
 
         if(getClickableState("auto",56) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",16)) {
-                    buyBuyable("p",16)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",16)
         }
 
         if(getClickableState("auto",57) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",17)) {
-                    buyBuyable("p",17)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",17)
         }
 
         if(getClickableState("auto",58) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",18)) {
-                    buyBuyable("p",18)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",18)
         }
 
         if(getClickableState("auto",59) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",19)) {
-                    buyBuyable("p",19)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",19)
         }
 
         if(getClickableState("auto",61) == 1) {
-            for(i = 0 ; i < 5 ; i++) {
-                if(canBuyBuyable("p",21)) {
-                    buyBuyable("p",21)
-                }
-                else break;
-            }
+            buyMaxBuyable("p",21)
         }
 
         if(getClickableState("auto",71) == 1) {

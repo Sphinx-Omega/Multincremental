@@ -923,15 +923,18 @@ addLayer("chal", {
 
         let chalid = player.chal.activeChallenge
         if((inChallenge("chal",chalid)) && (canCompleteChallenge("chal",chalid))) {
-            if(chalid == 11) player.chal.chal11rec = player.chal.chal11timer
-            if(chalid == 12) player.chal.chal12rec = player.chal.chal12timer
-            if(chalid == 13) player.chal.chal13rec = player.chal.chal13timer
-            if(chalid == 14) player.chal.chal14rec = player.chal.chal14timer
-            if(chalid == 15) player.chal.chal15rec = player.chal.chal15timer
-            if(chalid == 16) player.chal.chal16rec = player.chal.chal16timer
-            if(chalid == 17) player.chal.chal17rec = player.chal.chal17timer
-            if(chalid == 18) player.chal.chal18rec = player.chal.chal18timer
-            if(chalid == 19) player.chal.chal19rec = player.chal.chal19timer
+            if((chalid == 11) && (player.chal.chal11timer.lt(player.chal.chal11rec))) player.chal.chal11rec = player.chal.chal11timer
+            if((chalid == 12) && (player.chal.chal12timer.lt(player.chal.chal12rec))) player.chal.chal12rec = player.chal.chal12timer
+            if((chalid == 13) && (player.chal.chal13timer.lt(player.chal.chal13rec))) player.chal.chal13rec = player.chal.chal13timer
+            if((chalid == 14) && (player.chal.chal14timer.lt(player.chal.chal14rec))) player.chal.chal14rec = player.chal.chal14timer
+            if((chalid == 15) && (player.chal.chal15timer.lt(player.chal.chal15rec))) player.chal.chal15rec = player.chal.chal15timer
+            if((chalid == 16) && (player.chal.chal16timer.lt(player.chal.chal16rec))) player.chal.chal16rec = player.chal.chal16timer
+            if((chalid == 17) && (player.chal.chal17timer.lt(player.chal.chal17rec))) player.chal.chal17rec = player.chal.chal17timer
+            if((chalid == 18) && (player.chal.chal18timer.lt(player.chal.chal18rec))) player.chal.chal18rec = player.chal.chal18timer
+            if((chalid == 19) && (player.chal.chal19timer.lt(player.chal.chal19rec))) player.chal.chal19rec = player.chal.chal19timer
+            if(player.p.infTime.lt(player.p.infRecord)){
+            if (player.p.infTime.gt(0)) player.p.infRecord = player.p.infTime
+            }
             startChallenge("chal",chalid)
             infinity()
         }

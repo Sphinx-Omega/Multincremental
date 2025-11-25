@@ -77,6 +77,20 @@ function softcap(value, cap, power = 0.5) {
 		return value.pow(power).times(cap.pow(decimalOne.sub(power)))
 }
 
+function softcapBars(value, cap, power) {
+	if (value.lte(cap)) return value
+	else
+		return value.pow(power).times(cap.pow(decimalOne.sub(power)))
+}
+
+//inverse =    (cost.div(cap.pow(decimalOne.sub(sc)))).pow(decimalOne.div(sc))
+//normal cost e.g. :    1.1^x^1.3
+function softcapBarsInverted(value, cap, power) {
+	if (value.lte(cap)) return value
+	else
+		return value.div(cap.pow(decimalOne.sub(power))).pow(decimalOne.div(power))
+}
+
 // Return true if the layer should be highlighted. By default checks for upgrades only.
 function shouldNotify(layer){
 	for (id in tmp[layer].upgrades){

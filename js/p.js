@@ -41,6 +41,7 @@ addLayer("p", {
         vAsc: decimalZero,
         pAsc: decimalZero,
         wAsc: decimalZero,
+        TAsc: decimalZero,
         redAscCost: decimalZero,
         orangeAscCost: decimalZero,
         yellowAscCost: decimalZero,
@@ -136,8 +137,10 @@ addLayer("p", {
         infRecord: new Decimal(31536000),
         infNoAscend: false,
         infNoPres: false,
+        infNoBst: false,
         chal17eff: decimalOne,
         chal18eff: decimalOne,
+        costscaling: new Decimal(20),
     }},
     color: "#ffffff",
     nodeStyle(){ return {
@@ -171,18 +174,18 @@ addLayer("p", {
         {
             key: "m", description: "M: Rapid buy all bars",
                 onPress(){
-                    for(i = 0; i<5 ; i++){
-                        if (canBuyBuyable("p",11)) buyBuyable("p",11)
-                        if (canBuyBuyable("p",12)) buyBuyable("p",12)
-                        if (canBuyBuyable("p",13)) buyBuyable("p",13)
-                        if (canBuyBuyable("p",14)) buyBuyable("p",14)
-                        if (canBuyBuyable("p",15)) buyBuyable("p",15)
-                        if (canBuyBuyable("p",16)) buyBuyable("p",16)
-                        if (canBuyBuyable("p",17)) buyBuyable("p",17)
-                        if (canBuyBuyable("p",18)) buyBuyable("p",18)
-                        if (canBuyBuyable("p",19)) buyBuyable("p",19)
-                        if (canBuyBuyable("p",21)) buyBuyable("p",21)
-                    }
+                    //for(i = 0; i<20 ; i++){
+                    buyMaxBuyable("p",11)
+                    buyMaxBuyable("p",12)
+                    buyMaxBuyable("p",13)
+                    buyMaxBuyable("p",14)
+                    buyMaxBuyable("p",15)
+                    buyMaxBuyable("p",16)
+                    buyMaxBuyable("p",17)
+                    buyMaxBuyable("p",18)
+                    buyMaxBuyable("p",19)
+                    buyMaxBuyable("p",21)
+                    //}
                 }
         },
 
@@ -201,6 +204,13 @@ addLayer("p", {
                         if (tmp.p.clickables[49].unlocked == true) clickClickable("p",49)
                         if (tmp.p.clickables[51].unlocked == true) clickClickable("p",51)
                     }
+                }
+        },
+
+        {
+            key: "i", description: "I: Infinity",
+                onPress(){
+                    if (tmp.p.clickables[55].unlocked == true) clickClickable("p",55)
                 }
         },
     ],
@@ -238,11 +248,13 @@ addLayer("p", {
                 "blank",
                 "blank",
                 ["bar","infBar"],
+                ["bar","eterBar"],
                 ["clickable",11],
                 ["clickables",2],
                 ["clickables",3],
                 ["clickables",4],
                 ["clickables",5],
+                ["clickables",6],
                 ["buyables",1],
                 ["buyable",21],
                 ["clickable",991],
@@ -332,13 +344,25 @@ addLayer("p", {
 
         11: {
             cost() { 
-                let cost = Decimal.pow(1.1,((this.bought()).div(4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1)
+                let cost = Decimal.pow(1.1,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal("1.798e308")
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
                 return cost 
             },
             bought() {
                 let b = ((player.p.redBuyAmt).add(player.p.redAscCost))
                 return b
             },
+            // boughtAfterInf() {
+            //     let thresh = this.bought().sub(952).max(0).div(100).floor()
+            //     return thresh
+            // },
+            // scTiers(){
+            //     let base = new Decimal(952)
+            //     let sct = base.add(this.boughtAfterInf().times(100))
+            //     return sct
+            // },
             extra(){
                 let ex = decimalZero
                 return ex
@@ -384,9 +408,53 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
+            maxAfford() {
+                let amount = player.points.max(1)
+                let cap = new Decimal("1.798e308")
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.1).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().sub(1).add(this.bought())
+                let cost = Decimal.pow(1.1,(amt.pow(1.3))).max(1)
+                let cap = new Decimal("1.798e308")
+                let sc = player.p.costscaling
+
+                cost = softcapBars(cost, cap, sc)
+                return cost 
+            },
+
+            // maxBoosts() {
+            //     let base = new Decimal(100)
+            //     let extras = Decimal.times(10,player.p.rAsc)
+            //     let mag = this.maxAfford().max(1).log10().floor()
+            //     let times = decimalZero
+            //     if (mag.eq(2)) times = this.maxAfford().div(base).floor()
+            //     let lvls = new Decimal(5).times(times.sub(1))
+            //     if (times.gte(2)) times = this.maxAfford().div(Decimal.add(100,lvls)).floor()
+            //     let boostAmt = decimalZero
+            //     if (player.p.rAsc.gte(1)) boostAmt = Decimal.add(100,lvls)
+            //     let dif = times.sub(player.p.rAsc).max(0)
+            //     let rem = this.maxAfford()
+
+            //     return dif
             // },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.rMax.sub(player.p.redBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.TredBuyAmt = player.p.TredBuyAmt.add(this.realMax())
+                player.p.redBuyAmt = player.p.redBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return true }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -408,8 +476,15 @@ addLayer("p", {
 
         12: {
             cost() { 
-                let cost = Decimal.pow(1.15,((this.bought()).div(3.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(100)
-                return cost 
+                // let cost = Decimal.pow(1.15,((this.bought()).div(3.6).pow(this.bought().div(590).pow(1.125).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(100)
+                // return cost 
+                let cost = Decimal.pow(1.133,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(1.798e306)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                //.pow(this.bought().div(951).pow(1.2).max(1))          ////Cost scaling
+                //.pow(((this.bought()).div(20)).add(1)).times(this.bought())    ////between both .max(1)s
+                return cost.times(100) 
             },
             bought() {
                 let b = ((player.p.orangeBuyAmt).add(player.p.orangeAscCost))
@@ -460,9 +535,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(100).max(1)
+                let cap = new Decimal(1.798e306)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.133).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.133,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(1.798e306)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(100)
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.oMax.sub(player.p.orangeBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.TorangeBuyAmt = player.p.TorangeBuyAmt.add(this.realMax())
+                player.p.orangeBuyAmt = player.p.orangeBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.redBuyAmt).gte(5)) || ((player.p.rAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -484,8 +586,12 @@ addLayer("p", {
 
         13: {
             cost() { 
-                let cost = Decimal.pow(1.2,((this.bought()).div(3.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e3)
-                return cost 
+                //let cost = Decimal.pow(1.2,((this.bought()).div(3.2).pow(this.bought().div(484).pow(1.15).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e3)
+                let cost = Decimal.pow(1.167,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(7.192e304)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(2.5e3) 
             },
             bought() {
                 let b = ((player.p.yellowBuyAmt).add(player.p.yellowAscCost))
@@ -536,9 +642,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(2.5e3).max(1)
+                let cap = new Decimal(7.192e304)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.167).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.167,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(7.192e304)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(2.5e3) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.yMax.sub(player.p.yellowBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.yellowBuyAmt = player.p.yellowBuyAmt.add(this.realMax())
+                player.p.TyellowBuyAmt = player.p.TyellowBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.orangeBuyAmt).gte(5)) || ((player.p.oAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -560,8 +693,12 @@ addLayer("p", {
 
         14: {
             cost() { 
-                let cost = Decimal.pow(1.25,((this.bought()).div(2.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e5)
-                return cost 
+                //let cost = Decimal.pow(1.25,((this.bought()).div(2.8).pow(this.bought().div(406).pow(1.175).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e5)
+                let cost = Decimal.pow(1.2,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(1.798e303)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e5) 
             },
             bought() {
                 let b = ((player.p.limeBuyAmt).add(player.p.limeAscCost))
@@ -612,9 +749,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(1e5).max(1)
+                let cap = new Decimal(1.798e303)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.2).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.2,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(1.798e303)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e5)
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.lMax.sub(player.p.limeBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.limeBuyAmt = player.p.limeBuyAmt.add(this.realMax())
+                player.p.TlimeBuyAmt = player.p.TlimeBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.yellowBuyAmt).gte(5)) || ((player.p.yAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -636,8 +800,12 @@ addLayer("p", {
 
         15: {
             cost() { 
-                let cost = Decimal.pow(1.3,((this.bought()).div(2.4))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e6)
-                return cost 
+                //let cost = Decimal.pow(1.3,((this.bought()).div(2.4).pow(this.bought().div(345).pow(1.2).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e6)
+                let cost = Decimal.pow(1.225,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(3.596e301)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(5e6) 
             },
             bought() {
                 let b = ((player.p.greenBuyAmt).add(player.p.greenAscCost))
@@ -688,9 +856,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(5e6).max(1)
+                let cap = new Decimal(3.596e301)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.225).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.225,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(3.596e301)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(5e6) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.gMax.sub(player.p.greenBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.greenBuyAmt = player.p.greenBuyAmt.add(this.realMax())
+                player.p.TgreenBuyAmt = player.p.TgreenBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.limeBuyAmt).gte(5)) || ((player.p.lAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -712,8 +907,12 @@ addLayer("p", {
 
         16: {
             cost() { 
-                let cost = Decimal.pow(1.35,((this.bought()).div(2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e9)
-                return cost 
+                //let cost = Decimal.pow(1.35,((this.bought()).div(2).pow(this.bought().div(291).pow(1.225).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(2.5e9)
+                let cost = Decimal.pow(1.25,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(7.192e298)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(2.5e9) 
             },
             bought() {
                 let b = ((player.p.cyanBuyAmt).add(player.p.cyanAscCost))
@@ -765,9 +964,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(2.5e9).max(1)
+                let cap = new Decimal(7.192e298)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.25).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.25,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(7.192e298)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(2.5e9) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.cMax.sub(player.p.cyanBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.cyanBuyAmt = player.p.cyanBuyAmt.add(this.realMax())
+                player.p.TcyanBuyAmt = player.p.TcyanBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.greenBuyAmt).gte(5)) || ((player.p.gAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -789,8 +1015,12 @@ addLayer("p", {
 
         17: {
             cost() { 
-                let cost = Decimal.pow(1.4,((this.bought()).div(1.6))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e13)
-                return cost 
+                //let cost = Decimal.pow(1.4,((this.bought()).div(1.6).pow(this.bought().div(243).pow(1.25).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e13)
+                let cost = Decimal.pow(1.275,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(1.798e295)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e13) 
             },
             bought() {
                 let b = ((player.p.blueBuyAmt).add(player.p.blueAscCost))
@@ -842,9 +1072,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(1e13).max(1)
+                let cap = new Decimal(1.798e295)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.275).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.275,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(1.798e295)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e13) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.bMax.sub(player.p.blueBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.blueBuyAmt = player.p.blueBuyAmt.add(this.realMax())
+                player.p.TblueBuyAmt = player.p.TblueBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.cyanBuyAmt).gte(5)) || ((player.p.cAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -866,8 +1123,12 @@ addLayer("p", {
 
         18: {
             cost() { 
-                let cost = Decimal.pow(1.45,((this.bought()).div(1.2))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e18)
-                return cost 
+                //let cost = Decimal.pow(1.45,((this.bought()).div(1.2).pow(this.bought().div(196).pow(1.275).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(5e18)
+                let cost = Decimal.pow(1.3,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(3.596e289)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(5e18) 
             },
             bought() {
                 let b = ((player.p.violetBuyAmt).add(player.p.violetAscCost))
@@ -919,9 +1180,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(5e18).max(1)
+                let cap = new Decimal(3.596e289)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.3).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.3,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(3.596e289)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(5e18) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.vMax.sub(player.p.violetBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.violetBuyAmt = player.p.violetBuyAmt.add(this.realMax())
+                player.p.TvioletBuyAmt = player.p.TvioletBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.blueBuyAmt).gte(5)) || ((player.p.bAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -943,8 +1231,12 @@ addLayer("p", {
 
         19: {
             cost() { 
-                let cost = Decimal.pow(1.45,((this.bought()).div(0.8))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e24)
-                return cost 
+                //let cost = Decimal.pow(1.45,((this.bought()).div(0.8).pow(this.bought().div(157).pow(1.3).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e24)
+                let cost = Decimal.pow(1.3125,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(1.798e284)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e24) 
             },
             bought() {
                 let b = ((player.p.pinkBuyAmt).add(player.p.pinkAscCost))
@@ -996,9 +1288,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(1e24).max(1)
+                let cap = new Decimal(1.798e284)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.3125).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.3125,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(1.798e284)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e24) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.pMax.sub(player.p.pinkBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.pinkBuyAmt = player.p.pinkBuyAmt.add(this.realMax())
+                player.p.TpinkBuyAmt = player.p.TpinkBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.violetBuyAmt).gte(5)) || ((player.p.vAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -1020,8 +1339,12 @@ addLayer("p", {
 
         21: {
             cost() { 
-                let cost = Decimal.pow(1.5,((this.bought()).div(0.5))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e33)
-                return cost 
+                //let cost = Decimal.pow(1.5,((this.bought()).div(0.5).pow(this.bought().div(114).pow(1.325).max(1)))).pow(((this.bought()).div(20)).add(1)).times(this.bought()).max(1).times(1e33)
+                let cost = Decimal.pow(1.325,(this.bought().pow(1.3))).max(1)
+                let cap = new Decimal(1.798e275)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e33) 
             },
             bought() {
                 let b = ((player.p.whiteBuyAmt).add(player.p.whiteAscCost))
@@ -1073,9 +1396,36 @@ addLayer("p", {
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
-            // buyMax() {
-            //     buyBuyable("p",11)
-            // },
+            maxAfford() {
+                let amount = player.points.div(1e33).max(1)
+                let cap = new Decimal(1.798e275)
+                let sc = player.p.costscaling
+                
+                amount = softcapBarsInverted(amount,cap,sc)
+                return amount.log(1.325).root(1.3).floor().sub(this.bought()).add(1).max(0)
+            },
+
+            maxCost() {
+                let amt = this.maxAfford().add(this.bought())
+                let cost = Decimal.pow(1.325,(amt.pow(1.3))).max(1)
+                let cap = new Decimal(1.798e275)
+                let sc = player.p.costscaling
+                cost = softcapBars(cost, cap, sc)
+                return cost.times(1e33) 
+            },
+
+            realMax() {
+                let max = this.maxAfford().min(player.p.wMax.sub(player.p.whiteBuyAmt))
+                return max
+            },
+
+            buyMax() {
+                player.p.whiteBuyAmt = player.p.whiteBuyAmt.add(this.realMax())
+                player.p.TwhiteBuyAmt = player.p.TwhiteBuyAmt.add(this.realMax())
+                setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
+            },
 
             unlocked() { return (((player.p.pinkBuyAmt).gte(5)) || ((player.p.pAsc).gte(1))) }, 
             style: {'height':'6.5%', 'width':'10.5%',
@@ -1533,9 +1883,11 @@ addLayer("p", {
                 if(player.p.rTimes.lt(decimalOne)) dismult = decimalOne
                 let a22 = decimalZero
                 let a33 = decimalZero
+                let inf142 = decimalZero
                 if(hasAchievement("a",22)) a22 = new Decimal(0.02)
                 if(hasAchievement("a",33)) a33 = new Decimal(0.03)
-                return "<h2>(</h2>x<h3>"+format((player.p.multdisplay), 3)+"</h3><b><sup>"+format(((player.p.multExp).add(a22).add(a33)), 3)+"</sup></b><h2>)</h2><h3>   →   </h3><h2>(</h2>+ <h3>"+format(player.p.truedisplay, 3)+"</h3><h2>)</h2>"
+                if(hasUpgrade("inf",142)) inf142 = new Decimal(0.1)
+                return "<h2>(</h2>x<h3>"+format((player.p.multdisplay), 3)+"</h3><b><sup>"+format(((player.p.multExp).add(a22).add(a33).add(inf142)), 3)+"</sup></b><h2>)</h2><h3>   →   </h3><h2>(</h2>+ <h3>"+format(player.p.truedisplay, 3)+"</h3><h2>)</h2>"
             },
             style: {'height':'60px', 'width':'600px',
                 "border-radius":"0%",
@@ -1558,7 +1910,7 @@ addLayer("p", {
         33: {
             canClick() {return false},
             unlocked(){
-                return true
+                return (player.points.lt("1.8e308"))
             },
             display(){
                 return "<b>Progress to Infinity: "+format(((player.points).div(1.79769).max(1).log10().div(3.08).min(100)), 2)+"%"
@@ -1595,9 +1947,11 @@ addLayer("p", {
             display(){
                 let a22 = decimalZero
                 let a33 = decimalZero
+                let inf142 = decimalZero
                 if(hasAchievement("a",22)) a22 = new Decimal(0.02)
                 if(hasAchievement("a",33)) a33 = new Decimal(0.03)
-                return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format(((player.p.multExp).add(a22).add(a33)), 3) + " → <sup>^</sup>" + format(((player.p.presexp).add(a22).add(a33)), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
+                if(hasUpgrade("inf",142)) inf142 = new Decimal(0.1)
+                return "<h2>Prestige</h2><br><br><b>Prestige exp: <sup>^</sup>" + format(((player.p.multExp).add(a22).add(a33).add(inf142)), 3) + " → <sup>^</sup>" + format(((player.p.presexp).add(a22).add(a33).add(inf142)), 3) + "<br><br><b>Prestige mult: x" + format((player.p.extraMult), 3) + " → x" + format((player.p.presmult), 3)
             },
             style: {'height':'13%', 'width':'16%',
                 "border":"3px solid",
@@ -1832,6 +2186,7 @@ addLayer("p", {
                 player.p.rAsc = player.p.rAsc.add(1)
                 player.p.redBuyAmt = decimalOne
                 player.p.rMax = player.p.rMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.redBuyAmt).gte(player.p.rMax)
@@ -1869,6 +2224,7 @@ addLayer("p", {
                 player.p.oAsc = player.p.oAsc.add(1)
                 player.p.orangeBuyAmt = decimalOne
                 player.p.oMax = player.p.oMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.orangeBuyAmt).gte(player.p.oMax)
@@ -1906,6 +2262,7 @@ addLayer("p", {
                 player.p.yAsc = player.p.yAsc.add(1)
                 player.p.yellowBuyAmt = decimalOne
                 player.p.yMax = player.p.yMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.yellowBuyAmt).gte(player.p.yMax)
@@ -1943,6 +2300,7 @@ addLayer("p", {
                 player.p.lAsc = player.p.lAsc.add(1)
                 player.p.limeBuyAmt = decimalOne
                 player.p.lMax = player.p.lMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.limeBuyAmt).gte(player.p.lMax)
@@ -1980,6 +2338,7 @@ addLayer("p", {
                 player.p.gAsc = player.p.gAsc.add(1)
                 player.p.greenBuyAmt = decimalOne
                 player.p.gMax = player.p.gMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.greenBuyAmt).gte(player.p.gMax)
@@ -2017,6 +2376,7 @@ addLayer("p", {
                 player.p.cAsc = player.p.cAsc.add(1)
                 player.p.cyanBuyAmt = decimalOne
                 player.p.cMax = player.p.cMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.cyanBuyAmt).gte(player.p.cMax)
@@ -2054,6 +2414,7 @@ addLayer("p", {
                 player.p.bAsc = player.p.bAsc.add(1)
                 player.p.blueBuyAmt = decimalOne
                 player.p.bMax = player.p.bMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.blueBuyAmt).gte(player.p.bMax)
@@ -2091,6 +2452,7 @@ addLayer("p", {
                 player.p.vAsc = player.p.vAsc.add(1)
                 player.p.violetBuyAmt = decimalOne
                 player.p.vMax = player.p.vMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.violetBuyAmt).gte(player.p.vMax)
@@ -2128,6 +2490,7 @@ addLayer("p", {
                 player.p.pAsc = player.p.pAsc.add(1)
                 player.p.pinkBuyAmt = decimalOne
                 player.p.pMax = player.p.pMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.pinkBuyAmt).gte(player.p.pMax)
@@ -2165,6 +2528,7 @@ addLayer("p", {
                 player.p.wAsc = player.p.wAsc.add(1)
                 player.p.whiteBuyAmt = decimalOne
                 player.p.wMax = player.p.wMax.add(10)
+                player.p.TAsc = player.p.TAsc.add(1)
             },
             unlocked(){
                 return (player.p.whiteBuyAmt).gte(player.p.wMax)
@@ -2296,6 +2660,139 @@ addLayer("p", {
                 "font-size":"24px"
             },
         },
+
+        // 55: {
+        //     canClick() {return true},
+        //     unlocked(){
+        //         let x = player.points
+        //         if (x.gte("1.8e308") && hasUpgrade("inf",111)) return true
+        //         else return false
+        //     },
+        //     display(){
+        //         let dis = "<b>Infinity for<br>"+format(IEgen(),2)+" IE"
+        //         return dis
+        //     },
+        //     style: {'height':'15%', 'width':'24.6%',
+        //         "border-radius":"0%",
+        //         "border-color"(){
+        //              return "darkviolet"
+        //         }, 
+        //         "background-color"(){
+        //             return "rgba(0, 0, 0, 1)"
+        //         },
+        //         "position":"fixed",
+        //         "bottom":"15%",
+        //         "top":"12.8125%",
+        //         "left":"0%",
+        //         "right":"10%",
+        //         "z-index":"10",
+        //         "color"(){
+        //             return "darkviolet"
+        //         },
+        //         "transition":"instant",
+        //         "font-size":"20px"
+        //     },
+        // },
+
+        55: {
+            canClick() {return true},
+            onClick() {
+                infinity()
+            },
+            unlocked(){
+                let x = player.points
+                if (x.gte("1.8e308") && hasUpgrade("inf",111)) return true
+                else return false
+            },
+            display(){
+                let dis = "<b>Infinity for<br>"+format(IEgen(),2)+" IE"
+                return dis
+            },
+            style: {'height':'6.25%', 'width':'12.5%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "darkviolet"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 1)"
+                },
+                "position":"fixed",
+                "bottom":"15%",
+                "top":"85%",
+                "left":"0%",
+                "right":"10%",
+                "z-index":"10",
+                "color"(){
+                    return "#af24ffff"
+                },
+                "transition":"instant",
+                "font-size":"18px"
+            },
+        },
+
+        56: {
+            canClick() {return false},
+            unlocked(){
+                return ((player.points.gte("1.8e308")) && (player.inf.infenergy.lt("1e1000")))
+            },
+            display(){
+                return "<b>Progress to Eternity: "+format(((player.inf.infenergy).max(1).log10().div(10).min(100)), 2)+"%"
+            },
+            style: {'height':'8%', 'width':'50%',
+                "border-radius":"0%",
+                "border-color"(){
+                     return "rgba(0, 0, 0, 0)"
+                }, 
+                "background-color"(){
+                    return "rgba(0, 0, 0, 0)"
+                },
+                "position":"fixed",
+                "bottom":"10%",
+                "top":"90%",
+                "left":"0%",
+                "right":"10%",
+                "z-index":"5",
+                "color":"#ffffffff",
+                "font-size":"16px"
+            },
+        },
+
+        // 61: {
+        //     canClick() {return true},
+        //     onClick() {
+        //         if (getClickableState("p",61) == 0) return setClickableState("p",61,1)
+        //         if (getClickableState("p",61) == 1) return setClickableState("p",61,0)
+        //     },
+        //     unlocked(){
+        //         if (hasUpgrade("inf",111)) return true
+        //         else return false
+        //     },
+        //     display(){
+        //         let hideshow = getClickableState("p",61)
+        //         let dis = ((hideshow == 1)?"<b>Show Infinity button":"<b>Hide Infinity button")
+        //         return dis
+        //     },
+        //     style: {'height':'5%', 'width':'7.5%',
+        //         "border-radius":"0%",
+        //         "border-color"(){
+        //              return "white"
+        //         }, 
+        //         "background-color"(){
+        //             return "rgba(99, 99, 99, 1)"
+        //         },
+        //         "position":"fixed",
+        //         "bottom":"15%",
+        //         "top":"90%",
+        //         "left":"60%",
+        //         "right":"10%",
+        //         "z-index":"10",
+        //         "color"(){
+        //             return "white"
+        //         },
+        //         "transition":"instant",
+        //         "font-size":"16px"
+        //     },
+        // },
 
         991: {
             canClick() {return false},
@@ -2724,6 +3221,53 @@ addLayer("p", {
                 return ""
             },
             instant() {return true},
+            unlocked() {return player.points.lt("1.8e308")},
+            baseStyle: {
+                "position":"fixed",
+                "background-color":"transparent",
+                "background-position":"center",
+                "background-size":"cover",
+                "opacity":"100%",
+                "left":"25%",
+                "bottom":"5%"
+            },
+            fillStyle: {
+                "position":"fixed",
+                "background-image":"url(images/bgs/Rainbow.gif)",
+                "background-position":"center",
+                "background-size":"cover",
+                "opacity":"100%",
+                "left":"25.1%",
+                "bottom":"5.2%"
+            },
+            borderStyle: {
+                "position":"fixed",
+                "border-size":"2px",
+                "border-color":"white",
+                "border-radius":"10px/50%",
+                "left":"25%",
+                "bottom":"5%"
+            },
+            textStyle: {
+                "font-size":"12px"
+            },
+            style: {
+                "position":"fixed"
+            }
+        },
+
+        eterBar: {
+            direction: RIGHT,
+            width: 40,
+            height: 2,
+            progress() {
+                return (player.inf.infenergy).max(1).log10().div(1000).min(1)
+            },
+            display() {
+                return ""
+            },
+            instant() {return true},
+            unlocked() {return (player.inf.infenergy.lt("1e1000")) && (player.points.gte("1.8e308"))},
             baseStyle: {
                 "position":"fixed",
                 "background-color":"transparent",
@@ -2802,6 +3346,18 @@ addLayer("p", {
         let inf91 = decimalOne
         if(hasUpgrade("inf",91)) inf91 = new Decimal(3)
 
+        let inf142 = decimalZero
+        if(hasUpgrade("inf",142)) inf142 = new Decimal(0.1)
+
+        let inf143 = decimalOne
+        if(hasUpgrade("inf",143)) inf143 = new Decimal(2.5)
+
+        let inf151 = decimalOne
+        if(hasUpgrade("inf",151)) inf151 = upgradeEffect("inf",151)
+
+        let inf171 = decimalOne
+        if(hasUpgrade("inf",171)) inf171 = upgradeEffect("inf",171)
+
         let chal11comp = decimalOne
         if(hasChallenge("chal",11)) chal11comp = new Decimal(1.05)
 
@@ -2824,11 +3380,11 @@ addLayer("p", {
         }
         if((hasChallenge("chal",15)) && (!inChallenge("chal",15))) chal15rew = new Decimal(1.25)
 
-        player.p.presexp = (player.p.points).div(1e4).max(1).log10().max(1).pow(0.042).add(a22).add(a33).pow(chal14eff).times(a63)
-        player.p.presmult = (player.p.points).div(1e6).pow(0.4).max(1).pow(0.7).times(2).times(a13).times(inf62).pow(chal14eff)
+        player.p.presexp = (player.p.points).div(1e4).max(1).log10().max(1).pow(0.042).add(a22).add(a33).add(inf142).pow(chal14eff).times(a63).pow(decimalOne.div((player.p.points.div(1.798).max(1).log10().div(308).max(1).pow(0.01))))
+        player.p.presmult = ((player.p.points).div(1e6).pow(0.4).max(1).pow(0.7).times(2).times(a13).times(inf62).times(inf171).pow(chal14eff)).pow(decimalOne.div((player.p.points.div(1.798).max(1).log10().div(308).max(1).pow(0.1))))
 
         player.p.multdisplay = (player.p.addEnergy).add(0.01)
-        player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22).add(a33))
+        player.p.truedisplay = (player.p.multdisplay).pow((player.p.multExp).add(a22).add(a33).add(inf142))
 
         player.p.maxMult = (player.p.presmult).max(player.p.extraMult)
 
@@ -2845,10 +3401,10 @@ addLayer("p", {
         }
 
         if(!inChallenge("chal",15)){
-        player.p.ascendMult = (player.p.maxMult).div(250).max(1).pow(ascM).floor().max(1).log2().pow(2.625).floor().times(1.5).add(2).pow(chal15rew).mul(player.p.baseAscend)
-        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(ascS).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).pow(chal15rew).mul(player.p.baseAscend)
-        player.p.ascendBoost = (player.p.maxMult).div(5e3).max(1).pow(ascB).floor().pow(0.12).max(1).log10().times(10).round().div(10).add(1.2).times(10).pow(chal15rew).mul(player.p.baseAscend).mul(boostPower()).mul(player.p.infchallenge12).max(0.1)
-        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(ascP).max(1).times(a41).pow(chal15rew).times(chal11comp)
+        player.p.ascendMult = (player.p.maxMult).div(250).max(1).pow(ascM).floor().max(1).log2().pow(2.625).floor().times(1.5).add(2).pow(chal15rew).pow(player.inf.collupg3power).mul(player.p.baseAscend)
+        player.p.ascendSpeed = (player.p.maxMult).div(250).max(1).pow(ascS).floor().div(2).max(1).log2().pow(1.75).max(1).add(1).pow(chal15rew).pow(player.inf.collupg3power).mul(player.p.baseAscend)
+        player.p.ascendBoost = (player.p.maxMult).div(5e3).max(1).pow(ascB).floor().pow(0.12).max(1).log10().times(10).round().div(10).add(1.2).times(10).pow(chal15rew).pow(player.inf.collupg3power).mul(player.p.baseAscend).mul(boostPower()).mul(player.p.infchallenge12).max(0.1)
+        player.p.ascendPower = (player.p.maxMult).max(1).log10().pow(ascP).max(1).times(a41).pow(chal15rew).times(chal11comp).pow(player.inf.collupg3power)
         }
 
         let chal16Reff = decimalOne
@@ -2920,7 +3476,6 @@ addLayer("p", {
             player.p.baseAscend = decimalOne
         }
         
-        
 
         // player.p.redSpd = new Decimal(1/2).times((Decimal.pow(1.67, ((player.p.redBuyAmt).div(5)))).div(10)).add(0.2)
         // player.p.orangeSpd = new Decimal(1/4).times((Decimal.pow(1.67, ((player.p.orangeBuyAmt).div(4)))).div(10)).add(0.1)
@@ -2933,16 +3488,16 @@ addLayer("p", {
         // player.p.pinkSpd = new Decimal(1/18).times((Decimal.pow(1.67, ((player.p.pinkBuyAmt).div(0.0625)))).div(10)).add(0.00078125)
         // player.p.whiteSpd = new Decimal(1/20).times((Decimal.pow(1.67, ((player.p.whiteBuyAmt).div(0.03125)))).div(10)).add(0.000390625)
 
-        player.p.redSpd = new Decimal(1/2).add((player.p.redBuyAmt).div(10)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.orangeSpd = new Decimal(1/4).add((player.p.orangeBuyAmt).div(20)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.yellowSpd = new Decimal(1/6).add((player.p.yellowBuyAmt).div(30)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.limeSpd = new Decimal(1/8).add((player.p.limeBuyAmt).div(40)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.greenSpd = new Decimal(1/10).add((player.p.greenBuyAmt).div(50)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.cyanSpd = new Decimal(1/12).add((player.p.cyanBuyAmt).div(60)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.blueSpd = new Decimal(1/14).add((player.p.blueBuyAmt).div(70)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.violetSpd = new Decimal(1/16).add((player.p.violetBuyAmt).div(80)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.pinkSpd = new Decimal(1/18).add((player.p.pinkBuyAmt).div(90)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
-        player.p.whiteSpd = new Decimal(1/20).add((player.p.whiteBuyAmt).div(100)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).div(player.p.chal17eff)
+        player.p.redSpd = new Decimal(1/2).add((player.p.redBuyAmt).div(10)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.orangeSpd = new Decimal(1/4).add((player.p.orangeBuyAmt).div(20)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.yellowSpd = new Decimal(1/6).add((player.p.yellowBuyAmt).div(30)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.limeSpd = new Decimal(1/8).add((player.p.limeBuyAmt).div(40)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.greenSpd = new Decimal(1/10).add((player.p.greenBuyAmt).div(50)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.cyanSpd = new Decimal(1/12).add((player.p.cyanBuyAmt).div(60)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.blueSpd = new Decimal(1/14).add((player.p.blueBuyAmt).div(70)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.violetSpd = new Decimal(1/16).add((player.p.violetBuyAmt).div(80)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.pinkSpd = new Decimal(1/18).add((player.p.pinkBuyAmt).div(90)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
+        player.p.whiteSpd = new Decimal(1/20).add((player.p.whiteBuyAmt).div(100)).times(player.p.baseSpeed).times(a32).times(inf31).times(inf61).times(inf91).times(inf143).div(player.p.chal17eff)
 
         player.p.rProg = player.p.rProg.add((player.p.redSpd).div(30)).min(1.01)
         if(player.p.rProg >= 1) {
@@ -2950,7 +3505,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.rTimes = player.p.rTimes.add(1)
-            player.p.rMult = player.p.rMult.add(((player.p.rBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.rAsc)))).times(tmp.a.effect).times((player.p.redSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Reff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.rMult = player.p.rMult.add(((player.p.rBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.rAsc)))).times(tmp.a.effect).times((player.p.redSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Reff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.rProg = decimalZero
         }
 
@@ -2960,7 +3515,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.oTimes = player.p.oTimes.add(1)
-            player.p.oMult = player.p.oMult.add(((player.p.oBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.oAsc)))).times(tmp.a.effect).times((player.p.orangeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Oeff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.oMult = player.p.oMult.add(((player.p.oBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.oAsc)))).times(tmp.a.effect).times((player.p.orangeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Oeff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.oProg = decimalZero
         }
 
@@ -2970,7 +3525,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.yTimes = player.p.yTimes.add(1)
-            player.p.yMult = player.p.yMult.add(((player.p.yBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.yAsc)))).times(tmp.a.effect).times((player.p.yellowSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Yeff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.yMult = player.p.yMult.add(((player.p.yBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.yAsc)))).times(tmp.a.effect).times((player.p.yellowSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Yeff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.yProg = decimalZero
         }
 
@@ -2980,7 +3535,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.lTimes = player.p.lTimes.add(1)
-            player.p.lMult = player.p.lMult.add(((player.p.lBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.lAsc)))).times(tmp.a.effect).times((player.p.limeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Leff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.lMult = player.p.lMult.add(((player.p.lBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.lAsc)))).times(tmp.a.effect).times((player.p.limeSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Leff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.lProg = decimalZero
         }
 
@@ -2990,7 +3545,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.gTimes = player.p.gTimes.add(1)
-            player.p.gMult = player.p.gMult.add(((player.p.gBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.gAsc)))).times(tmp.a.effect).times((player.p.greenSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Geff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.gMult = player.p.gMult.add(((player.p.gBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.gAsc)))).times(tmp.a.effect).times((player.p.greenSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Geff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.gProg = decimalZero
         }
 
@@ -3000,7 +3555,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.cTimes = player.p.cTimes.add(1)
-            player.p.cMult = player.p.cMult.add(((player.p.cBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.cAsc)))).times(tmp.a.effect).times((player.p.cyanSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Ceff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.cMult = player.p.cMult.add(((player.p.cBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.cAsc)))).times(tmp.a.effect).times((player.p.cyanSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Ceff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.cProg = decimalZero
         }
 
@@ -3010,7 +3565,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.bTimes = player.p.bTimes.add(1)
-            player.p.bMult = player.p.bMult.add(((player.p.bBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.bAsc)))).times(tmp.a.effect).times((player.p.blueSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Beff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.bMult = player.p.bMult.add(((player.p.bBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.bAsc)))).times(tmp.a.effect).times((player.p.blueSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Beff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.bProg = decimalZero
         }
 
@@ -3020,7 +3575,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.vTimes = player.p.vTimes.add(1)
-            player.p.vMult = player.p.vMult.add(((player.p.vBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.vAsc)))).times(tmp.a.effect).times((player.p.violetSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Veff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.vMult = player.p.vMult.add(((player.p.vBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.vAsc)))).times(tmp.a.effect).times((player.p.violetSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Veff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.vProg = decimalZero
         }
 
@@ -3030,7 +3585,7 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.pTimes = player.p.pTimes.add(1)
-            player.p.pMult = player.p.pMult.add(((player.p.pBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.pAsc)))).times(tmp.a.effect).times((player.p.pinkSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Peff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.pMult = player.p.pMult.add(((player.p.pBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.pAsc)))).times(tmp.a.effect).times((player.p.pinkSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Peff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.pProg = decimalZero
         }
 
@@ -3040,19 +3595,19 @@ addLayer("p", {
             player.points = player.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.points = player.p.points.add((player.p.addEnergy).pow((player.p.multExp).add(a22).add(a33)))
             player.p.wTimes = player.p.wTimes.add(1)
-            player.p.wMult = player.p.wMult.add(((player.p.wBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.wAsc)))).times(tmp.a.effect).times((player.p.whiteSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(chal16Weff).div(player.p.chal17eff).div(player.p.chal18eff))
+            player.p.wMult = player.p.wMult.add(((player.p.wBaseMult).times(Decimal.pow(((player.p.baseBoost).times(10)),(player.p.wAsc)))).times(tmp.a.effect).times((player.p.whiteSpd).div(100/3).max(1)).times(player.p.baseMult).times(player.inf.genmult).times(inf42).pow(ichal13).pow(chal13comp).times(inf83).times(inf151).times(chal16Weff).div(player.p.chal17eff).div(player.p.chal18eff))
             player.p.wProg = decimalZero
         }
 
 
 
-        if(player.points.gte("1.798e308")) {
+        if(player.points.gte("1.798e308") && !hasUpgrade("inf",111)) {
             player.points = player.points.min("1.798e308")
             player.p.addEnergy = player.p.addEnergy.min("1.798e308")
             player.p.truedisplay = player.p.truedisplay.min("1.798e308")
             if(!inChallenge("chal",11) && !inChallenge("chal",12) && !inChallenge("chal",13) && !inChallenge("chal",14) && !inChallenge("chal",15) && !inChallenge("chal",16) && !inChallenge("chal",17) && !inChallenge("chal",18) && !inChallenge("chal",19)) infinity()
         }
-        if(player.p.points.gte("1.798e308")) player.p.points = player.p.points.min("1.798e308")
+        if((player.p.points.gte("1.798e308")) && (!hasUpgrade("inf",111))) player.p.points = player.p.points.min("1.798e308")
     },
 
     passiveGeneration(){
