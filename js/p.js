@@ -3608,6 +3608,7 @@ addLayer("p", {
             if(!inChallenge("chal",11) && !inChallenge("chal",12) && !inChallenge("chal",13) && !inChallenge("chal",14) && !inChallenge("chal",15) && !inChallenge("chal",16) && !inChallenge("chal",17) && !inChallenge("chal",18) && !inChallenge("chal",19)) infinity()
         }
         if((player.p.points.gte("1.798e308")) && (!hasUpgrade("inf",111))) player.p.points = player.p.points.min("1.798e308")
+        player.points = player.points.max(0)
     },
 
     passiveGeneration(){
