@@ -380,6 +380,7 @@ function infinity() {
   player.p.TpinkBuyAmt = decimalZero
   player.p.TwhiteBuyAmt = decimalZero
   player.inf.genpower = decimalZero
+  if(player.inf.gen1bought.lt(decimalOne)) player.inf.gen1bought = decimalOne
   player.inf.gen1 = new Decimal(player.inf.gen1bought)
   player.inf.gen2 = new Decimal(player.inf.gen2bought)
   player.inf.gen3 = new Decimal(player.inf.gen3bought)
@@ -418,6 +419,51 @@ function getCollChance(min, max) {
   let y = new Decimal(max).floor()
   let z = Math.random() * 100
   return z
+}
+
+
+
+
+function eternity() {
+  infinity()
+  player.inf.upgrades = []
+  player.inf.collchanceupg = decimalZero
+  player.inf.collintupg = decimalZero
+  player.inf.collmultupg = decimalZero
+  player.inf.collparts = decimalZero
+  player.inf.collchance = decimalZero
+  player.inf.collinterval = decimalOne
+  player.inf.collmult = decimalOne
+  player.inf.collupg1 = decimalZero
+  player.inf.collupg2 = decimalZero
+  player.inf.collupg3 = decimalZero
+  player.inf.collupg4 = decimalZero
+  player.p.costscaling = new Decimal(20)
+  player.inf.genexp = new Decimal(2/3)
+  player.chal.challenges = []
+  player.inf.infenergy = decimalZero
+  player.inf.infinities = decimalZero
+  player.p.infRecord = new Decimal(31536000)
+  player.inf.gen1 = decimalZero
+  player.inf.gen1bought = decimalZero
+  player.inf.gen2 = decimalZero
+  player.inf.gen2bought = decimalZero
+  player.inf.gen3 = decimalZero
+  player.inf.gen3bought = decimalZero
+  player.inf.gen4 = decimalZero
+  player.inf.gen4bought = decimalZero
+  player.inf.gen5 = decimalZero
+  player.inf.gen5bought = decimalZero
+  player.inf.gen6 = decimalZero
+  player.inf.gen6bought = decimalZero
+  player.inf.gen7 = decimalZero
+  player.inf.gen7bought = decimalZero
+  player.inf.gen8 = decimalZero
+  player.inf.gen8bought = decimalZero
+  player.inf.gen9 = decimalZero
+  player.inf.gen9bought = decimalZero
+  player.inf.gen10 = decimalZero
+  player.inf.gen10bought = decimalZero
 }
 
 //mult bonus

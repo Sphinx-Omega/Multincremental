@@ -9,7 +9,7 @@ addLayer("inf", {
         best: decimalZero,
         infinities: decimalZero,
         infenergy: decimalZero,
-        gen1: decimalOne,
+        gen1: decimalZero,
         gen2: decimalZero,
         gen3: decimalZero,
         gen4: decimalZero,
@@ -19,7 +19,7 @@ addLayer("inf", {
         gen8: decimalZero,
         gen9: decimalZero,
         gen10: decimalZero,
-        gen1bought: decimalOne,
+        gen1bought: decimalZero,
         gen2bought: decimalZero,
         gen3bought: decimalZero,
         gen4bought: decimalZero,
@@ -3473,7 +3473,7 @@ addLayer("inf", {
                 if ((!hasUpgrade("inf",143)) && (!hasUpgrade("inf",144))){
                     return (processText(this.realname, garbledNameTemplate(153)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(153)) + "<br><br>" + processText(this.realcost, garbledCostTemplate(153)))
                 }
-                return "<h3>UPG-15c<br><br>Generator mults are multiplied by how many of the next Generator you have bought ([amount+1]<sup>0.85</sup>)"+"<br><br>Cost: 2.500e17 IE"
+                return "<h3>UPG-15c<br><br>Generator mults are multiplied by how many of the next Generator you have bought ([amount+1]<sup>0.85</sup>)"+"<br><br>Cost: 2.500e16 IE"
             },
             realtooltip(){
                 return "Generator mults are multiplied by how many of the next Generator you have bought ([amount+1]<sup>0.85</sup>)"
@@ -3482,16 +3482,16 @@ addLayer("inf", {
                 return "UPG-15c"
             },
             realcost(){
-                return "Cost: 2.500e17 IE"
+                return "Cost: 2.500e16 IE"
             },
             cost(){
-                return new Decimal(2.5e17)
+                return new Decimal(2.5e16)
             },
             canAfford(){
-                return (player.inf.infenergy.gte(2.5e17) && hasUpgrade("inf",143) && hasUpgrade("inf",144))
+                return (player.inf.infenergy.gte(2.5e16) && hasUpgrade("inf",143) && hasUpgrade("inf",144))
             },
             pay(){
-                player.inf.infenergy = player.inf.infenergy.sub(2.5e17)
+                player.inf.infenergy = player.inf.infenergy.sub(2.5e16)
             },
             unlocked(){
                 return hasUpgrade("inf",111)
