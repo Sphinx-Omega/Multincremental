@@ -172,7 +172,7 @@ addLayer("p", {
     row: 0, // Row the layer is in on the tree (0 is the first row)
     hotkeys: [
         {
-            key: "m", description: "M: Rapid buy all bars",
+            key: "m", description: "M: Buy Max",
                 onPress(){
                     //for(i = 0; i<20 ; i++){
                     buyMaxBuyable("p",11)

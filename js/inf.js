@@ -145,7 +145,7 @@ addLayer("inf", {
                 "height":"50%",
                 "width"(){
                     if(hasUpgrade("inf",111)) return "265%"
-                    else return "145%"
+                    else return "115%"
                 },
                 // "overflow-x":"scroll",
                 // "scrollbar-color":"darkgray dimgray",
@@ -2819,7 +2819,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e6)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",111)?true:false)
@@ -2888,7 +2888,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e7)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",121)?true:false)
@@ -2957,7 +2957,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1.5e7)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",121)?true:false)
@@ -3029,7 +3029,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(5e8)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let g1 = player.inf.gen1bought
@@ -3113,7 +3113,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(2.5e9)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",131)?true:false)
@@ -3182,7 +3182,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(2.5e10)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",132)?true:false)
@@ -3254,7 +3254,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e12)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let infs = player.inf.infinities
@@ -3331,7 +3331,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e14)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let infs = player.inf.infinities.max(1).log2()
@@ -3414,7 +3414,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e15)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let time = player.p.infRecord
@@ -3494,7 +3494,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(2.5e17)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",143)?true:false)
@@ -3574,7 +3574,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1.5e18)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let gp = player.inf.genpower.max(1).log10()
@@ -3659,7 +3659,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(2.5e19)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let cp = player.inf.collparts.max(1).root(2)
@@ -3750,7 +3750,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e33)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let time = player.chal.chaltotaltime
@@ -3835,7 +3835,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e33)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let ie = player.inf.infenergy.max(1)
@@ -3914,7 +3914,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e33)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let cp = player.inf.collparts.max(1)
@@ -3993,7 +3993,7 @@ addLayer("inf", {
                 player.inf.infenergy = player.inf.infenergy.sub(1e255)
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             effect(){
                 let infs = player.inf.infinities.max(1)
@@ -4079,7 +4079,7 @@ addLayer("inf", {
                 //player.inf.infenergy = player.inf.infenergy.sub("1.798e308")
             },
             unlocked(){
-                return true
+                return hasUpgrade("inf",111)
             },
             branches(){
                 let a = (hasUpgrade("inf",201)?true:false)
