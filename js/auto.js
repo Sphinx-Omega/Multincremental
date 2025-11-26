@@ -1487,44 +1487,44 @@ addLayer("auto", {
 
     update(diff){
 
-        if(getClickableState("auto",51) == 1) {
-            buyMaxBuyable("p",11)
-        }
-
-        if(getClickableState("auto",52) == 1) {
-            buyMaxBuyable("p",12)
-        }
-
-        if(getClickableState("auto",53) == 1) {
-            buyMaxBuyable("p",13)
-        }
-
-        if(getClickableState("auto",54) == 1) {
-            buyMaxBuyable("p",14)
-        }
-
-        if(getClickableState("auto",55) == 1) {
-            buyMaxBuyable("p",15)
-        }
-
-        if(getClickableState("auto",56) == 1) {
-            buyMaxBuyable("p",16)
-        }
-
-        if(getClickableState("auto",57) == 1) {
-            buyMaxBuyable("p",17)
-        }
-
-        if(getClickableState("auto",58) == 1) {
-            buyMaxBuyable("p",18)
+        if(getClickableState("auto",61) == 1) {
+            buyMaxBuyable("p",21)
         }
 
         if(getClickableState("auto",59) == 1) {
             buyMaxBuyable("p",19)
         }
 
-        if(getClickableState("auto",61) == 1) {
-            buyMaxBuyable("p",21)
+        if(getClickableState("auto",58) == 1) {
+            buyMaxBuyable("p",18)
+        }
+
+        if(getClickableState("auto",57) == 1) {
+            buyMaxBuyable("p",17)
+        }
+
+        if(getClickableState("auto",56) == 1) {
+            buyMaxBuyable("p",16)
+        }
+
+        if(getClickableState("auto",55) == 1) {
+            buyMaxBuyable("p",15)
+        }
+
+        if(getClickableState("auto",54) == 1) {
+            buyMaxBuyable("p",14)
+        }
+
+        if(getClickableState("auto",53) == 1) {
+            buyMaxBuyable("p",13)
+        }
+
+        if(getClickableState("auto",52) == 1) {
+            buyMaxBuyable("p",12)
+        }
+
+        if(getClickableState("auto",51) == 1) {
+            buyMaxBuyable("p",11)
         }
 
         if(getClickableState("auto",71) == 1) {
