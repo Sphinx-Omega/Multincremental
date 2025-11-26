@@ -145,7 +145,7 @@ addLayer("inf", {
                 "height":"50%",
                 "width"(){
                     if(hasUpgrade("inf",111)) return "265%"
-                    else return "135%"
+                    else return "145%"
                 },
                 // "overflow-x":"scroll",
                 // "scrollbar-color":"darkgray dimgray",
