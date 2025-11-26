@@ -452,7 +452,7 @@ addLayer("p", {
                 player.p.TredBuyAmt = player.p.TredBuyAmt.add(this.realMax())
                 player.p.redBuyAmt = player.p.redBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -562,7 +562,7 @@ addLayer("p", {
                 player.p.TorangeBuyAmt = player.p.TorangeBuyAmt.add(this.realMax())
                 player.p.orangeBuyAmt = player.p.orangeBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -669,7 +669,7 @@ addLayer("p", {
                 player.p.yellowBuyAmt = player.p.yellowBuyAmt.add(this.realMax())
                 player.p.TyellowBuyAmt = player.p.TyellowBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -776,7 +776,7 @@ addLayer("p", {
                 player.p.limeBuyAmt = player.p.limeBuyAmt.add(this.realMax())
                 player.p.TlimeBuyAmt = player.p.TlimeBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -883,7 +883,7 @@ addLayer("p", {
                 player.p.greenBuyAmt = player.p.greenBuyAmt.add(this.realMax())
                 player.p.TgreenBuyAmt = player.p.TgreenBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -991,7 +991,7 @@ addLayer("p", {
                 player.p.cyanBuyAmt = player.p.cyanBuyAmt.add(this.realMax())
                 player.p.TcyanBuyAmt = player.p.TcyanBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1099,7 +1099,7 @@ addLayer("p", {
                 player.p.blueBuyAmt = player.p.blueBuyAmt.add(this.realMax())
                 player.p.TblueBuyAmt = player.p.TblueBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1207,7 +1207,7 @@ addLayer("p", {
                 player.p.violetBuyAmt = player.p.violetBuyAmt.add(this.realMax())
                 player.p.TvioletBuyAmt = player.p.TvioletBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1315,7 +1315,7 @@ addLayer("p", {
                 player.p.pinkBuyAmt = player.p.pinkBuyAmt.add(this.realMax())
                 player.p.TpinkBuyAmt = player.p.TpinkBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
@@ -1423,7 +1423,7 @@ addLayer("p", {
                 player.p.whiteBuyAmt = player.p.whiteBuyAmt.add(this.realMax())
                 player.p.TwhiteBuyAmt = player.p.TwhiteBuyAmt.add(this.realMax())
                 setBuyableAmount(this.layer, this.id, getBuyableAmount(this.layer, this.id).add(this.realMax()))
-                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost())
+                if(!hasChallenge("chal",17)) player.points = player.points.sub(this.maxCost()).max(0)
                 if(inChallenge("chal",17)) player.p.chal17eff = new Decimal(1000)
             },
 
