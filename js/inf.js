@@ -142,7 +142,7 @@ addLayer("inf", {
             style: {
                 "right":"0",
                 "left":"0",
-                "height":"10%",
+                "height":"50%",
                 "width"(){
                     if(hasUpgrade("inf",111)) return "265%"
                     else return "145%"
@@ -4807,7 +4807,7 @@ addLayer("inf", {
 
         // player.inf.genpower = player.inf.genpower.add(new Decimal(1/300).times(Decimal.pow(2,((player.inf.gen1bought).sub(1)))).times(player.inf.gen1).times((player.inf.gen1mult).div(8)))
         player.inf.genpower = player.inf.genpower.add(decimalOne.div(30).times(player.inf.gen1prod))
-        player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp)
+        player.inf.genmult = (player.inf.genpower).pow(player.inf.genexp).max(1)
 
         if(player.inf.gen2.gt(0)) player.inf.gen1 = player.inf.gen1.add((player.inf.gen2mult.div(30)).times(player.inf.gen2))
         if(player.inf.gen3.gt(0)) player.inf.gen2 = player.inf.gen2.add((player.inf.gen3mult.div(30)).times(player.inf.gen3))

@@ -105,8 +105,9 @@ var systemComponents = {
 		<h1 v-if="(player.points > 1.797e308) && (player.points.lt('1e1e12') && !(player.p.infinities < 1e3)) && (player.tab == 'p')"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Rainbow.gif); background-size: cover; -webkit-background-clip: text" id="points">{{format(player.points, 3)}} <b>🗲</b></h1>
 		<h1 v-if="(player.points.gte('1e1e12')) && (player.tab == 'p')"  class="overlayThing" style="color: transparent; background-image: url(images/bgs/Transcension.gif); background-size: cover; -webkit-background-clip: text">ℵ<sub>0</sub> <b>🗲</b></h1>
 		<h2 v-if="player.points.lt('1e1e15') && (player.tab == 'p')"  class="overlayThing"> </h2>
-		<div v-if="player.tab == 'inf'" class="overlayThing" style="width: 100%; height: 14%; background-color: #4e3261ff; z-index: 0; position: fixed; transition-duration: 0.5s"></div>
-		<div v-else-if="player.tab == 'a'" class="overlayThing" style="width: 100%; height: 14%; background-color: #496132ff; z-index: 0; position: fixed; transition-duration: 0.5s"></div>
+		<div v-if="player.tab == 'inf'" class="overlayThing" style="width: 100%; height: 14%; background-color: #4e3261ff; z-index: 0; position: fixed; transition-duration: 0.1s"></div>
+		<div v-else-if="player.tab == 'a'" class="overlayThing" style="width: 100%; height: 14%; background-color: #496132ff; z-index: 0; position: fixed; transition-duration: 0.1s"></div>
+		<div v-else-if="player.tab == 'eter'" class="overlayThing" style="width: 100%; height: 14%; background-color: #3d5563ff; z-index: 0; position: fixed; transition-duration: 0.1s"></div>
 	</div>
 	`
 	// <div v-for="thing in tmp.displayThings" class="overlayThing"><span v-if="thing" v-html="thing"></span></div>

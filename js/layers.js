@@ -420,11 +420,71 @@ function getCollChance(min, max) {
   return z
 }
 
-// function getMaxBuyBars(x) {
-//   // for(i = 0 ; i < 2 ; i++) {
-//       //if(canBuyBuyable("p",x)) {
-//         buyMaxBuyable("p",x)
-//       //}
-//       //else break;
-//   //}
-// }
+//mult bonus
+function getEterBonus1() {
+  let et = player.eter.eternities.add(1).log(1.1)
+  let eff = Decimal.pow(3,et).log(2).exp().pow(0.75).max(1)
+  let cap = new Decimal(1e15)
+  let sc = new Decimal(0.45)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}
+
+//speed bonus
+function getEterBonus2() {
+  let et = player.eter.eternities.add(1).log(2)
+  let eff = Decimal.pow(2,et).log(2).exp().pow(0.75).max(1)
+  let cap = new Decimal(1e6)
+  let sc = new Decimal(0.4)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}
+
+//boost bonus
+function getEterBonus3() {
+  let et = player.eter.eternities.add(1).log(10/3)
+  let eff = Decimal.pow(2,et).log(1.75).exp().pow(0.75).max(1)
+  let cap = new Decimal(1e3)
+  let cap2 = new Decimal(1e9)
+  let sc = new Decimal(0.25)
+  let sc2 = new Decimal(0.25)
+  eff = softcapEterBonus(eff,cap2,sc2)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}
+
+//infinity bonus
+function getEterBonus4() {
+  let et = player.eter.eternities.add(1).log(2)
+  let eff = Decimal.pow(2,et).log(2).exp().pow(0.75).max(1)
+  let cap = new Decimal(1e6)
+  let sc = new Decimal(0.4)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}
+
+//generator bonus
+function getEterBonus5() {
+  let et = player.eter.eternities.add(1).log(2)
+  let eff = Decimal.pow(2,et).log(2).exp().pow(0.8).max(1)
+  let cap = new Decimal(1e6)
+  let cap2 = new Decimal(1e100)
+  let sc = new Decimal(0.2)
+  let sc2 = new Decimal(0.2)
+  eff = softcapEterBonus(eff,cap2,sc2)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}
+
+//collider particles bonus
+function getEterBonus6() {
+  let et = player.eter.eternities.add(1).log(1.75)
+  let eff = Decimal.pow(2,et).log(2).exp().pow(0.7).max(1)
+  let cap = new Decimal(100)
+  let cap2 = new Decimal(1e33)
+  let sc = new Decimal(0.2)
+  let sc2 = new Decimal(0.2)
+  eff = softcapEterBonus(eff,cap2,sc2)
+  eff = softcapEterBonus(eff,cap,sc)
+  return eff
+}

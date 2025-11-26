@@ -107,6 +107,32 @@
 	text-shadow: 0 0 0px var(--color);
 }
 
+.eter.treeNode {
+	transform: scale(1, 1);
+	height: 6.5%;
+	width: 10.85%;
+	background-color: rgba(94, 94, 94, 1);
+	border: var(--hqProperty1);
+	border-color: rgba(0, 0, 0, 0.125);
+	border-radius: 0%;
+	box-shadow: var(--hqProperty2a), var(--hqProperty2b);
+	font-size: 32px;
+	font-family: "Lucida Console", "Courier New", monospace;
+	color: rgba(100, 49, 49, 0.808);
+	text-shadow: var(--hqProperty3);
+	padding: 0;
+	margin: 0 0 0 0;
+	position: absolute;
+	right: 0%;
+	top: 28.3%;
+}
+
+.eter.treeNode:hover {
+	transform: scale(1, 1);
+	background-color: rgb(138, 138, 138);
+	text-shadow: 0 0 0px var(--color);
+}
+
 .auto.treeNode {
 	transform: scale(1, 1);
 	height: 6.5%;
@@ -124,7 +150,7 @@
 	margin: 0 0 0 0;
 	position: absolute;
 	right: 0%;
-	top: 28.3%;
+	top: 34.8%;
 }
 
 .auto.treeNode:hover {
@@ -150,7 +176,7 @@
 	margin: 0 0 0 0;
 	position: absolute;
 	right: 0%;
-	top: 34.8%;
+	top: 41.3%;
 }
 
 .chal.treeNode:hover {
@@ -176,7 +202,7 @@
 	margin: 0 0 0 0;
 	position: absolute;
 	right: 0%;
-	top: 41.3%;
+	top: 47.8%;
 }
 
 .a.treeNode:hover {
@@ -202,7 +228,7 @@
 	margin: 0 0 0 0;
 	position: absolute;
 	right: 0%;
-	top: 47.8%;
+	top: 54.3%;
 }
 
 .statstab.treeNode:hover {
@@ -228,7 +254,7 @@
 	margin: 0 0 0 0;
 	position: absolute;
 	right: 0%;
-	top: 54.3%;
+	top: 60.8%;
 }
 
 .helptab.treeNode:hover {

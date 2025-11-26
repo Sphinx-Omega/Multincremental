@@ -91,6 +91,12 @@ function softcapBarsInverted(value, cap, power) {
 		return value.div(cap.pow(decimalOne.sub(power))).pow(decimalOne.div(power))
 }
 
+function softcapEterBonus(value, cap, power) {
+	if (value.lte(cap)) return value
+	else
+		return value.pow(power).times(cap.pow(decimalOne.sub(power)))
+}
+
 // Return true if the layer should be highlighted. By default checks for upgrades only.
 function shouldNotify(layer){
 	for (id in tmp[layer].upgrades){
