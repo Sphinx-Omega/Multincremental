@@ -1610,7 +1610,7 @@ addLayer("inf", {
 
         44: {
             cost() { 
-                let sc = (this.bought().sub(4).max(0)).times(1.625).pow(1.1)
+                let sc = (this.bought().sub(4).max(0)).times(1.55).pow(1.1)
                 let cost = Decimal.pow(5,(this.bought())).max(1).times(new Decimal(75).pow(this.bought().div(2.75).add(1))).times(Decimal.pow(1e6,sc))
                 if(hasUpgrade("inf",161)) cost = cost.div(upgradeEffect("inf",161))
                 return cost 
