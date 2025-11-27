@@ -1258,8 +1258,8 @@ addLayer("inf", {
         33: {
             cost() { 
                 let sc = player.inf.collmultupg.max(38).sub(37).pow(0.1125).times((this.bought().max(38).sub(37)).root(95))
-                let sc2 = player.inf.collmultupg.max(46).sub(45).pow(0.225).times((this.bought().max(46).sub(45)).root(20))
-                let cost = Decimal.pow(10,(this.bought().times(1.7))).times(Decimal.pow(2.45,this.bought())).max(1).times(1e9).pow(1.05).pow(sc).pow(sc2)
+                let sc2 = player.inf.collmultupg.max(46).sub(45).pow(0.255).times((this.bought().max(46).sub(45)).root(20))
+                let cost = Decimal.pow(10,(this.bought().times(1.6))).times(Decimal.pow(2.25,this.bought())).max(1).times(1e9).pow(1.05).pow(sc).pow(sc2)
                 if(hasUpgrade("inf",161)) cost = cost.div(upgradeEffect("inf",161))
                 return cost 
             },
