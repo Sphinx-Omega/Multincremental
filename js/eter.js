@@ -154,7 +154,7 @@ addLayer("eter", {
                 "transition-duration":"0s"
             },
             unlocked(){
-                return false
+                return player.eter.eternities.gte(1)
             },
         },
 
@@ -196,7 +196,7 @@ addLayer("eter", {
                 "transition-duration":"0s"
             },
             unlocked(){
-                return false
+                return player.eter.eternities.gte(2)
             }
         },
 
@@ -1198,7 +1198,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>3 Eternities<br><br><h2>Start with Infinity Challenges 1-5 completed"
+                return "<h1>3 Eternities<br><br><h2>Start with Infinity Challenges 1-5 completed and unlock the Infinity Autobuyer"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1262,7 +1262,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>8 Eternities<br><br><h2>Destabilizer Rods are twice as fast"
+                return "<h1>8 Eternities<br><br><h2>Destabilizer Rods are twice as fast and unlock Generator Autobuyers"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1294,7 +1294,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>15 Eternities<br><br><h2>Start with Infinity Broken"
+                return "<h1>15 Eternities<br><br><h2>Start with Infinity Broken and unlock Collider Autobuyers"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1390,7 +1390,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>100 Eternities<br><br><h2>Break Eternity"
+                return "<h1>100 Eternities<br><br><h2>Break Eternity and unlock the Eternity Autobuyer"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1422,7 +1422,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>2000 Eternities<br><br><h2>"
+                return "<h1>2000 Eternities<br><br><h2>Generate Eternities based on your fastest Eternity"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1454,7 +1454,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>"
+                return "<h1>5 ECs<br><br><h2>Prestige no longer resets anything"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1486,7 +1486,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>"
+                return "<h1>15 ECs<br><br><h2>Ascensions no longer reset anything"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1518,7 +1518,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>"
+                return "<h1>30 ECs<br><br><h2>Infinities no longer reset anything"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1550,7 +1550,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>"
+                return "<h1>50 ECs<br><br><h2>Eternities no longer reset anything"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",

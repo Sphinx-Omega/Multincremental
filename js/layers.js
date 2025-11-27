@@ -425,7 +425,7 @@ function getCollChance(min, max) {
 
 
 function eternity() {
-  infinity()
+  infinityNoTimeChange()
   player.inf.upgrades = []
   player.inf.collchanceupg = decimalZero
   player.inf.collintupg = decimalZero
@@ -440,8 +440,7 @@ function eternity() {
   player.inf.collupg4 = decimalZero
   player.p.costscaling = new Decimal(20)
   player.inf.genexp = new Decimal(2/3)
-  player.chal.challenges = []
-
+  keepChallenges()
   player.inf.infenergy = decimalZero
   player.inf.infinities = decimalZero
   player.inf.gen1 = decimalZero
@@ -464,6 +463,69 @@ function eternity() {
   player.inf.gen9bought = decimalZero
   player.inf.gen10 = decimalZero
   player.inf.gen10bought = decimalZero
+
+  //eter time here
+
+  player.eter.eternities.add(1)
+  player.eter.eterenergy.add(1)
+}
+
+function infinityNoTimeChange() {
+  ascend()
+  let basespeedmult = decimalOne
+  if(hasAchievement("a",61)) basespeedmult = new Decimal(10)
+  player.p.ascendAmt = decimalZero
+  player.p.truepresamt = decimalZero
+  player.p.baseMult = basespeedmult
+  player.p.baseSpeed = basespeedmult
+  player.p.baseBoost = decimalOne.times(boostPower())
+  player.p.baseAscend = decimalOne
+  player.p.ascboostcheck = false
+  if(player.p.TlimeBuyAmt.eq(0)){
+    player.p.ach82check = true
+  }
+  else player.p.ach82check = false
+  player.p.TredBuyAmt = decimalOne
+  player.p.TorangeBuyAmt = decimalZero
+  player.p.TyellowBuyAmt = decimalZero
+  player.p.TlimeBuyAmt = decimalZero
+  player.p.TgreenBuyAmt = decimalZero
+  player.p.TcyanBuyAmt = decimalZero
+  player.p.TblueBuyAmt = decimalZero
+  player.p.TvioletBuyAmt = decimalZero
+  player.p.TpinkBuyAmt = decimalZero
+  player.p.TwhiteBuyAmt = decimalZero
+  player.inf.genpower = decimalZero
+  if(player.inf.gen1bought.lt(decimalOne)) player.inf.gen1bought = decimalOne
+  player.inf.gen1 = new Decimal(player.inf.gen1bought)
+  player.inf.gen2 = new Decimal(player.inf.gen2bought)
+  player.inf.gen3 = new Decimal(player.inf.gen3bought)
+  player.inf.gen4 = new Decimal(player.inf.gen4bought)
+  player.inf.gen5 = new Decimal(player.inf.gen5bought)
+  player.inf.gen6 = new Decimal(player.inf.gen6bought)
+  player.inf.gen7 = new Decimal(player.inf.gen7bought)
+  player.inf.gen8 = new Decimal(player.inf.gen8bought)
+  player.inf.gen9 = new Decimal(player.inf.gen9bought)
+  player.inf.gen10 = new Decimal(player.inf.gen10bought)
+  player.p.TAsc = decimalZero
+  player.p.infTime = decimalZero
+}
+
+//for  milestones 3 and 4
+function keepChallenges() {
+  let a = 0
+  let b = 0
+  if(player.eter.eternities.gte(3)) a = 1
+  if(player.eter.eternities.gte(5)) b = 1
+  player.chal.challenges[11] = a
+  player.chal.challenges[12] = a
+  player.chal.challenges[13] = a
+  player.chal.challenges[14] = a
+  player.chal.challenges[15] = a
+  player.chal.challenges[16] = b
+  player.chal.challenges[17] = b
+  player.chal.challenges[18] = b
+  player.chal.challenges[19] = b
 }
 
 //mult bonus
