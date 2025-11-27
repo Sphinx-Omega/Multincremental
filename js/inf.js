@@ -61,7 +61,7 @@ addLayer("inf", {
         collchanceupg: decimalZero,
         collintupg: decimalZero,
         collmultupg: decimalZero,
-        collintlimit: new Decimal(0.01),
+        collintlimit: new Decimal(0.067),
         collupg1: decimalZero,
         collupg2: decimalZero,
         collupg3: decimalZero,
@@ -1081,7 +1081,7 @@ addLayer("inf", {
         31: {
             cost() { 
                 let sc = player.inf.collchanceupg.max(28).sub(27).pow(0.1).times((this.bought().max(28).sub(27)).root(100))
-                let cost = Decimal.pow(10,(this.bought().times(3))).max(1).times(1e6).pow(0.85).pow(sc)
+                let cost = Decimal.pow(10,(this.bought().times(3))).max(1).times(1e6).pow(0.885).pow(sc)
                 if(hasUpgrade("inf",161)) cost = cost.div(upgradeEffect("inf",161))
                 return cost 
             },
@@ -1378,6 +1378,7 @@ addLayer("inf", {
                 return dis + maxed
             },
             canAfford() {
+                if(player.inf.collupg4.gte(10)) return false
                 if(player.inf.collparts.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
 
@@ -1468,6 +1469,7 @@ addLayer("inf", {
                 return dis + maxed
             },
             canAfford() {
+                if(player.inf.collupg4.gte(25)) return false
                 if(player.inf.collparts.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
 
@@ -1557,6 +1559,7 @@ addLayer("inf", {
                 return dis + maxed
             },
             canAfford() {
+                if(player.inf.collupg4.gte(20)) return false
                 if(player.inf.collparts.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
 
@@ -1646,6 +1649,7 @@ addLayer("inf", {
                 return dis + maxed
             },
             canAfford() {
+                if(player.inf.collupg4.gte(10)) return false
                 if(player.inf.collparts.gte(tmp[this.layer].buyables[this.id].cost)) return true
             },
 
