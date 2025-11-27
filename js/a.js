@@ -518,7 +518,7 @@ addLayer("a", {
 
         43: {
             name() {
-                return "<h3>You're gonna need a bigger bar...<br><br></h3>Reach Infinity!<br><br><br><br>"+((hasAchievement("a",43))?(colorText("h3","lime","A new layer! (Soon™)")):(colorText("h3","red","A new layer! (Soon™)")))
+                return "<h3>You're gonna need a bigger bar...<br><br></h3>Reach Infinity!<br><br><br><br>"+((hasAchievement("a",43))?(colorText("h3","lime","A new layer!")):(colorText("h3","red","A new layer!")))
             },
             tooltip: " ",
             done() {
@@ -970,7 +970,7 @@ addLayer("a", {
             },
             tooltip: " ",
             done() {
-                return player.inf.points.gte(1e154)
+                return player.inf.infenergy.gte(1e154)
             },
             onComplete() {
                 addPoints("a",1)
@@ -994,11 +994,21 @@ addLayer("a", {
 
         102: {
             name() {
-                return "<h3>Boostmaxxing<br><br></h3>Reach Boost #50 on all bars"
+                return "<h3>Boostmaxxing<br><br></h3>Reach Boost #20 on all bars"
             },
             tooltip: " ",
             done() {
-                return player.inf.points.gte(1e300)
+                let b1 = (player.p.rAsc.gte(20))
+                let b2 = (player.p.oAsc.gte(20))
+                let b3 = (player.p.yAsc.gte(20))
+                let b4 = (player.p.lAsc.gte(20))
+                let b5 = (player.p.gAsc.gte(20))
+                let b6 = (player.p.cAsc.gte(20))
+                let b7 = (player.p.bAsc.gte(20))
+                let b8 = (player.p.vAsc.gte(20))
+                let b9 = (player.p.pAsc.gte(20))
+                let b10 = (player.p.wAsc.gte(20))
+                return ((b1)&&(b2)&&(b3)&&(b4)&&(b5)&&(b6)&&(b7)&&(b8)&&(b9)&&(b10))
             },
             onComplete() {
                 addPoints("a",1)
@@ -1022,11 +1032,11 @@ addLayer("a", {
 
         103: {
             name() {
-                return "<h3>Beyond<br><br></h3>Reach Eternity"
+                return "<h3>Beyond<br><br></h3>Reach Eternity<br><br><br><br>"+((hasAchievement("a",103))?(colorText("h3","lime","A new layer! (Soon™)")):(colorText("h3","red","A new layer! (Soon™)")))
             },
             tooltip: " ",
             done() {
-                return player.inf.points.gte(1.797e308)
+                return hasUpgrade("inf",211)
             },
             onComplete() {
                 addPoints("a",1)
