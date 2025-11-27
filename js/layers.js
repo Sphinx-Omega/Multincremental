@@ -159,7 +159,7 @@ function IEgen() {
   if (hasChallenge("chal",19)) ieGen = ieGen.add(1)
   }
 
-  ieGen = ieGen.times((player.points.div(1.798).max(1).log10().div(308).max(1).pow(2.875)))
+  ieGen = ieGen.times((player.points.div(1.798).max(1).log10().div(308).max(1).pow(3)))
   ieGen = ieGen.times(player.inf.collIE)
   ieGen = ieGen.min("1.798e308")
   
@@ -441,6 +441,7 @@ function eternity() {
   player.p.costscaling = new Decimal(20)
   player.inf.genexp = new Decimal(2/3)
   player.chal.challenges = []
+
   player.inf.infenergy = decimalZero
   player.inf.infinities = decimalZero
   player.p.infRecord = new Decimal(31536000)
