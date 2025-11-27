@@ -3552,7 +3552,7 @@ addLayer("inf", {
                 if ((!hasUpgrade("inf",151)) && (!hasUpgrade("inf",152))){
                     return (processText(this.realname, garbledNameTemplate(161)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(161)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(161)) +  "<br><br>" + processText(this.realcost, garbledCostTemplate(161)))
                 }
-                return "<h3>UPG-16a<br><br>Collider IE and Particle upgrades are cheaper based on Generator Power<br><br>Currently: /"+format(this.effect(),2)+"<br><br>Cost: 1.500e18 IE"
+                return "<h3>UPG-16a<br><br>Collider IE and Particle upgrades are cheaper based on Generator Power<br><br>Currently: /"+format(this.effect(),2)+"<br><br>Cost: 2.500e17 IE"
             },
             realtooltip(){
                 return "Collider IE and Particle upgrades are cheaper based on Generator Power"
@@ -3561,7 +3561,7 @@ addLayer("inf", {
                 return "UPG-16a"
             },
             realcost(){
-                return "Cost: 1.500e18 IE"
+                return "Cost: 2.500e17 IE"
             },
             realeffect(){
                 let capped = ""
@@ -3569,13 +3569,13 @@ addLayer("inf", {
                 return "Currently: /"+format(this.effect(),2)+capped
             },
             cost(){
-                return new Decimal(1.5e18)
+                return new Decimal(2.5e17)
             },
             canAfford(){
-                return (player.inf.infenergy.gte(1.5e18) && hasUpgrade("inf",151) && hasUpgrade("inf",152))
+                return (player.inf.infenergy.gte(2.5e17) && hasUpgrade("inf",151) && hasUpgrade("inf",152))
             },
             pay(){
-                player.inf.infenergy = player.inf.infenergy.sub(1.5e18)
+                player.inf.infenergy = player.inf.infenergy.sub(2.5e17)
             },
             unlocked(){
                 return hasUpgrade("inf",111)
