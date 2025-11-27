@@ -1081,7 +1081,7 @@ addLayer("inf", {
         31: {
             cost() { 
                 let sc = player.inf.collchanceupg.max(28).sub(27).pow(0.15).times((this.bought().max(28).sub(27)).root(100))
-                let cost = Decimal.pow(10,(this.bought().times(3))).max(1).times(1e6).pow(0.75).pow(sc)
+                let cost = Decimal.pow(10,(this.bought().times(3))).max(1).times(5e7).pow(0.625).pow(sc)
                 if(hasUpgrade("inf",161)) cost = cost.div(upgradeEffect("inf",161))
                 return cost 
             },
