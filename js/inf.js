@@ -3813,7 +3813,7 @@ addLayer("inf", {
                 if (!hasUpgrade("inf",171)){
                     return (processText(this.realname, garbledNameTemplate(181)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(181)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(181)) +  "<br><br>" + processText(this.realcost, garbledCostTemplate(181)))
                 }
-                return "<h3>UPG-18<br><br>IE boosts passive Infinity gain<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 1.000e42 IE"
+                return "<h3>UPG-18<br><br>IE boosts passive Infinity gain<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 1.000e25 IE"
             },
             realtooltip(){
                 return "IE boosts passive Infinity gain"
@@ -3822,7 +3822,7 @@ addLayer("inf", {
                 return "UPG-18"
             },
             realcost(){
-                return "Cost: 1.000e42 IE"
+                return "Cost: 1.000e25 IE"
             },
             realeffect(){
                 let capped = ""
@@ -3830,13 +3830,13 @@ addLayer("inf", {
                 return "Currently: x"+format(this.effect(),2)+capped
             },
             cost(){
-                return new Decimal(1e42)
+                return new Decimal(1e25)
             },
             canAfford(){
-                return (player.inf.infenergy.gte(1e42) && hasUpgrade("inf",171))
+                return (player.inf.infenergy.gte(1e25) && hasUpgrade("inf",171))
             },
             pay(){
-                player.inf.infenergy = player.inf.infenergy.sub(1e33)
+                player.inf.infenergy = player.inf.infenergy.sub(1e25)
             },
             unlocked(){
                 return hasUpgrade("inf",111)
