@@ -2090,7 +2090,7 @@ addLayer("inf", {
             },
             effect(){
                 let infs = player.inf.infinities
-                let eff = infs.add(2).log2().times(0.42).max(1)
+                let eff = infs.add(2).log2().times(0.85).pow(1.25).max(1)
                 return eff
             },
             style: {"width":"5%","height":"10%","position":"absolute",
