@@ -88,8 +88,7 @@ addLayer("eter", {
                 "left":"0",
                 "height":"64.5%",
                 "width"(){
-                    if(hasUpgrade("inf",111)) return "265%"
-                    else return "145%"
+                    return "100%"
                 },
                 // "overflow-x":"scroll",
                 // "scrollbar-color":"darkgray dimgray",
@@ -1135,7 +1134,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>1 Eternity"
+                return "<h1>1 Eternity<br><br><h2>Unlock the Destabilizer"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1167,7 +1166,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>2 Eternities"
+                return "<h1>2 Eternities<br><br><h2>Start Eternities with pre-Break Infinity upgrades and unlock the Eternal Tree"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1199,7 +1198,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>3 Eternities"
+                return "<h1>3 Eternities<br><br><h2>Start with Infinity Challenges 1-5 completed"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1231,7 +1230,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>5 Eternities"
+                return "<h1>5 Eternities<br><br><h2>Keep all Infinity Challenge completions on Eternity"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1263,7 +1262,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>8 Eternities"
+                return "<h1>8 Eternities<br><br><h2>Destabilizer Rods are twice as fast"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1295,7 +1294,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>15 Eternities"
+                return "<h1>15 Eternities<br><br><h2>Start with Infinity Broken"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1327,7 +1326,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>25 Eternities"
+                return "<h1>25 Eternities<br><br><h2>Keep Break Infinity upgrades"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1359,7 +1358,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>50 Eternities"
+                return "<h1>50 Eternities<br><br><h2>Start with the Collider unlocked with 5% chance"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1391,7 +1390,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>100 Eternities"
+                return "<h1>100 Eternities<br><br><h2>Break Eternity"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",
@@ -1423,7 +1422,7 @@ addLayer("eter", {
                 return true
             },
             display(){
-                return "<h1>2000 Eternities"
+                return "<h1>2000 Eternities<br><br><h2>"
             },
             style: {'height':'25%', 'width':'39.85%',
                 "border":"2px solid",

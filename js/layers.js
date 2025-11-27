@@ -444,7 +444,6 @@ function eternity() {
 
   player.inf.infenergy = decimalZero
   player.inf.infinities = decimalZero
-  player.p.infRecord = new Decimal(31536000)
   player.inf.gen1 = decimalZero
   player.inf.gen1bought = decimalZero
   player.inf.gen2 = decimalZero

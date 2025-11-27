@@ -3728,7 +3728,7 @@ addLayer("inf", {
                 if ((!hasUpgrade("inf",161)) && (!hasUpgrade("inf",162))){
                     return (processText(this.realname, garbledNameTemplate(171)) + "<br><br>" + processText(this.realtooltip, garbledDescriptionTemplate(171)) + "<br><br>" + processText(this.realeffect, garbledEffectTemplate(171)) +  "<br><br>" + processText(this.realcost, garbledCostTemplate(171)))
                 }
-                return "<h3>UPG-17<br><br>Prestige Mult gain is stronger based on total challenge time<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 1.000e33 IE"
+                return "<h3>UPG-17<br><br>Prestige Mult gain is stronger based on total challenge time<br><br>Currently: x"+format(this.effect(),2)+"<br><br>Cost: 1.000e21 IE"
             },
             realtooltip(){
                 return "Prestige Mult gain is stronger based on total challenge time"
@@ -3737,7 +3737,7 @@ addLayer("inf", {
                 return "UPG-17"
             },
             realcost(){
-                return "Cost: 1.000e33 IE"
+                return "Cost: 1.000e21 IE"
             },
             realeffect(){
                 let capped = ""
@@ -3745,13 +3745,13 @@ addLayer("inf", {
                 return "Currently: x"+format(this.effect(),2)+capped
             },
             cost(){
-                return new Decimal(1e33)
+                return new Decimal(1e21)
             },
             canAfford(){
-                return (player.inf.infenergy.gte(1e33) && hasUpgrade("inf",161) && hasUpgrade("inf",162))
+                return (player.inf.infenergy.gte(1e21) && hasUpgrade("inf",161) && hasUpgrade("inf",162))
             },
             pay(){
-                player.inf.infenergy = player.inf.infenergy.sub(1e33)
+                player.inf.infenergy = player.inf.infenergy.sub(1e21)
             },
             unlocked(){
                 return hasUpgrade("inf",111)
