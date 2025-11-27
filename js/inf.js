@@ -1170,7 +1170,7 @@ addLayer("inf", {
         32: {
             cost() { 
                 let sc = player.inf.collintupg.max(20).sub(19).pow(0.1).times((this.bought().max(20).sub(19)).root(100))
-                let cost = Decimal.pow(10,(this.bought().times(10/3))).max(1).times(Decimal.pow(5,this.bought())).times(1e6).pow(1.125).pow(sc)
+                let cost = Decimal.pow(10,(this.bought().times(10/3))).max(1).times(Decimal.pow((10/3),this.bought())).times(1e6).pow(1.125).pow(sc)
                 if(hasUpgrade("inf",161)) cost = cost.div(upgradeEffect("inf",161))
                 return cost 
             },
